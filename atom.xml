@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zxth93.github.io/"/>
-  <updated>2017-08-20T11:27:18.542Z</updated>
+  <updated>2017-08-20T13:34:50.197Z</updated>
   <id>https://zxth93.github.io/</id>
   
   <author>
@@ -20,12 +20,14 @@
     <link href="https://zxth93.github.io/2017/08/20/test/"/>
     <id>https://zxth93.github.io/2017/08/20/test/</id>
     <published>2017-08-20T11:27:18.000Z</published>
-    <updated>2017-08-20T11:27:18.542Z</updated>
+    <updated>2017-08-20T13:34:50.197Z</updated>
     
     <summary type="html">
     
     </summary>
     
+    
+      <category term="demo" scheme="https://zxth93.github.io/tags/demo/"/>
     
   </entry>
   
