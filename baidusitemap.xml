@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>https://zxth93.github.io/2017/08/20/test/</loc>
+    <lastmod>2017-08-20T13:52:32.658Z</lastmod>
+    <data>
+        <display>
+        <title>test</title>
+        <pubTime>2017-08-20T11:27:18.000Z</pubTime>
+        
+        <tag>demo</tag>
+         
+         
+           
+             
+              <breadCrumb title="demo" url="https://zxth93.github.io/categories/demo/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://zxth93.github.io/2017/08/20/CIKM2017%E6%AF%94%E8%B5%9B%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/</loc>
     <lastmod>2017-08-20T13:51:06.753Z</lastmod>
     <data>
@@ -21,26 +41,6 @@
            
              
               <breadCrumb title="算法" url="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://zxth93.github.io/2017/08/20/test/</loc>
-    <lastmod>2017-08-20T13:40:02.380Z</lastmod>
-    <data>
-        <display>
-        <title>test</title>
-        <pubTime>2017-08-20T11:27:18.000Z</pubTime>
-        
-        <tag>demo</tag>
-         
-         
-           
-             
-              <breadCrumb title="demo" url="https://zxth93.github.io/categories/demo/"/>
           
         </display>
     </data>
