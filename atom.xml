@@ -4,9 +4,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="https://zxth93.github.io/"/>
   <updated>2017-08-20T11:27:18.542Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>https://zxth93.github.io/</id>
   
   <author>
     <name>zxth93</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>test</title>
-    <link href="http://yoursite.com/2017/08/20/test/"/>
-    <id>http://yoursite.com/2017/08/20/test/</id>
+    <link href="https://zxth93.github.io/2017/08/20/test/"/>
+    <id>https://zxth93.github.io/2017/08/20/test/</id>
     <published>2017-08-20T11:27:18.000Z</published>
     <updated>2017-08-20T11:27:18.542Z</updated>
     
@@ -31,8 +31,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2017/08/20/hello-world/"/>
-    <id>http://yoursite.com/2017/08/20/hello-world/</id>
+    <link href="https://zxth93.github.io/2017/08/20/hello-world/"/>
+    <id>https://zxth93.github.io/2017/08/20/hello-world/</id>
     <published>2017-08-20T09:25:26.546Z</published>
     <updated>2017-08-20T09:25:26.546Z</updated>
     
