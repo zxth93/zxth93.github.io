@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zxth93.github.io/tags/index.html</loc>
+    
+    <lastmod>2017-08-21T03:14:44.214Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zxth93.github.io/categories/index.html</loc>
+    
+    <lastmod>2017-08-21T03:12:14.336Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zxth93.github.io/2017/08/20/test/</loc>
     
     <lastmod>2017-08-20T13:52:32.658Z</lastmod>
@@ -12,20 +26,6 @@
     <loc>https://zxth93.github.io/2017/08/20/CIKM2017%E6%AF%94%E8%B5%9B%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/</loc>
     
     <lastmod>2017-08-20T13:51:06.753Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zxth93.github.io/categories/index.html</loc>
-    
-    <lastmod>2017-08-20T13:38:08.684Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zxth93.github.io/tags/index.html</loc>
-    
-    <lastmod>2017-08-20T13:33:14.246Z</lastmod>
     
   </url>
   
