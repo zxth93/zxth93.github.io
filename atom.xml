@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zxth93.github.io/"/>
-  <updated>2017-08-21T06:41:16.937Z</updated>
+  <updated>2017-08-21T06:54:58.263Z</updated>
   <id>https://zxth93.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://zxth93.github.io/2017/08/20/CIKM2017%E6%AF%94%E8%B5%9B%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/"/>
     <id>https://zxth93.github.io/2017/08/20/CIKM2017比赛经验分享/</id>
     <published>2017-08-20T13:43:51.000Z</published>
-    <updated>2017-08-21T06:41:16.937Z</updated>
+    <updated>2017-08-21T06:54:58.263Z</updated>
     
     <content type="html"><![CDATA[<h1 id="CIKM-AnalytiCup-2017-Combining-the-Traditional-Methods-and-Deep-Learning-Approach-for-Precipitation-Nowcasting"><a href="#CIKM-AnalytiCup-2017-Combining-the-Traditional-Methods-and-Deep-Learning-Approach-for-Precipitation-Nowcasting" class="headerlink" title="CIKM_AnalytiCup_2017: Combining the Traditional Methods and Deep Learning Approach for Precipitation Nowcasting"></a>CIKM_AnalytiCup_2017: Combining the Traditional Methods and Deep Learning Approach for Precipitation Nowcasting</h1><p>This repo discribes the solution of Team 怀北村明远湖. <a href="https://tianchi.aliyun.com/competition/introduction.htm?spm=5176.100066.0.0.773ef42fBB8Kok&amp;raceId=231596" target="_blank" rel="external">CIKM AnalytiCup 2017</a> is an open competition that is sponsored by Shenzhen Meteorological Bureau, Alibaba Group and CIKM2017. Our team got the third place in the first phrase. And in the second phrase we got the fourth place.</p>
 <ul>
@@ -31,7 +31,7 @@
 <p>Our task here is to predict the total rainfall amount on the ground between future 1-hour and 2-hour for each target site.In this challenge, we combine Random Forestry, XGBoost and Bidirectional Gated Recurrent Units (GRUs) into an ensemble model to tackle this problem and achieve satisfying result.</p>
 <p><img src="https://img.alicdn.com/tps/TB1mmZRPFXXXXaPaXXXXXXXXXXX-865-302.png" alt=""></p>
 <h1 id="Data-Process"><a href="#Data-Process" class="headerlink" title="Data Process"></a>Data Process</h1><h3 id="Percentil-Method"><a href="#Percentil-Method" class="headerlink" title="Percentil Method"></a>Percentil Method</h3><p>A statistical method was applied to reduce the dimension of radar data. For a single radar map, we pick the 25th, 50th, 75th, 100th percentile of reflectivity values in various scales of neighborhood around the target site from center to the whole map.</p>
-<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/pictures/percentil.png?raw=true" alt=""></p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/percentil.png?raw=true" alt=""></p>
 <p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/pictures/percentile2.png?raw=true" alt=""></p>
 <h3 id="“Wind”-Methond"><a href="#“Wind”-Methond" class="headerlink" title="“Wind” Methond"></a>“Wind” Methond</h3><p>We first handle the original data (15*4*101*101) into a small size of data (15*4*10*10). Then shrink the data into 15*4*6*6 features through judging the wind direction. The entire preprocess learns from the idea of CNN, especially the convolutional calculation and max polling.</p>
 <p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/pictures/convolution.png?raw=true" alt=""></p>
