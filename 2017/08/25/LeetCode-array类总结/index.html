@@ -1,28 +1,353 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
   
-  <link href="/atom.xml" rel="self"/>
   
-  <link href="https://zxth93.github.io/"/>
-  <updated>2017-08-25T08:56:52.637Z</updated>
-  <id>https://zxth93.github.io/</id>
+  <title>LeetCode-array类总结（会持续更新...） | Blog</title>
+  <meta name="description" content="本文主要是对leetcode中的array类算法的总结，包含了各题的solution和常用的解决方法。 相关源码：code 此类题的常用思路： 123456if 数组是否有序：	try 双指针法；	try 反向计算；else：	try 集合数据结构；	try 打表法 119. Pascal’s Triangle IIDescription： Given an index k, return the">
+<meta name="keywords" content="Leetcode,array">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode-array类总结（会持续更新...）">
+<meta property="og:url" content="https://zxth93.github.io/2017/08/25/LeetCode-array类总结/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文主要是对leetcode中的array类算法的总结，包含了各题的solution和常用的解决方法。 相关源码：code 此类题的常用思路： 123456if 数组是否有序：	try 双指针法；	try 反向计算；else：	try 集合数据结构；	try 打表法 119. Pascal’s Triangle IIDescription： Given an index k, return the">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-08-25T08:56:52.637Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeetCode-array类总结（会持续更新...）">
+<meta name="twitter:description" content="本文主要是对leetcode中的array类算法的总结，包含了各题的solution和常用的解决方法。 相关源码：code 此类题的常用思路： 123456if 数组是否有序：	try 双指针法；	try 反向计算；else：	try 集合数据结构；	try 打表法 119. Pascal’s Triangle IIDescription： Given an index k, return the">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://zxth93.github.io/2017/08/25/LeetCode-array类总结/index.html">
   
-  <author>
-    <name>zxth93</name>
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <!-- font-awesome CSS -->
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  
     
-  </author>
-  
-  <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>LeetCode-array类总结（会持续更新...）</title>
-    <link href="https://zxth93.github.io/2017/08/25/LeetCode-array%E7%B1%BB%E6%80%BB%E7%BB%93/"/>
-    <id>https://zxth93.github.io/2017/08/25/LeetCode-array类总结/</id>
-    <published>2017-08-25T03:07:27.000Z</published>
-    <updated>2017-08-25T08:56:52.637Z</updated>
+
+</head>
+
+
+<body class="main-center">
+  <section class="mainside">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/zxth93" target="_blank">
+          <img class="thumb-xl img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">ciic</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">A master student of ISCAS</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="fa fa-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat"><i class="fa fa-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+            <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <!-- <span class="ins-close ins-selectable"><i class="fa fa-times"></i></span> -->
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav main-nav">
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="fa fa-fw fa-dashboard"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="fa fa-fw fa-delicious"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="fa fa-fw fa-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="fa fa-fw fa-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+      </ul>
+      <div class="footer">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zxth93" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="fa fa-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/p/1005052804936165/home?from=page_100505&mod=TAB&is_all=1#place" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="fa fa-weibo"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="fa fa-twitter"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="fa fa-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="fa fa-rss"></i></a></li>
+        
+    </ul>
     
-    <content type="html"><![CDATA[<p>本文主要是对leetcode中的array类算法的总结，包含了各题的solution和常用的解决方法。</p>
+    <div class="copyright">
+        &copy; 2017 zxth93
+        <div class="publishby">
+        	<!-- Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. -->
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</div>
+    </nav>
+  </div>
+</section>
+
+  
+    <section class="sidebar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            
+            <p>您好，您是第<span id="busuanzi_value_site_uv">0</span>位访客</p>
+            
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/阿里天池大赛/">阿里天池大赛</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Leetcode/" style="font-size: 13px;">Leetcode</a> <a href="/tags/array/" style="font-size: 13px;">array</a> <a href="/tags/机器学习/" style="font-size: 13px;">机器学习</a> <a href="/tags/深度学习/" style="font-size: 13px;">深度学习</a> <a href="/tags/阿里天池大赛/" style="font-size: 13px;">阿里天池大赛</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/算法/">算法</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/08/25/LeetCode-array类总结/" class="title">LeetCode-array类总结（会持续更新...）</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-08-25T03:07:27.000Z" itemprop="datePublished">2017-08-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/算法/">算法</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/08/20/CIKM2017比赛经验分享/" class="title">阿里天池CIKM2017 Rank4比赛经验分享</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-08-20T13:43:51.000Z" itemprop="datePublished">2017-08-20</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2017/08/20/hello-world/" class="title">Hello World</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-08-20T09:25:26.546Z" itemprop="datePublished">2017-08-20</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</section>
+
+  
+  
+<section class="main">
+  <div class="content">
+  <article id="post-LeetCode-array类总结" class="article article-type-post" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      LeetCode-array类总结（会持续更新...）
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="fa fa-calendar-check-o"></i>
+	<a href="/2017/08/25/LeetCode-array类总结/" class="article-date">
+	  <time datetime="2017-08-25T03:07:27.000Z" itemprop="datePublished">2017-08-25</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/算法/">算法</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="fa fa-tag"></i>
+	<a class="article-tag-link" href="/tags/Leetcode/">Leetcode</a>, <a class="article-tag-link" href="/tags/array/">array</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="fa fa-eye" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			阅读<span id="busuanzi_value_page_pv">0</span>次
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2017/08/25/LeetCode-array类总结/#comments" class="article-comment-link">评论</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs">字数统计: 2,190(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs">阅读时长: 12(分)</span>
+	
+
+      </div>
+      
+    </header>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <p>本文主要是对leetcode中的array类算法的总结，包含了各题的solution和常用的解决方法。</p>
 <p>相关源码：<a href="https://github.com/zxth93/leetcode" target="_blank" rel="external">code</a></p>
 <p>此类题的常用思路：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">if 数组是否有序：</div><div class="line">	try 双指针法；</div><div class="line">	try 反向计算；</div><div class="line">else：</div><div class="line">	try 集合数据结构；</div><div class="line">	try 打表法</div></pre></td></tr></table></figure>
@@ -107,101 +432,128 @@
 <p><strong>Note:</strong><br>You may assume that <em>nums1</em> has enough space (size that is greater or equal to <em>m</em> + <em>n</em>) to hold additional elements from <em>nums2</em>. The number of elements initialized in <em>nums1</em> and <em>nums2</em> are <em>m</em> and <em>n</em> respectively.</p>
 <p>解题思路：本题是两个有序的数组，我们要利用这一点，并且有个trick：<strong>反向</strong>计算。代码如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>&#123;</span></div><div class="line">    <span class="keyword">public</span>:</div><div class="line">  		<span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums1, <span class="keyword">int</span> m, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums2, <span class="keyword">int</span> n)</span></span>&#123;</div><div class="line">            <span class="keyword">int</span> i = m<span class="number">-1</span>;</div><div class="line">          	<span class="keyword">int</span> j = n<span class="number">-1</span>;</div><div class="line">            <span class="keyword">int</span> k = m+n<span class="number">-1</span>;</div><div class="line">            <span class="keyword">while</span>(i&gt;=<span class="number">0</span> &amp;&amp; j&gt;=<span class="number">0</span>)&#123;</div><div class="line">                <span class="keyword">if</span>(nums1[i] &gt; nums2[j])&#123;</div><div class="line">                    nums1[k--] = nums1[i--];</div><div class="line">                &#125;<span class="keyword">else</span>&#123;</div><div class="line">                    nums1[k--] = nums2[j--];</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">           <span class="keyword">while</span>(j&gt;=<span class="number">0</span>)&#123;</div><div class="line">               nums1[k--] = nums2[j--];</div><div class="line">           &#125;</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-]]></content>
+
+      
+    </div>
+    <footer class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
     
-    <summary type="html">
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://zxth93.github.io/2017/08/25/LeetCode-array类总结/" title="LeetCode-array类总结（会持续更新...）" target="_blank" rel="external">https://zxth93.github.io/2017/08/25/LeetCode-array类总结/</a>
+    </li>
     
-      &lt;p&gt;本文主要是对leetcode中的array类算法的总结，包含了各题的solution和常用的解决方法。&lt;/p&gt;
-&lt;p&gt;相关源码：&lt;a href=&quot;https://github.com/zxth93/leetcode&quot; target=&quot;_blank&quot; rel=&quot;externa
-    
-    </summary>
-    
-      <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="Leetcode" scheme="https://zxth93.github.io/tags/Leetcode/"/>
-    
-      <category term="array" scheme="https://zxth93.github.io/tags/array/"/>
-    
-  </entry>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/zxth93" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/zxth93" target="_blank"><span class="text-dark">ciic</span><small class="ml-1x">A master student of ISCAS</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </footer>
+  </article>
   
-  <entry>
-    <title>阿里天池CIKM2017 Rank4比赛经验分享</title>
-    <link href="https://zxth93.github.io/2017/08/20/CIKM2017%E6%AF%94%E8%B5%9B%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/"/>
-    <id>https://zxth93.github.io/2017/08/20/CIKM2017比赛经验分享/</id>
-    <published>2017-08-20T13:43:51.000Z</published>
-    <updated>2017-08-22T08:51:33.628Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="CIKM-AnalytiCup-2017-Combining-the-Traditional-Methods-and-Deep-Learning-Approach-for-Precipitation-Nowcasting"><a href="#CIKM-AnalytiCup-2017-Combining-the-Traditional-Methods-and-Deep-Learning-Approach-for-Precipitation-Nowcasting" class="headerlink" title="CIKM_AnalytiCup_2017: Combining the Traditional Methods and Deep Learning Approach for Precipitation Nowcasting"></a>CIKM_AnalytiCup_2017: Combining the Traditional Methods and Deep Learning Approach for Precipitation Nowcasting</h1><p>This repo discribes the solution of Team 怀北村明远湖. <a href="https://tianchi.aliyun.com/competition/introduction.htm?spm=5176.100066.0.0.773ef42fBB8Kok&amp;raceId=231596" target="_blank" rel="external">CIKM AnalytiCup 2017</a> is an open competition that is sponsored by Shenzhen Meteorological Bureau, Alibaba Group and CIKM2017. Our team got the third place in the first phrase. And in the second phrase we got the fourth place.</p>
-<ul>
-<li>Team 怀北村明远湖：<a href="https://github.com/zxth93" target="_blank" rel="external">Zhang Rui</a>, <a href="https://github.com/joffery" target="_blank" rel="external">Qiao Fengchun</a>, <a href="https://github.com/leslie-kwork" target="_blank" rel="external">Guo Ran</a></li>
-<li><a href="https://github.com/zxth93/CIKM_AnalytiCup_2017" target="_blank" rel="external">code</a></li>
-</ul>
-<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Short-term precipitation forecasting such as rainfall prediction is a task to predict a short-term rainfall amount based on current observations. In this challenge, sponsors provide a set of radar maps at different time spans where each radar map covers radar reflectivity of a target site and its surrounding areas. Radar maps are measured at different time spans, i.e., 15 time spans with an interval of 6 minutes, and different heights, i.e., 4 heights, from 0.5km to 3.5km with an interval of 1km; Each radar map covers an area of 101km*101km around the site. The area is marked as 101*101 grids, and the target site is located at the centre, i.e. (50, 50).</p>
-<p>Our task here is to predict the total rainfall amount on the ground between future 1-hour and 2-hour for each target site.In this challenge, we combine Random Forestry, XGBoost and Bidirectional Gated Recurrent Units (GRUs) into an ensemble model to tackle this problem and achieve satisfying result.</p>
-<p><img src="https://img.alicdn.com/tps/TB1mmZRPFXXXXaPaXXXXXXXXXXX-865-302.png" alt=""></p>
-<h1 id="Data-Process"><a href="#Data-Process" class="headerlink" title="Data Process"></a>Data Process</h1><h3 id="Percentile-Method"><a href="#Percentile-Method" class="headerlink" title="Percentile Method"></a>Percentile Method</h3><p>A statistical method was applied to reduce the dimension of radar data. For a single radar map, we pick the 25th, 50th, 75th, 100th percentile of reflectivity values in various scales of neighborhood around the target site from center to the whole map.</p>
-<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/percentil.png?raw=true" alt=""></p>
-<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/percentile2.png?raw=true" alt=""></p>
-<h3 id="“Wind”-Methond"><a href="#“Wind”-Methond" class="headerlink" title="“Wind” Methond"></a>“Wind” Methond</h3><p>We first handle the original data (15*4*101*101) into a small size of data (15*4*10*10). Then shrink the data into 15*4*6*6 features through judging the wind direction. The entire preprocess learns from the idea of CNN, especially the convolutional calculation and max polling.</p>
-<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/convolution.png?raw=true" alt=""></p>
-<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/maxpooling.png?raw=true" alt=""></p>
-<p>We take the fourth layer of data to determine the wind direction. Then, in order to calculating the resulting wind direction, we carry out two ways of choosing representative data. The first one uses the maximum value in each 10*10 frame as the representation. The second one takes the average of the largest five data instead. After selecting the representative data, we determine the wind direction by calculating the deviation between the initial position and the following frames, voting the moving direction, finally get the maximum votes as the resulting wind direction based on the given thresholds.</p>
-<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/wind.png?raw=true" alt=""></p>
-<h1 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h1><p>Random Forestry, XGBoost and Bidirectional GRUs are utilized for model ensemble.</p>
-<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><ul>
-<li>Python 3.6</li>
-<li>Keras</li>
-<li>XGBoost</li>
-<li>sklearn</li>
-</ul>
-<h1 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h1><ul>
-<li><a href="http://pan.baidu.com/s/1eSiYeum" target="_blank" rel="external">Data Source</a></li>
-</ul>
-]]></content>
+  <div id="comments">
+  	
+       
+    <div id="uyan_frame"></div>
+
     
-    <summary type="html">
-    
-      &lt;h1 id=&quot;CIKM-AnalytiCup-2017-Combining-the-Traditional-Methods-and-Deep-Learning-Approach-for-Precipitation-Nowcasting&quot;&gt;&lt;a href=&quot;#CIKM-Analy
-    
-    </summary>
-    
-      <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="阿里天池大赛" scheme="https://zxth93.github.io/tags/%E9%98%BF%E9%87%8C%E5%A4%A9%E6%B1%A0%E5%A4%A7%E8%B5%9B/"/>
-    
-      <category term="机器学习" scheme="https://zxth93.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
+  </div>
+
+
   
-  <entry>
-    <title>Hello World</title>
-    <link href="https://zxth93.github.io/2017/08/20/hello-world/"/>
-    <id>https://zxth93.github.io/2017/08/20/hello-world/</id>
-    <published>2017-08-20T09:25:26.546Z</published>
-    <updated>2017-08-20T09:25:26.546Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
-    
-    </summary>
-    
-    
-  </entry>
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
   
-</feed>
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2017/08/20/CIKM2017比赛经验分享/" title="阿里天池CIKM2017 Rank4比赛经验分享">下一篇&nbsp;&nbsp;<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+  </div>
+  
+  </div>
+</nav>
+  
+
+
+</section>
+
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.js"></script>
+<script src="/js/application.js"></script>
+  
+    
+    
+    
+        <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+    
+    
+        
+<script defer src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+        
+    
+    <script defer type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=[object Object]"></script>
+
+
+    
+    
+
+
+
+</body>
+</html>
