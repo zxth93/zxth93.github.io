@@ -16,16 +16,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>标签: 机器学习 | Blog</title>
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://zxth93.github.io/tags/机器学习/index.html">
+  <title>Keras学习笔记II-函数式模型 | Blog</title>
+  <meta name="description" content="Keras函数式模型接口是用户定义多输出模型、非循环有向模型或具有共享层的模型等复杂模型的途径。这种模型的使用方式和函数式编程很像，下面看一个全连接网络的例子： 1234567891011121314from keras.layers import Input, Densefrom keras.models import Modelinputs = Input(shape=(784, ))x =">
+<meta name="keywords" content="Keras,深度学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Keras学习笔记II-函数式模型">
+<meta property="og:url" content="https://zxth93.github.io/2017/08/31/Keras学习笔记II-函数式模型/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Keras函数式模型接口是用户定义多输出模型、非循环有向模型或具有共享层的模型等复杂模型的途径。这种模型的使用方式和函数式编程很像，下面看一个全连接网络的例子： 1234567891011121314from keras.layers import Input, Densefrom keras.models import Modelinputs = Input(shape=(784, ))x =">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-08-31T11:52:23.282Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="Keras学习笔记II-函数式模型">
+<meta name="twitter:description" content="Keras函数式模型接口是用户定义多输出模型、非循环有向模型或具有共享层的模型等复杂模型的途径。这种模型的使用方式和函数式编程很像，下面看一个全连接网络的例子： 1234567891011121314from keras.layers import Input, Densefrom keras.models import Modelinputs = Input(shape=(784, ))x =">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://zxth93.github.io/tags/机器学习/index.html">
+  <link rel="canonical" href="https://zxth93.github.io/2017/08/31/Keras学习笔记II-函数式模型/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -314,67 +319,154 @@
 </section>
 
   
-  <section class="main">
-  <article class="content article article-tags post-type-list" itemscope="">
-    <header class="article-header">
-      <h1 itemprop="name" class="hidden-xs">标签: 机器学习</h1>
-      <p class="text-muted hidden-xs">共 1 篇文章</p>
-      <nav role="navigation" id="nav-main" class="okayNav">
-        <ul>
-          <li><a href="/tags">All</a></li>
-          
-          <li><a href="/tags/Keras/">Keras</a></li>
-          
-          <li><a href="/tags/深度学习/">深度学习</a></li>
-          
-          <li><a href="/tags/Sequential/">Sequential</a></li>
-          
-          <li><a href="/tags/Leetcode/">Leetcode</a></li>
-          
-          <li><a href="/tags/array/">array</a></li>
-          
-          <li><a href="/tags/阿里天池大赛/">阿里天池大赛</a></li>
-          
-          <li><a href="/tags/机器学习/">机器学习</a></li>
-          
-        </ul>
-      </nav>
-    </header>
-    <!-- /header -->
-    <div class="article-body">
-      <div class="row">
-        
-<div class="col-md-6">
+  
+<section class="main">
+  <div class="content">
+  <article id="post-Keras学习笔记II-函数式模型" class="article article-type-post" itemscope itemprop="blogPost">
     
-<article class="panel panel-default shadow-hover">
-  <div class="panel-body">
-     <div class="article-meta">
-       <time datetime="2017-08-20T13:43:51.000Z" itemprop="datePublished">2017-08-20</time>
-     </div>
-     <h3 class="article-title" itemprop="name">
-       <a class="article-link" href="/2017/08/20/CIKM2017比赛经验分享/">阿里天池CIKM2017 Rank4比赛经验分享</a>
-     </h3>
-   </div>
-   
-   <div class="panel-footer">
-     
-      <a href="/tags/深度学习/" class="label label-default mb">深度学习</a>
-     
-      <a href="/tags/阿里天池大赛/" class="label label-default mb">阿里天池大赛</a>
-     
-      <a href="/tags/机器学习/" class="label label-default mb">机器学习</a>
-     
-   </div>
-   
-</article>
+    <header class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Keras学习笔记II-函数式模型
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="fa fa-calendar-check-o"></i>
+	<a href="/2017/08/31/Keras学习笔记II-函数式模型/" class="article-date">
+	  <time datetime="2017-08-31T10:48:30.000Z" itemprop="datePublished">2017-08-31</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/算法/">算法</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="fa fa-tag"></i>
+	<a class="article-tag-link" href="/tags/Keras/">Keras</a>, <a class="article-tag-link" href="/tags/深度学习/">深度学习</a>
+  </span>
 
 
-</div>
+        
+	<span class="article-read hidden-xs">
+	    <i class="fa fa-eye" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			阅读<span id="busuanzi_value_page_pv">0</span>次
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2017/08/31/Keras学习笔记II-函数式模型/#comments" class="article-comment-link">评论</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs">字数统计: 235(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs">阅读时长: 1(分)</span>
+	
 
       </div>
+      
+    </header>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <p>Keras函数式模型接口是用户定义多输出模型、非循环有向模型或具有共享层的模型等复杂模型的途径。这种模型的使用方式和函数式编程很像，下面看一个全连接网络的例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Input, Dense</div><div class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Model</div><div class="line"></div><div class="line">inputs = Input(shape=(<span class="number">784</span>, ))</div><div class="line"></div><div class="line">x = Dense(<span class="number">64</span>, activation=<span class="string">'relu'</span>)(inputs)</div><div class="line">x = Dense(<span class="number">64</span>, activation=<span class="string">'relu'</span>)(x)</div><div class="line">predictions = Dense(<span class="number">10</span>, activation=<span class="string">'softmax'</span>)(x)</div><div class="line"></div><div class="line">model = Model(inputs=inputs, outputs=preditions)</div><div class="line"></div><div class="line">model.compile(optimizer=<span class="string">'rmsprop'</span>, loss=<span class="string">'categorical_crossentropy'</span>, metrics=[<span class="string">'accuracy'</span>])</div><div class="line"></div><div class="line">model.fit(data, labels)</div></pre></td></tr></table></figure>
+<p>所有的模型都是可调用的，像层一样</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x = Input(shape=(<span class="number">784</span>, ))</div><div class="line">y = model(x)</div></pre></td></tr></table></figure>
+<ul>
+<li><p>例子</p>
+<p>判断两条微博是否出自同一用户,会使用到共享层</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> keras</div><div class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Input, LSTM, Dense</div><div class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Model</div><div class="line"></div><div class="line">tweet_a = Input(shape=(<span class="number">140</span>,<span class="number">256</span>))</div><div class="line">tweet_b = Input(shape=(<span class="number">140</span>, <span class="number">256</span>))</div><div class="line"></div><div class="line">shared_lstm = LSTM(<span class="number">64</span>)</div><div class="line"></div><div class="line">encoded_a = shared_lstm(tweet_a)</div><div class="line">encoded_b = shared_lstm(tweet_b)</div><div class="line"></div><div class="line">merged_vector = keras.layers.concatenate([encoded_a, encoded_b], axis=<span class="number">1</span>)</div><div class="line">prediction = Dense(<span class="number">1</span>, activation=<span class="string">'sigmoid'</span>)(merged_vector)</div><div class="line"></div><div class="line">model = Model(inputs=[tweet_a, tweet_b], outputs=prediction)</div><div class="line">model.compile(optimizer=<span class="string">'rmsprop'</span>, loss=<span class="string">'binary_crossentropy'</span>, mertics=[<span class="string">'accuracy'</span>])</div><div class="line">model.fit([data_a, data_b], labels, epochs=<span class="number">10</span>)</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+
+      
     </div>
+    <footer class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://zxth93.github.io/2017/08/31/Keras学习笔记II-函数式模型/" title="Keras学习笔记II-函数式模型" target="_blank" rel="external">https://zxth93.github.io/2017/08/31/Keras学习笔记II-函数式模型/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/zxth93" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/zxth93" target="_blank"><span class="text-dark">ciic</span><small class="ml-1x">A master student of ISCAS</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </footer>
   </article>
-   
+  
+    
+  <div id="comments">
+  	
+       
+    <div id="uyan_frame"></div>
+
+    
+  </div>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2017/09/02/Keras学习笔记III-网络层/" title="Keras学习笔记III-网络层"><i class="fa fa-angle-left" aria-hidden="true"></i>&nbsp;&nbsp;上一篇</a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2017/08/26/Keras学习笔记I-Sequential/" title="Keras学习笔记I-Sequential">下一篇&nbsp;&nbsp;<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+  </div>
+  
+  </div>
+</nav>
+  
+
+
 </section>
 
   <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
@@ -412,6 +504,12 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
     
+    
+        
+    
+    <script defer type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=[object Object]"></script>
+
+
     
     
 

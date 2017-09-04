@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zxth93.github.io/"/>
-  <updated>2017-08-26T12:14:51.313Z</updated>
+  <updated>2017-09-04T12:18:24.606Z</updated>
   <id>https://zxth93.github.io/</id>
   
   <author>
@@ -14,6 +14,123 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Keras学习笔记III-网络层</title>
+    <link href="https://zxth93.github.io/2017/09/02/Keras%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0III-%E7%BD%91%E7%BB%9C%E5%B1%82/"/>
+    <id>https://zxth93.github.io/2017/09/02/Keras学习笔记III-网络层/</id>
+    <published>2017-09-02T06:32:56.000Z</published>
+    <updated>2017-09-04T12:18:24.606Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-常用层"><a href="#1-常用层" class="headerlink" title="1. 常用层"></a>1. 常用层</h2><p>常用层对应于core模块</p>
+<ul>
+<li><p><strong>Dense层</strong></p>
+<p>常用的全连接层</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">keras.layers.core.Dense(units, activation=<span class="keyword">None</span>, use_bias=<span class="keyword">True</span>, kernel_initializer=<span class="string">'glorot_uniform'</span>, bias_initializer=<span class="string">'zeros'</span>, kernel_regularizer=<span class="keyword">None</span>, bias_regularizer=<span class="keyword">None</span>, activity_regularizer=<span class="keyword">None</span>, kernel_constraint=<span class="keyword">None</span>, bias_constraint=<span class="keyword">None</span>)</div><div class="line"></div><div class="line"><span class="comment"># 参数：</span></div><div class="line"><span class="comment"># units：大于0的整数，代表该层的输出维度。</span></div><div class="line"><span class="comment"># activation：激活函数，为预定义的激活函数名（参考激活函数），或逐元素（element-wise）的Theano函数。如果不指定该参数，将不会使用任何激活函数（即使用线性激活函数：a(x)=x）</span></div><div class="line"><span class="comment"># use_bias: 布尔值，是否使用偏置项</span></div><div class="line"><span class="comment"># kernel_initializer：权值初始化方法，为预定义初始化方法名的字符串，或用于初始化权重的初始化器。参考initializers</span></div><div class="line"><span class="comment"># bias_initializer：权值初始化方法，为预定义初始化方法名的字符串，或用于初始化权重的初始化器。参考initializers</span></div><div class="line"><span class="comment"># kernel_regularizer：施加在权重上的正则项，为Regularizer对象</span></div><div class="line"><span class="comment"># bias_regularizer：施加在偏置向量上的正则项，为Regularizer对象</span></div><div class="line"><span class="comment"># activity_regularizer：施加在输出上的正则项，为Regularizer对象</span></div><div class="line"><span class="comment"># kernel_constraints：施加在权重上的约束项，为Constraints对象</span></div><div class="line"><span class="comment"># bias_constraints：施加在偏置上的约束项，为Constraints对象</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Activation层</strong></p>
+<p>激活层对一个层的输出施加激活函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">keras.layers.core.Activation(activation)</div><div class="line"></div><div class="line"><span class="comment"># 参数</span></div><div class="line"><span class="comment"># activation：将要使用的激活函数</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Dropout层</strong></p>
+<p>Dropout将在训练过程中每次更新参数时随机断开一定百分比的输入神经元，Dropout层用于防止过拟合</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">keras.layers.core.Dropout(rate, noise_shape=<span class="keyword">None</span>, seed=<span class="keyword">None</span>)</div><div class="line"></div><div class="line"><span class="comment"># 参数</span></div><div class="line"><span class="comment"># rate：0~1的浮点数，控制需要断开的神经元的比例</span></div><div class="line"><span class="comment"># noise_shape:整数张量，为将要应用在输入上的二值Dropout mask的shape，例如你的输入为（batch_size, timesteps,features),并且你希望在各个时间步上的Dropout mask都相同，则可传入noise_shape=(batch_size,1,features)。</span></div><div class="line"><span class="comment"># seed：整数，使用的随机数种子</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Flatten层</strong></p>
+<p>Flatten层用来将输入“压平”，即把多维的输入一维化，常用在从卷积层到全连接层的过度。Flatten不影响batch的大小。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">keras.layers.core.Flatten()</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="2-卷积层Convolutional"><a href="#2-卷积层Convolutional" class="headerlink" title="2. 卷积层Convolutional"></a>2. 卷积层Convolutional</h2><ul>
+<li><p><strong>Conv2D层</strong></p>
+<p>二维卷积层，即对图像的空域卷积。该层对二维输入进行滑动窗卷积，当使用该层作为第一层时，应提供<code>input_shape</code>参数。例如<code>input_shape = (128,128,3)</code>代表128*128的彩色RGB图像（<code>data_format=&#39;channels_last&#39;</code>）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">keras.layers.convolutional.Conv2D(filters, kernel_size, strides=(<span class="number">1</span>, <span class="number">1</span>), padding=<span class="string">'valid'</span>, data_format=<span class="keyword">None</span>, dilation_rate=(<span class="number">1</span>, <span class="number">1</span>), activation=<span class="keyword">None</span>, use_bias=<span class="keyword">True</span>, kernel_initializer=<span class="string">'glorot_uniform'</span>, bias_initializer=<span class="string">'zeros'</span>, kernel_regularizer=<span class="keyword">None</span>, bias_regularizer=<span class="keyword">None</span>, activity_regularizer=<span class="keyword">None</span>, kernel_constraint=<span class="keyword">None</span>, bias_constraint=<span class="keyword">None</span>)</div><div class="line"></div><div class="line"><span class="comment"># 参数</span></div><div class="line"></div><div class="line"><span class="comment"># filters：卷积核的数目（即输出的维度）</span></div><div class="line"><span class="comment"># kernel_size：单个整数或由两个整数构成的list/tuple，卷积核的宽度和长度。如为单个整数，则表示在各个空间维度的相同长度。</span></div><div class="line"><span class="comment"># strides：单个整数或由两个整数构成的list/tuple，为卷积的步长。如为单个整数，则表示在各个空间维度的相同步长。任何不为1的strides均与任何不为1的dilation_rata均不兼容</span></div><div class="line"><span class="comment"># padding：补0策略，为“valid”, “same” 。“valid”代表只进行有效的卷积，即对边界数据不处理。“same”代表保留边界处的卷积结果，通常会导致输出shape与输入shape相同。</span></div><div class="line"><span class="comment"># activation：激活函数，为预定义的激活函数名（参考激活函数），或逐元素（element-wise）的Theano函数。如果不指定该参数，将不会使用任何激活函数（即使用线性激活函数：a(x)=x）</span></div><div class="line"><span class="comment"># dilation_rate：单个整数或由两个个整数构成的list/tuple，指定dilated convolution中的膨胀比例。任何不为1的dilation_rata均与任何不为1的strides均不兼容。</span></div><div class="line"><span class="comment"># data_format：字符串，“channels_first”或“channels_last”之一，代表图像的通道维的位置。该参数是Keras 1.x中的image_dim_ordering，“channels_last”对应原本的“tf”，“channels_first”对应原本的“th”。以128x128的RGB图像为例，“channels_first”应将数据组织为（3,128,128），而“channels_last”应将数据组织为（128,128,3）。该参数的默认值是~/.keras/keras.json中设置的值，若从未设置过，则为“channels_last”。</span></div><div class="line"><span class="comment"># use_bias:布尔值，是否使用偏置项</span></div><div class="line"><span class="comment"># kernel_initializer：权值初始化方法，为预定义初始化方法名的字符串，或用于初始化权重的初始化器。参考initializers</span></div><div class="line"><span class="comment"># bias_initializer：权值初始化方法，为预定义初始化方法名的字符串，或用于初始化权重的初始化器。参考initializers</span></div><div class="line"><span class="comment"># kernel_regularizer：施加在权重上的正则项，为Regularizer对象</span></div><div class="line"><span class="comment"># bias_regularizer：施加在偏置向量上的正则项，为Regularizer对象</span></div><div class="line"><span class="comment"># activity_regularizer：施加在输出上的正则项，为Regularizer对象</span></div><div class="line"><span class="comment"># kernel_constraints：施加在权重上的约束项，为Constraints对象</span></div><div class="line"><span class="comment"># bias_constraints：施加在偏置上的约束项，为Constraints对象</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Cropping2D层</strong></p>
+<p>对2D输入（图像）进行裁剪，将在空域维度，即宽和高的方向上裁剪</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">keras.layers.convolutional.Cropping2D(cropping=((<span class="number">0</span>, <span class="number">0</span>), (<span class="number">0</span>, <span class="number">0</span>)), data_format=<span class="keyword">None</span>)</div><div class="line"></div><div class="line"><span class="comment"># 参数</span></div><div class="line"></div><div class="line"><span class="comment"># cropping：长为2的整数tuple，分别为宽和高方向上头部与尾部需要裁剪掉的元素数</span></div><div class="line"><span class="comment"># data_format：字符串，“channels_first”或“channels_last”之一，代表图像的通道维的位置。该参数是Keras 1.x中的image_dim_ordering，“channels_last”对应原本的“tf”，“channels_first”对应原本的“th”。以128x128的RGB图像为例，“channels_first”应将数据组织为（3,128,128），而“channels_last”应将数据组织为（128,128,3）。该参数的默认值是~/.keras/keras.json中设置的值，若从未设置过，则为“channels_last”。</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>UpSampling2D层</p>
+<p>将数据的行和列分别重复size[0]和size[1]次</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">keras.layers.convolutional.UpSampling2D(size=(<span class="number">2</span>,<span class="number">2</span>), data_format=<span class="keyword">None</span>)</div><div class="line"></div><div class="line"><span class="comment"># 参数</span></div><div class="line"></div><div class="line"><span class="comment"># size：整数tuple，分别为行和列上采样因子</span></div><div class="line"><span class="comment"># data_format：字符串，“channels_first”或“channels_last”之一，代表图像的通道维的位置。该参数是Keras 1.x中的image_dim_ordering，“channels_last”对应原本的“tf”，“channels_first”对应原本的“th”。以128x128的RGB图像为例，“channels_first”应将数据组织为（3,128,128），而“channels_last”应将数据组织为（128,128,3）。该参数的默认值是~/.keras/keras.json中设置的值，若从未设置过，则为“channels_last”。</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>ZeroPadding2D层</p>
+<p>对2D输入（如图片）的边界填充0，以控制卷积以后特征图的大小</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">keras.layers.convolutional.ZeroPadding2D(padding=(<span class="number">1</span>,<span class="number">1</span>), data_format=<span class="keyword">None</span>)</div><div class="line"></div><div class="line"><span class="comment"># 参数</span></div><div class="line"></div><div class="line"><span class="comment"># padding：整数tuple，表示在要填充的轴的起始和结束处填充0的数目，这里要填充的轴是轴3和轴4（即在'th'模式下图像的行和列，在‘channels_last’模式下要填充的则是轴2，3）</span></div><div class="line"><span class="comment"># data_format：字符串，“channels_first”或“channels_last”之一，代表图像的通道维的位置。该参数是Keras 1.x中的image_dim_ordering，“channels_last”对应原本的“tf”，“channels_first”对应原本的“th”。以128x128的RGB图像为例，“channels_first”应将数据组织为（3,128,128），而“channels_last”应将数据组织为（128,128,3）。该参数的默认值是~/.keras/keras.json中设置的值，若从未设置过，则为“channels_last”。</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="3-池化层Pooling"><a href="#3-池化层Pooling" class="headerlink" title="3. 池化层Pooling"></a>3. 池化层Pooling</h2><ul>
+<li><p><strong>MaxPooling2D层</strong></p>
+<p>为空域信号施加最大值池化</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">keras.layers.pooling.MaxPooling2D(pool_size=(<span class="number">2</span>, <span class="number">2</span>), strides=<span class="keyword">None</span>, padding=<span class="string">'valid'</span>, data_format=<span class="keyword">None</span>)</div><div class="line"></div><div class="line"><span class="comment"># 参数</span></div><div class="line"></div><div class="line"><span class="comment"># pool_size：整数或长为2的整数tuple，代表在两个方向（竖直，水平）上的下采样因子，如取（2，2）将使图片在两个维度上均变为原长的一半。为整数意为各个维度值相同且为该数字。</span></div><div class="line"><span class="comment"># strides：整数或长为2的整数tuple，或者None，步长值。</span></div><div class="line"><span class="comment"># border_mode：‘valid’或者‘same’</span></div><div class="line"><span class="comment"># data_format：字符串，“channels_first”或“channels_last”之一，代表图像的通道维的位置。该参数是Keras 1.x中的image_dim_ordering，“channels_last”对应原本的“tf”，“channels_first”对应原本的“th”。以128x128的RGB图像为例，“channels_first”应将数据组织为（3,128,128），而“channels_last”应将数据组织为（128,128,3）。该参数的默认值是~/.keras/keras.json中设置的值，若从未设置过，则为“channels_last”。</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>AveragePooling2D层</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">keras.layers.pooling.AveragePooling2D(pool_size=(<span class="number">2</span>,<span class="number">2</span>), strides=<span class="keyword">None</span>, padding=<span class="string">'valid'</span>, data_format=<span class="keyword">None</span>)</div><div class="line"></div><div class="line"><span class="comment"># 参数</span></div><div class="line"></div><div class="line"><span class="comment"># pool_size：整数或长为2的整数tuple，代表在两个方向（竖直，水平）上的下采样因子，如取（2，2）将使图片在两个维度上均变为原长的一半。为整数意为各个维度值相同且为该数字。</span></div><div class="line"><span class="comment"># strides：整数或长为2的整数tuple，或者None，步长值。</span></div><div class="line"><span class="comment"># border_mode：‘valid’或者‘same’</span></div><div class="line"><span class="comment"># data_format：字符串，“channels_first”或“channels_last”之一，代表图像的通道维的位置。该参数是Keras 1.x中的image_dim_ordering，“channels_last”对应原本的“tf”，“channels_first”对应原本的“th”。以128x128的RGB图像为例，“channels_first”应将数据组织为（3,128,128），而“channels_last”应将数据组织为（128,128,3）。该参数的默认值是~/.keras/keras.json中设置的值，若从未设置过，则为“channels_last”。</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>GlobalMaxPooling2D层</strong></p>
+<p>为空域信号施加全局最大值池化</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">keras.layers.pooling.GlobalMaxPooling2D(dim_ordering=<span class="string">'default'</span>)</div><div class="line"></div><div class="line"><span class="comment">#参数</span></div><div class="line"></div><div class="line"><span class="comment"># data_format：字符串，“channels_first”或“channels_last”之一，代表图像的通道维的位置。该参数是Keras 1.x中的image_dim_ordering，“channels_last”对应原本的“tf”，“channels_first”对应原本的“th”。以128x128的RGB图像为例，“channels_first”应将数据组织为（3,128,128），而“channels_last”应将数据组织为（128,128,3）。该参数的默认值是~/.keras/keras.json中设置的值，若从未设置过，则为“channels_last”。</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>GlobalAveragePooling2D层</strong></p>
+<p>为空域信号施加全局平均值池化</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">keras.layers.pooling.GlobalAveragePooling2D(dim_ordering=<span class="string">'default'</span>)</div><div class="line"></div><div class="line"><span class="comment"># 参数</span></div><div class="line"></div><div class="line"><span class="comment"># data_format：字符串，“channels_first”或“channels_last”之一，代表图像的通道维的位置。该参数是Keras 1.x中的image_dim_ordering，“channels_last”对应原本的“tf”，“channels_first”对应原本的“th”。以128x128的RGB图像为例，“channels_first”应将数据组织为（3,128,128），而“channels_last”应将数据组织为（128,128,3）。该参数的默认值是~/.keras/keras.json中设置的值，若从未设置过，则为“channels_last”。</span></div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;1-常用层&quot;&gt;&lt;a href=&quot;#1-常用层&quot; class=&quot;headerlink&quot; title=&quot;1. 常用层&quot;&gt;&lt;/a&gt;1. 常用层&lt;/h2&gt;&lt;p&gt;常用层对应于core模块&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Dense层&lt;/strong&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
+    
+      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Keras学习笔记II-函数式模型</title>
+    <link href="https://zxth93.github.io/2017/08/31/Keras%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0II-%E5%87%BD%E6%95%B0%E5%BC%8F%E6%A8%A1%E5%9E%8B/"/>
+    <id>https://zxth93.github.io/2017/08/31/Keras学习笔记II-函数式模型/</id>
+    <published>2017-08-31T10:48:30.000Z</published>
+    <updated>2017-08-31T11:52:23.282Z</updated>
+    
+    <content type="html"><![CDATA[<p>Keras函数式模型接口是用户定义多输出模型、非循环有向模型或具有共享层的模型等复杂模型的途径。这种模型的使用方式和函数式编程很像，下面看一个全连接网络的例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Input, Dense</div><div class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Model</div><div class="line"></div><div class="line">inputs = Input(shape=(<span class="number">784</span>, ))</div><div class="line"></div><div class="line">x = Dense(<span class="number">64</span>, activation=<span class="string">'relu'</span>)(inputs)</div><div class="line">x = Dense(<span class="number">64</span>, activation=<span class="string">'relu'</span>)(x)</div><div class="line">predictions = Dense(<span class="number">10</span>, activation=<span class="string">'softmax'</span>)(x)</div><div class="line"></div><div class="line">model = Model(inputs=inputs, outputs=preditions)</div><div class="line"></div><div class="line">model.compile(optimizer=<span class="string">'rmsprop'</span>, loss=<span class="string">'categorical_crossentropy'</span>, metrics=[<span class="string">'accuracy'</span>])</div><div class="line"></div><div class="line">model.fit(data, labels)</div></pre></td></tr></table></figure>
+<p>所有的模型都是可调用的，像层一样</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x = Input(shape=(<span class="number">784</span>, ))</div><div class="line">y = model(x)</div></pre></td></tr></table></figure>
+<ul>
+<li><p>例子</p>
+<p>判断两条微博是否出自同一用户,会使用到共享层</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> keras</div><div class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Input, LSTM, Dense</div><div class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Model</div><div class="line"></div><div class="line">tweet_a = Input(shape=(<span class="number">140</span>,<span class="number">256</span>))</div><div class="line">tweet_b = Input(shape=(<span class="number">140</span>, <span class="number">256</span>))</div><div class="line"></div><div class="line">shared_lstm = LSTM(<span class="number">64</span>)</div><div class="line"></div><div class="line">encoded_a = shared_lstm(tweet_a)</div><div class="line">encoded_b = shared_lstm(tweet_b)</div><div class="line"></div><div class="line">merged_vector = keras.layers.concatenate([encoded_a, encoded_b], axis=<span class="number">1</span>)</div><div class="line">prediction = Dense(<span class="number">1</span>, activation=<span class="string">'sigmoid'</span>)(merged_vector)</div><div class="line"></div><div class="line">model = Model(inputs=[tweet_a, tweet_b], outputs=prediction)</div><div class="line">model.compile(optimizer=<span class="string">'rmsprop'</span>, loss=<span class="string">'binary_crossentropy'</span>, mertics=[<span class="string">'accuracy'</span>])</div><div class="line">model.fit([data_a, data_b], labels, epochs=<span class="number">10</span>)</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Keras函数式模型接口是用户定义多输出模型、非循环有向模型或具有共享层的模型等复杂模型的途径。这种模型的使用方式和函数式编程很像，下面看一个全连接网络的例子：&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td clas
+    
+    </summary>
+    
+      <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
+    
+      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>Keras学习笔记I-Sequential</title>

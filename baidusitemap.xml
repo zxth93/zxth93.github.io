@@ -4,6 +4,50 @@
 
     
   <url>
+    <loc>https://zxth93.github.io/2017/09/02/Keras%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0III-%E7%BD%91%E7%BB%9C%E5%B1%82/</loc>
+    <lastmod>2017-09-04T12:18:24.606Z</lastmod>
+    <data>
+        <display>
+        <title>Keras学习笔记III-网络层</title>
+        <pubTime>2017-09-02T06:32:56.000Z</pubTime>
+        
+        <tag>Keras</tag>
+         
+        <tag>深度学习</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://zxth93.github.io/2017/08/31/Keras%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0II-%E5%87%BD%E6%95%B0%E5%BC%8F%E6%A8%A1%E5%9E%8B/</loc>
+    <lastmod>2017-08-31T11:52:23.282Z</lastmod>
+    <data>
+        <display>
+        <title>Keras学习笔记II-函数式模型</title>
+        <pubTime>2017-08-31T10:48:30.000Z</pubTime>
+        
+        <tag>Keras</tag>
+         
+        <tag>深度学习</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://zxth93.github.io/2017/08/26/Keras%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0I-Sequential/</loc>
     <lastmod>2017-08-26T12:14:51.313Z</lastmod>
     <data>

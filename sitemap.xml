@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zxth93.github.io/2017/09/02/Keras%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0III-%E7%BD%91%E7%BB%9C%E5%B1%82/</loc>
+    
+    <lastmod>2017-09-04T12:18:24.606Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zxth93.github.io/2017/08/31/Keras%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0II-%E5%87%BD%E6%95%B0%E5%BC%8F%E6%A8%A1%E5%9E%8B/</loc>
+    
+    <lastmod>2017-08-31T11:52:23.282Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zxth93.github.io/2017/08/26/Keras%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0I-Sequential/</loc>
     
     <lastmod>2017-08-26T12:14:51.313Z</lastmod>
