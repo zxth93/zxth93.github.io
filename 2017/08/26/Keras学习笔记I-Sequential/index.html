@@ -17,20 +17,20 @@
   
   
   <title>Keras学习笔记I-Sequential | Blog</title>
-  <meta name="description" content="1. Keras简介Keras是集成的神经网络的框架，它的后端是基于Tensorflow、Theano和CNTK的。  Keras的架构   使用Keras的一般流程    2. 基本概念 符号计算 可以理解为计算图，计算图主要有两个元素组成：节点和边。节点通常来代表变量（scalar、vector、tensor等）；边代表的是操作，即一些函数。  张量（tensor） 直接看作向量即可。  模型">
+  <meta name="description" content="1. Keras简介 Keras是集成的神经网络的框架，它的后端是基于Tensorflow、Theano和CNTK的。   Keras的架构    使用Keras的一般流程     2. 基本概念   符号计算 可以理解为计算图，计算图主要有两个元素组成：节点和边。节点通常来代表变量（scalar、vector、tensor等）；边代表的是操作，即一些函数。   张量（tensor） 直接看作向">
 <meta name="keywords" content="Keras,深度学习,Sequential">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Keras学习笔记I-Sequential">
 <meta property="og:url" content="https://zxth93.github.io/2017/08/26/Keras学习笔记I-Sequential/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1. Keras简介Keras是集成的神经网络的框架，它的后端是基于Tensorflow、Theano和CNTK的。  Keras的架构   使用Keras的一般流程    2. 基本概念 符号计算 可以理解为计算图，计算图主要有两个元素组成：节点和边。节点通常来代表变量（scalar、vector、tensor等）；边代表的是操作，即一些函数。  张量（tensor） 直接看作向量即可。  模型">
+<meta property="og:description" content="1. Keras简介 Keras是集成的神经网络的框架，它的后端是基于Tensorflow、Theano和CNTK的。   Keras的架构    使用Keras的一般流程     2. 基本概念   符号计算 可以理解为计算图，计算图主要有两个元素组成：节点和边。节点通常来代表变量（scalar、vector、tensor等）；边代表的是操作，即一些函数。   张量（tensor） 直接看作向">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://images2015.cnblogs.com/blog/1119747/201707/1119747-20170707133635659-888158147.png">
 <meta property="og:image" content="http://images2015.cnblogs.com/blog/1119747/201707/1119747-20170707133932722-715494711.png">
 <meta property="og:updated_time" content="2017-08-26T12:14:51.313Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Keras学习笔记I-Sequential">
-<meta name="twitter:description" content="1. Keras简介Keras是集成的神经网络的框架，它的后端是基于Tensorflow、Theano和CNTK的。  Keras的架构   使用Keras的一般流程    2. 基本概念 符号计算 可以理解为计算图，计算图主要有两个元素组成：节点和边。节点通常来代表变量（scalar、vector、tensor等）；边代表的是操作，即一些函数。  张量（tensor） 直接看作向量即可。  模型">
+<meta name="twitter:description" content="1. Keras简介 Keras是集成的神经网络的框架，它的后端是基于Tensorflow、Theano和CNTK的。   Keras的架构    使用Keras的一般流程     2. 基本概念   符号计算 可以理解为计算图，计算图主要有两个元素组成：节点和边。节点通常来代表变量（scalar、vector、tensor等）；边代表的是操作，即一些函数。   张量（tensor） 直接看作向">
 <meta name="twitter:image" content="http://images2015.cnblogs.com/blog/1119747/201707/1119747-20170707133635659-888158147.png">
   <!-- Canonical links -->
   <link rel="canonical" href="https://zxth93.github.io/2017/08/26/Keras学习笔记I-Sequential/index.html">
@@ -380,63 +380,82 @@
     </header>
     <div class="article-entry markdown-body" itemprop="articleBody">
       
-        <h2 id="1-Keras简介"><a href="#1-Keras简介" class="headerlink" title="1. Keras简介"></a>1. Keras简介</h2><p>Keras是集成的神经网络的框架，它的后端是基于Tensorflow、Theano和CNTK的。</p>
+        <h2 id="1-keras简介"><a class="markdownIt-Anchor" href="#1-keras简介"></a> 1. Keras简介</h2>
+<p>Keras是集成的神经网络的框架，它的后端是基于Tensorflow、Theano和CNTK的。</p>
 <ul>
-<li><p>Keras的架构</p>
+<li>
+<p>Keras的架构</p>
 <p><img src="http://images2015.cnblogs.com/blog/1119747/201707/1119747-20170707133635659-888158147.png" alt=""></p>
 </li>
-<li><p>使用Keras的一般流程</p>
+<li>
+<p>使用Keras的一般流程</p>
 </li>
 </ul>
 <p><img src="http://images2015.cnblogs.com/blog/1119747/201707/1119747-20170707133932722-715494711.png" alt=""></p>
-<h2 id="2-基本概念"><a href="#2-基本概念" class="headerlink" title="2. 基本概念"></a>2. 基本概念</h2><ul>
-<li><p>符号计算</p>
+<h2 id="2-基本概念"><a class="markdownIt-Anchor" href="#2-基本概念"></a> 2. 基本概念</h2>
+<ul>
+<li>
+<p>符号计算</p>
 <p>可以理解为计算图，计算图主要有两个元素组成：节点和边。节点通常来代表变量（scalar、vector、tensor等）；边代表的是操作，即一些函数。</p>
 </li>
-<li><p>张量（tensor）</p>
+<li>
+<p>张量（tensor）</p>
 <p>直接看作向量即可。</p>
 </li>
-<li><p>模型</p>
+<li>
+<p>模型</p>
 <p>Keras有两种模型：Sequential和函数式模型（Model），Sequential是函数式模型的特殊形式。</p>
 <ol>
 <li>Sequential：将多个网络层线性叠加，存入栈中的。单输入单输出，一条路通到底，层与层之间只是相邻关系，没有跨层连接。这么做的好处是：编译快，操作简单</li>
 <li>函数式模型（Model）：多输入多输出，层与层之间任意连接，但编译慢。</li>
 </ol>
 </li>
-<li><p>batch</p>
+<li>
+<p>batch</p>
 <p>以batch大小的数据集为梯度计算的基本单位。</p>
 </li>
 </ul>
-<h2 id="3-Sequential模型"><a href="#3-Sequential模型" class="headerlink" title="3. Sequential模型"></a>3. Sequential模型</h2><ul>
-<li><p>构造网络层</p>
+<h2 id="3-sequential模型"><a class="markdownIt-Anchor" href="#3-sequential模型"></a> 3. Sequential模型</h2>
+<ul>
+<li>
+<p>构造网络层</p>
 <ol>
-<li><p>利用layer的list来构造该模型：</p>
+<li>
+<p>利用layer的list来构造该模型：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Sequential</div><div class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Dense, Activation</div><div class="line"></div><div class="line">model = Sequential([Dense(<span class="number">32</span>, units=<span class="number">784</span>), Activation(<span class="string">'relu'</span>),</div><div class="line">                   Dense(<span class="number">10</span>), Activation(<span class="string">'softmax'</span>),])</div><div class="line"><span class="comment"># Sequential的第一层需要接受一个关于输入数据shape的参数，后面的各层则可以自动的推导出中间数据的shape。</span></div></pre></td></tr></table></figure>
 </li>
-<li><p>利用<code>.add()</code>方法加入layer：</p>
+<li>
+<p>利用<code>.add()</code>方法加入layer：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">model = Sequential()</div><div class="line">model.add(Dense(<span class="number">32</span>, input_shape(<span class="number">784</span>,)))</div><div class="line">model.add(Activation(<span class="string">'relu'</span>))</div><div class="line"><span class="comment"># input_shape是一个tuple类型的数据，传递给第一层</span></div><div class="line"><span class="comment"># 有些2D层，支持通过指定其输入维度input_dim来隐含的指定输入数据shape；</span></div><div class="line"><span class="comment"># 一些3D层，支持通过参数input_dim和input_length来指定输入shape；</span></div><div class="line"><span class="comment"># 如果你需要为输入指定一个固定大小的batch_size（常用于stateful RNN网络），可以传递batch_size参数到一个层中，例如你想指定输入张量的batch大小是32，数据shape是（6，8），则你需要传递batch_size=32和input_shape=(6,8)</span></div></pre></td></tr></table></figure>
 </li>
 </ol>
 </li>
-<li><p>编译</p>
+<li>
+<p>编译</p>
 <p>我们需要通过<code>compile</code>来对学习过程进行配置，<code>compile</code>接收三个参数：</p>
 <ol>
-<li><p>优化器optimizer</p>
+<li>
+<p>优化器optimizer</p>
 </li>
-<li><p>损失函数loss</p>
+<li>
+<p>损失函数loss</p>
 </li>
-<li><p>指标列表metrics</p>
+<li>
+<p>指标列表metrics</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 对于多分类问题</span></div><div class="line">model.compile(optimizer=<span class="string">'rmsprop'</span>, loss=<span class="string">'categorical_crossentropy'</span>, metrics=[<span class="string">'accuracy'</span>])</div><div class="line"></div><div class="line"><span class="comment"># 对于二分类问题</span></div><div class="line">model.compile(optimizer=<span class="string">'rmsprop'</span>, loss=<span class="string">'binary_crossentropy'</span>, metrics=[<span class="string">'accuracy'</span>])</div><div class="line"></div><div class="line"><span class="comment"># 对于回归问题</span></div><div class="line">model.compile(optimizer=<span class="string">'rmsprop'</span>, loss=<span class="string">'mse'</span>)</div><div class="line"></div><div class="line"><span class="comment"># 用户自定义metrics</span></div><div class="line"><span class="keyword">import</span> keras.backend <span class="keyword">as</span> K</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">mean_pred</span><span class="params">(y_true, y_pred)</span>:</span></div><div class="line">    <span class="keyword">return</span> K.mean(y_pred)</div><div class="line"></div><div class="line">model.compile(optimizer=<span class="string">'rmsprop'</span>,</div><div class="line">              loss=<span class="string">'binary_crossentropy'</span>,</div><div class="line">              metrics=[<span class="string">'accuracy'</span>, mean_pred])</div></pre></td></tr></table></figure>
 </li>
 </ol>
 </li>
-<li><p>训练</p>
+<li>
+<p>训练</p>
 <p>一般使用<code>fit</code>函数</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># For a single-input model with 2 classes (binary classification):</span></div><div class="line"></div><div class="line">model = Sequential()</div><div class="line">model.add(Dense(<span class="number">32</span>, activation=<span class="string">'relu'</span>, input_dim=<span class="number">100</span>))</div><div class="line">model.add(Dense(<span class="number">1</span>, activation=<span class="string">'sigmoid'</span>))</div><div class="line">model.compile(optimizer=<span class="string">'rmsprop'</span>,</div><div class="line">              loss=<span class="string">'binary_crossentropy'</span>,</div><div class="line">              metrics=[<span class="string">'accuracy'</span>])</div><div class="line"></div><div class="line"><span class="comment"># Generate dummy data</span></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line">data = np.random.random((<span class="number">1000</span>, <span class="number">100</span>))</div><div class="line">labels = np.random.randint(<span class="number">2</span>, size=(<span class="number">1000</span>, <span class="number">1</span>))</div><div class="line"></div><div class="line"><span class="comment"># Train the model, iterating on the data in batches of 32 samples</span></div><div class="line">model.fit(data, labels, epochs=<span class="number">10</span>, batch_size=<span class="number">32</span>)</div></pre></td></tr></table></figure>
 </li>
-<li><p>例子</p>
+<li>
+<p>例子</p>
 <ol>
-<li><p>卷积神经网络</p>
+<li>
+<p>卷积神经网络</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> keras</div><div class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Sequential</div><div class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Dense, Dropout, Flatten</div><div class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Conv2D, MaxPooling2D</div><div class="line"><span class="keyword">from</span> keras.optimizers <span class="keyword">import</span> SGD</div><div class="line"></div><div class="line"><span class="comment"># Generate dummy data</span></div><div class="line">x_train = np.random.random((<span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>, <span class="number">3</span>))</div><div class="line">y_train = keras.utils.to_categorical(np.random.randint(<span class="number">10</span>, size=(<span class="number">100</span>, <span class="number">1</span>)), num_classes=<span class="number">10</span>)</div><div class="line">x_test = np.random.random((<span class="number">20</span>, <span class="number">100</span>, <span class="number">100</span>, <span class="number">3</span>))</div><div class="line">y_test = keras.utils.to_categorical(np.random.randint(<span class="number">10</span>, size=(<span class="number">20</span>, <span class="number">1</span>)), num_classes=<span class="number">10</span>)</div><div class="line"></div><div class="line">model = Sequential()</div><div class="line"><span class="comment"># input: 100x100 images with 3 channels -&gt; (100, 100, 3) tensors.</span></div><div class="line"><span class="comment"># this applies 32 convolution filters of size 3x3 each.</span></div><div class="line">model.add(Conv2D(<span class="number">32</span>, (<span class="number">3</span>, <span class="number">3</span>), activation=<span class="string">'relu'</span>, input_shape=(<span class="number">100</span>, <span class="number">100</span>, <span class="number">3</span>)))</div><div class="line"><span class="comment"># 参数</span></div><div class="line"><span class="comment"># filters：卷积核的数目（即输出的维度）</span></div><div class="line"><span class="comment"># kernel_size：单个整数或由两个整数构成的list/tuple，卷积核的宽度和长度。如为单个整数，则表示在各个空间维度的相同长度。</span></div><div class="line"><span class="comment"># strides：单个整数或由两个整数构成的list/tuple，为卷积的步长。如为单个整数，则表示在各个空间维度的相同步长。任何不为1的strides均与任何不为1的dilation_rata均不兼容</span></div><div class="line"><span class="comment"># padding：补0策略，为“valid”, “same” 。“valid”代表只进行有效的卷积，即对边界数据不处理。“same”代表保留边界处的卷积结果，通常会导致输出shape与输入shape相同，因为卷积核移动时在边缘会出现大小不够的情况。</span></div><div class="line"><span class="comment"># activation：激活函数，为预定义的激活函数名（参考激活函数），或逐元素（element-wise）的Theano函数。如果不指定该参数，将不会使用任何激活函数（即使用线性激活函数：a(x)=x）</span></div><div class="line"><span class="comment"># use_bias:布尔值，是否使用偏置项</span></div><div class="line"><span class="comment"># kernel_initializer：权值初始化方法，为预定义初始化方法名的字符串，或用于初始化权重的初始化器。参考initializers</span></div><div class="line"><span class="comment"># bias_initializer：权值初始化方法，为预定义初始化方法名的字符串，或用于初始化权重的初始化器。参考initializers</span></div><div class="line"><span class="comment"># kernel_regularizer：施加在权重上的正则项，为Regularizer对象</span></div><div class="line"><span class="comment"># bias_regularizer：施加在偏置向量上的正则项，为Regularizer对象</span></div><div class="line"><span class="comment"># activity_regularizer：施加在输出上的正则项，为Regularizer对象</span></div><div class="line"><span class="comment"># kernel_constraints：施加在权重上的约束项，为Constraints对象</span></div><div class="line"><span class="comment"># bias_constraints：施加在偏置上的约束项，为Constraints对象</span></div><div class="line">model.add(Conv2D(<span class="number">32</span>, (<span class="number">3</span>, <span class="number">3</span>), activation=<span class="string">'relu'</span>))</div><div class="line">model.add(MaxPooling2D(pool_size=(<span class="number">2</span>, <span class="number">2</span>)))</div><div class="line">model.add(Dropout(<span class="number">0.25</span>))</div><div class="line"></div><div class="line">model.add(Conv2D(<span class="number">64</span>, (<span class="number">3</span>, <span class="number">3</span>), activation=<span class="string">'relu'</span>))</div><div class="line">model.add(Conv2D(<span class="number">64</span>, (<span class="number">3</span>, <span class="number">3</span>), activation=<span class="string">'relu'</span>))</div><div class="line">model.add(MaxPooling2D(pool_size=(<span class="number">2</span>, <span class="number">2</span>)))</div><div class="line">model.add(Dropout(<span class="number">0.25</span>))</div><div class="line"></div><div class="line"><span class="comment"># Flatten层用来将输入“压平”，即把多维的输入一维化，常用在从卷积层到全连接层的过渡。Flatten不影响batch的大小。</span></div><div class="line">model.add(Flatten())</div><div class="line">model.add(Dense(<span class="number">256</span>, activation=<span class="string">'relu'</span>))</div><div class="line">model.add(Dropout(<span class="number">0.5</span>))</div><div class="line">model.add(Dense(<span class="number">10</span>, activation=<span class="string">'softmax'</span>))</div><div class="line"></div><div class="line">sgd = SGD(lr=<span class="number">0.01</span>, decay=<span class="number">1e-6</span>, momentum=<span class="number">0.9</span>, nesterov=<span class="keyword">True</span>)</div><div class="line"><span class="comment"># 参数：</span></div><div class="line"><span class="comment"># lr：大于0的浮点数，学习率</span></div><div class="line"><span class="comment"># momentum：大于0的浮点数，动量参数</span></div><div class="line"><span class="comment"># decay：大于0的浮点数，每次更新后的学习率衰减值</span></div><div class="line"><span class="comment"># nesterov：布尔值，确定是否使用Nesterov动量</span></div><div class="line">model.compile(loss=<span class="string">'categorical_crossentropy'</span>, optimizer=sgd)</div><div class="line"></div><div class="line">model.fit(x_train, y_train, batch_size=<span class="number">32</span>, epochs=<span class="number">10</span>)</div><div class="line">score = model.evaluate(x_test, y_test, batch_size=<span class="number">32</span>)</div></pre></td></tr></table></figure>
 <p>​</p>
 </li>

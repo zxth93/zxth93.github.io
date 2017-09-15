@@ -17,20 +17,20 @@
   
   
   <title>卷积网络 | Blog</title>
-  <meta name="description" content="卷积网络是一种专门用来处理具有类似网格结构的数据的神经网络。在卷积网络的术语中，卷积的第一个参数通常叫做输入，第二个参数叫做核函数，输出有时被称为特征映射。在机器学习的应用中，输入通常是多维数组的数据，而核通常是由学习算法优化得到的多维数组的参数。一般地，单独使用卷积运算在机器学习中比较少见，卷积通常和其他函数一起使用。下面演示一个在2维tensor上的卷积：  1. 特点卷积运算通过三个策略来改">
+  <meta name="description" content="卷积网络是一种专门用来处理具有类似网格结构的数据的神经网络。在卷积网络的术语中，卷积的第一个参数通常叫做输入，第二个参数叫做核函数，输出有时被称为特征映射。在机器学习的应用中，输入通常是多维数组的数据，而核通常是由学习算法优化得到的多维数组的参数。一般地，单独使用卷积运算在机器学习中比较少见，卷积通常和其他函数一起使用。下面演示一个在2维tensor上的卷积：   1. 特点 卷积运算通过三个策略">
 <meta name="keywords" content="深度学习,CNN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="卷积网络">
 <meta property="og:url" content="https://zxth93.github.io/2017/09/14/卷积网络/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="卷积网络是一种专门用来处理具有类似网格结构的数据的神经网络。在卷积网络的术语中，卷积的第一个参数通常叫做输入，第二个参数叫做核函数，输出有时被称为特征映射。在机器学习的应用中，输入通常是多维数组的数据，而核通常是由学习算法优化得到的多维数组的参数。一般地，单独使用卷积运算在机器学习中比较少见，卷积通常和其他函数一起使用。下面演示一个在2维tensor上的卷积：  1. 特点卷积运算通过三个策略来改">
+<meta property="og:description" content="卷积网络是一种专门用来处理具有类似网格结构的数据的神经网络。在卷积网络的术语中，卷积的第一个参数通常叫做输入，第二个参数叫做核函数，输出有时被称为特征映射。在机器学习的应用中，输入通常是多维数组的数据，而核通常是由学习算法优化得到的多维数组的参数。一般地，单独使用卷积运算在机器学习中比较少见，卷积通常和其他函数一起使用。下面演示一个在2维tensor上的卷积：   1. 特点 卷积运算通过三个策略">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/cnn_example.png?raw=true">
 <meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/sparse_connection.png?raw=true">
 <meta property="og:updated_time" content="2017-09-15T03:13:20.688Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="卷积网络">
-<meta name="twitter:description" content="卷积网络是一种专门用来处理具有类似网格结构的数据的神经网络。在卷积网络的术语中，卷积的第一个参数通常叫做输入，第二个参数叫做核函数，输出有时被称为特征映射。在机器学习的应用中，输入通常是多维数组的数据，而核通常是由学习算法优化得到的多维数组的参数。一般地，单独使用卷积运算在机器学习中比较少见，卷积通常和其他函数一起使用。下面演示一个在2维tensor上的卷积：  1. 特点卷积运算通过三个策略来改">
+<meta name="twitter:description" content="卷积网络是一种专门用来处理具有类似网格结构的数据的神经网络。在卷积网络的术语中，卷积的第一个参数通常叫做输入，第二个参数叫做核函数，输出有时被称为特征映射。在机器学习的应用中，输入通常是多维数组的数据，而核通常是由学习算法优化得到的多维数组的参数。一般地，单独使用卷积运算在机器学习中比较少见，卷积通常和其他函数一起使用。下面演示一个在2维tensor上的卷积：   1. 特点 卷积运算通过三个策略">
 <meta name="twitter:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/cnn_example.png?raw=true">
   <!-- Canonical links -->
   <link rel="canonical" href="https://zxth93.github.io/2017/09/14/卷积网络/index.html">
@@ -382,20 +382,25 @@
       
         <p>卷积网络是一种专门用来处理具有类似网格结构的数据的神经网络。在卷积网络的术语中，卷积的第一个参数通常叫做输入，第二个参数叫做核函数，输出有时被称为特征映射。在机器学习的应用中，输入通常是多维数组的数据，而核通常是由学习算法优化得到的多维数组的参数。一般地，单独使用卷积运算在机器学习中比较少见，卷积通常和其他函数一起使用。下面演示一个在2维tensor上的卷积：</p>
 <p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/cnn_example.png?raw=true" alt=""></p>
-<h3 id="1-特点"><a href="#1-特点" class="headerlink" title="1. 特点"></a>1. 特点</h3><p>卷积运算通过三个策略来改进机器学习系统：<strong>稀疏交互</strong>、<strong>参数共享</strong>、<strong>等变表示</strong>。</p>
+<h3 id="1-特点"><a class="markdownIt-Anchor" href="#1-特点"></a> 1. 特点</h3>
+<p>卷积运算通过三个策略来改进机器学习系统：<strong>稀疏交互</strong>、<strong>参数共享</strong>、<strong>等变表示</strong>。</p>
 <ul>
-<li><p><strong>稀疏交互</strong></p>
+<li>
+<p><strong>稀疏交互</strong></p>
 <p>稀疏交互就是稀疏连接，神经网络属于局部连接，不再是全连接。这样做可以带来两方面的好处：一是参数更少；二是计算量下降，存储空间降低。下图可以直观说明：</p>
 <p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/sparse_connection.png?raw=true" alt=""></p>
 </li>
-<li><p><strong>参数共享</strong></p>
+<li>
+<p><strong>参数共享</strong></p>
 <p>参数共享是指在一个模型的多个函数中使用相同的参数，保证了我们只需要学习一个参数集合，而不是对于每一个位置都需要学习一个单独的参数集合。</p>
 </li>
-<li><p><strong>等变表示</strong></p>
+<li>
+<p><strong>等变表示</strong></p>
 <p>对于卷积，参数共享的特殊形式使得神经网络层具有对平移等变的性质。如果一个函数满足输入改变，输出也以同样的方式改变这一性质。</p>
 </li>
 </ul>
-<h3 id="2-池化"><a href="#2-池化" class="headerlink" title="2. 池化"></a>2. 池化</h3><p>卷积网络有一个典型层包含三级：在第一级中，并行地计算多个卷积产生一组线性变换；在第二级中，每个线性变换会经过一个非线性激活函数；在第三级中，使用池化函数调整输出。池化函数使用某一位置的相邻输出的总体统计特征来代替该位置的输出。</p>
+<h3 id="2-池化"><a class="markdownIt-Anchor" href="#2-池化"></a> 2. 池化</h3>
+<p>卷积网络有一个典型层包含三级：在第一级中，并行地计算多个卷积产生一组线性变换；在第二级中，每个线性变换会经过一个非线性激活函数；在第三级中，使用池化函数调整输出。池化函数使用某一位置的相邻输出的总体统计特征来代替该位置的输出。</p>
 <p>对于平移不变性是指当我们对输入进行少量平移时，经过池化函数后的大多数输出并不会发生改变。因为池化综合了全部邻居的反馈，这使得池化单元少于探测单元成为可能，这种方法提高了网络的计算效率，减小了存储需求。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">本文内容摘取自《Deep Learning》，部分内容有所修改</div></pre></td></tr></table></figure>
 

@@ -17,13 +17,13 @@
   
   
   <title>阿里天池CIKM2017 Rank4比赛经验分享 | Blog</title>
-  <meta name="description" content="CIKM_AnalytiCup_2017: Combining the Traditional Methods and Deep Learning Approach for Precipitation NowcastingThis repo discribes the solution of Team 怀北村明远湖. CIKM AnalytiCup 2017 is an open competit">
+  <meta name="description" content="CIKM_AnalytiCup_2017: Combining the Traditional Methods and Deep Learning Approach for Precipitation Nowcasting This repo discribes the solution of Team 怀北村明远湖. CIKM AnalytiCup 2017 is an open compet">
 <meta name="keywords" content="深度学习,阿里天池大赛,机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="阿里天池CIKM2017 Rank4比赛经验分享">
 <meta property="og:url" content="https://zxth93.github.io/2017/08/20/CIKM2017比赛经验分享/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="CIKM_AnalytiCup_2017: Combining the Traditional Methods and Deep Learning Approach for Precipitation NowcastingThis repo discribes the solution of Team 怀北村明远湖. CIKM AnalytiCup 2017 is an open competit">
+<meta property="og:description" content="CIKM_AnalytiCup_2017: Combining the Traditional Methods and Deep Learning Approach for Precipitation Nowcasting This repo discribes the solution of Team 怀北村明远湖. CIKM AnalytiCup 2017 is an open compet">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img.alicdn.com/tps/TB1mmZRPFXXXXaPaXXXXXXXXXXX-865-302.png">
 <meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/percentil.png?raw=true">
@@ -34,7 +34,7 @@
 <meta property="og:updated_time" content="2017-08-22T08:51:33.628Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="阿里天池CIKM2017 Rank4比赛经验分享">
-<meta name="twitter:description" content="CIKM_AnalytiCup_2017: Combining the Traditional Methods and Deep Learning Approach for Precipitation NowcastingThis repo discribes the solution of Team 怀北村明远湖. CIKM AnalytiCup 2017 is an open competit">
+<meta name="twitter:description" content="CIKM_AnalytiCup_2017: Combining the Traditional Methods and Deep Learning Approach for Precipitation Nowcasting This repo discribes the solution of Team 怀北村明远湖. CIKM AnalytiCup 2017 is an open compet">
 <meta name="twitter:image" content="https://img.alicdn.com/tps/TB1mmZRPFXXXXaPaXXXXXXXXXXX-865-302.png">
   <!-- Canonical links -->
   <link rel="canonical" href="https://zxth93.github.io/2017/08/20/CIKM2017比赛经验分享/index.html">
@@ -384,30 +384,38 @@
     </header>
     <div class="article-entry markdown-body" itemprop="articleBody">
       
-        <h1 id="CIKM-AnalytiCup-2017-Combining-the-Traditional-Methods-and-Deep-Learning-Approach-for-Precipitation-Nowcasting"><a href="#CIKM-AnalytiCup-2017-Combining-the-Traditional-Methods-and-Deep-Learning-Approach-for-Precipitation-Nowcasting" class="headerlink" title="CIKM_AnalytiCup_2017: Combining the Traditional Methods and Deep Learning Approach for Precipitation Nowcasting"></a>CIKM_AnalytiCup_2017: Combining the Traditional Methods and Deep Learning Approach for Precipitation Nowcasting</h1><p>This repo discribes the solution of Team 怀北村明远湖. <a href="https://tianchi.aliyun.com/competition/introduction.htm?spm=5176.100066.0.0.773ef42fBB8Kok&amp;raceId=231596" target="_blank" rel="external">CIKM AnalytiCup 2017</a> is an open competition that is sponsored by Shenzhen Meteorological Bureau, Alibaba Group and CIKM2017. Our team got the third place in the first phrase. And in the second phrase we got the fourth place.</p>
+        <h1 id="cikm_analyticup_2017-combining-the-traditional-methods-and-deep-learning-approach-for-precipitation-nowcasting"><a class="markdownIt-Anchor" href="#cikm_analyticup_2017-combining-the-traditional-methods-and-deep-learning-approach-for-precipitation-nowcasting"></a> CIKM_AnalytiCup_2017: Combining the Traditional Methods and Deep Learning Approach for Precipitation Nowcasting</h1>
+<p>This repo discribes the solution of Team 怀北村明远湖. <a href="https://tianchi.aliyun.com/competition/introduction.htm?spm=5176.100066.0.0.773ef42fBB8Kok&amp;raceId=231596" target="_blank" rel="external">CIKM AnalytiCup 2017</a> is an open competition that is sponsored by Shenzhen Meteorological Bureau, Alibaba Group and CIKM2017. Our team got the third place in the first phrase. And in the second phrase we got the fourth place.</p>
 <ul>
 <li>Team 怀北村明远湖：<a href="https://github.com/zxth93" target="_blank" rel="external">Zhang Rui</a>, <a href="https://github.com/joffery" target="_blank" rel="external">Qiao Fengchun</a>, <a href="https://github.com/leslie-kwork" target="_blank" rel="external">Guo Ran</a></li>
 <li><a href="https://github.com/zxth93/CIKM_AnalytiCup_2017" target="_blank" rel="external">code</a></li>
 </ul>
-<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Short-term precipitation forecasting such as rainfall prediction is a task to predict a short-term rainfall amount based on current observations. In this challenge, sponsors provide a set of radar maps at different time spans where each radar map covers radar reflectivity of a target site and its surrounding areas. Radar maps are measured at different time spans, i.e., 15 time spans with an interval of 6 minutes, and different heights, i.e., 4 heights, from 0.5km to 3.5km with an interval of 1km; Each radar map covers an area of 101km*101km around the site. The area is marked as 101*101 grids, and the target site is located at the centre, i.e. (50, 50).</p>
-<p>Our task here is to predict the total rainfall amount on the ground between future 1-hour and 2-hour for each target site.In this challenge, we combine Random Forestry, XGBoost and Bidirectional Gated Recurrent Units (GRUs) into an ensemble model to tackle this problem and achieve satisfying result.</p>
+<h1 id="introduction"><a class="markdownIt-Anchor" href="#introduction"></a> Introduction</h1>
+<p>Short-term precipitation forecasting such as rainfall prediction is a task to predict a short-term rainfall amount based on current observations. In this challenge, sponsors provide a set of radar maps at different time spans where each radar map covers radar reflectivity of a target site and its surrounding areas. Radar maps are measured at different time spans, i.e., 15 time spans with an interval of 6 minutes, and different heights, i.e., 4 heights, from 0.5km to 3.5km with an interval of 1km; Each radar map covers an area of 101km*101km around the site. The area is marked as 101*101 grids, and the target site is located at the centre, i.e. (50, 50).</p>
+<p>Our task here is to predict the total rainfall amount on the ground between future 1-hour and 2-hour for each target <a href="http://site.In" target="_blank" rel="external">site.In</a> this challenge, we combine Random Forestry, XGBoost and Bidirectional Gated Recurrent Units (GRUs) into an ensemble model to tackle this problem and achieve satisfying result.</p>
 <p><img src="https://img.alicdn.com/tps/TB1mmZRPFXXXXaPaXXXXXXXXXXX-865-302.png" alt=""></p>
-<h1 id="Data-Process"><a href="#Data-Process" class="headerlink" title="Data Process"></a>Data Process</h1><h3 id="Percentile-Method"><a href="#Percentile-Method" class="headerlink" title="Percentile Method"></a>Percentile Method</h3><p>A statistical method was applied to reduce the dimension of radar data. For a single radar map, we pick the 25th, 50th, 75th, 100th percentile of reflectivity values in various scales of neighborhood around the target site from center to the whole map.</p>
+<h1 id="data-process"><a class="markdownIt-Anchor" href="#data-process"></a> Data Process</h1>
+<h3 id="percentile-method"><a class="markdownIt-Anchor" href="#percentile-method"></a> Percentile Method</h3>
+<p>A statistical method was applied to reduce the dimension of radar data. For a single radar map, we pick the 25th, 50th, 75th, 100th percentile of reflectivity values in various scales of neighborhood around the target site from center to the whole map.</p>
 <p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/percentil.png?raw=true" alt=""></p>
 <p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/percentile2.png?raw=true" alt=""></p>
-<h3 id="“Wind”-Methond"><a href="#“Wind”-Methond" class="headerlink" title="“Wind” Methond"></a>“Wind” Methond</h3><p>We first handle the original data (15*4*101*101) into a small size of data (15*4*10*10). Then shrink the data into 15*4*6*6 features through judging the wind direction. The entire preprocess learns from the idea of CNN, especially the convolutional calculation and max polling.</p>
+<h3 id="wind-methond"><a class="markdownIt-Anchor" href="#wind-methond"></a> “Wind” Methond</h3>
+<p>We first handle the original data (15*4*101*101) into a small size of data (15*4*10*10). Then shrink the data into 15*4*6*6 features through judging the wind direction. The entire preprocess learns from the idea of CNN, especially the convolutional calculation and max polling.</p>
 <p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/convolution.png?raw=true" alt=""></p>
 <p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/maxpooling.png?raw=true" alt=""></p>
 <p>We take the fourth layer of data to determine the wind direction. Then, in order to calculating the resulting wind direction, we carry out two ways of choosing representative data. The first one uses the maximum value in each 10*10 frame as the representation. The second one takes the average of the largest five data instead. After selecting the representative data, we determine the wind direction by calculating the deviation between the initial position and the following frames, voting the moving direction, finally get the maximum votes as the resulting wind direction based on the given thresholds.</p>
 <p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/wind.png?raw=true" alt=""></p>
-<h1 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h1><p>Random Forestry, XGBoost and Bidirectional GRUs are utilized for model ensemble.</p>
-<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><ul>
+<h1 id="model"><a class="markdownIt-Anchor" href="#model"></a> Model</h1>
+<p>Random Forestry, XGBoost and Bidirectional GRUs are utilized for model ensemble.</p>
+<h1 id="requirements"><a class="markdownIt-Anchor" href="#requirements"></a> Requirements</h1>
+<ul>
 <li>Python 3.6</li>
 <li>Keras</li>
 <li>XGBoost</li>
 <li>sklearn</li>
 </ul>
-<h1 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h1><ul>
+<h1 id="dataset"><a class="markdownIt-Anchor" href="#dataset"></a> Dataset</h1>
+<ul>
 <li><a href="http://pan.baidu.com/s/1eSiYeum" target="_blank" rel="external">Data Source</a></li>
 </ul>
 
