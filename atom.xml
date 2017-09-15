@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zxth93.github.io/"/>
-  <updated>2017-09-10T13:57:12.468Z</updated>
+  <updated>2017-09-15T03:13:20.688Z</updated>
   <id>https://zxth93.github.io/</id>
   
   <author>
@@ -16,11 +16,53 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>卷积网络</title>
+    <link href="https://zxth93.github.io/2017/09/14/%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C/"/>
+    <id>https://zxth93.github.io/2017/09/14/卷积网络/</id>
+    <published>2017-09-14T11:40:37.000Z</published>
+    <updated>2017-09-15T03:13:20.688Z</updated>
+    
+    <content type="html"><![CDATA[<p>卷积网络是一种专门用来处理具有类似网格结构的数据的神经网络。在卷积网络的术语中，卷积的第一个参数通常叫做输入，第二个参数叫做核函数，输出有时被称为特征映射。在机器学习的应用中，输入通常是多维数组的数据，而核通常是由学习算法优化得到的多维数组的参数。一般地，单独使用卷积运算在机器学习中比较少见，卷积通常和其他函数一起使用。下面演示一个在2维tensor上的卷积：</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/cnn_example.png?raw=true" alt=""></p>
+<h3 id="1-特点"><a href="#1-特点" class="headerlink" title="1. 特点"></a>1. 特点</h3><p>卷积运算通过三个策略来改进机器学习系统：<strong>稀疏交互</strong>、<strong>参数共享</strong>、<strong>等变表示</strong>。</p>
+<ul>
+<li><p><strong>稀疏交互</strong></p>
+<p>稀疏交互就是稀疏连接，神经网络属于局部连接，不再是全连接。这样做可以带来两方面的好处：一是参数更少；二是计算量下降，存储空间降低。下图可以直观说明：</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/sparse_connection.png?raw=true" alt=""></p>
+</li>
+<li><p><strong>参数共享</strong></p>
+<p>参数共享是指在一个模型的多个函数中使用相同的参数，保证了我们只需要学习一个参数集合，而不是对于每一个位置都需要学习一个单独的参数集合。</p>
+</li>
+<li><p><strong>等变表示</strong></p>
+<p>对于卷积，参数共享的特殊形式使得神经网络层具有对平移等变的性质。如果一个函数满足输入改变，输出也以同样的方式改变这一性质。</p>
+</li>
+</ul>
+<h3 id="2-池化"><a href="#2-池化" class="headerlink" title="2. 池化"></a>2. 池化</h3><p>卷积网络有一个典型层包含三级：在第一级中，并行地计算多个卷积产生一组线性变换；在第二级中，每个线性变换会经过一个非线性激活函数；在第三级中，使用池化函数调整输出。池化函数使用某一位置的相邻输出的总体统计特征来代替该位置的输出。</p>
+<p>对于平移不变性是指当我们对输入进行少量平移时，经过池化函数后的大多数输出并不会发生改变。因为池化综合了全部邻居的反馈，这使得池化单元少于探测单元成为可能，这种方法提高了网络的计算效率，减小了存储需求。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">本文内容摘取自《Deep Learning》，部分内容有所修改</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;卷积网络是一种专门用来处理具有类似网格结构的数据的神经网络。在卷积网络的术语中，卷积的第一个参数通常叫做输入，第二个参数叫做核函数，输出有时被称为特征映射。在机器学习的应用中，输入通常是多维数组的数据，而核通常是由学习算法优化得到的多维数组的参数。一般地，单独使用卷积运算在
+    
+    </summary>
+    
+      <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="CNN" scheme="https://zxth93.github.io/tags/CNN/"/>
+    
+  </entry>
+  
+  <entry>
     <title>深度模型中的优化</title>
     <link href="https://zxth93.github.io/2017/09/08/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E4%BC%98%E5%8C%96/"/>
     <id>https://zxth93.github.io/2017/09/08/深度模型中的优化/</id>
     <published>2017-09-08T02:33:09.000Z</published>
-    <updated>2017-09-10T13:57:12.468Z</updated>
+    <updated>2017-09-15T03:15:33.830Z</updated>
     
     <content type="html"><![CDATA[<p>大多数深度学习算法都涉及到优化，优化是指改变x来最大化或最小化某个函数f(x)。</p>
 <h3 id="1-学习和纯优化有什么不同"><a href="#1-学习和纯优化有什么不同" class="headerlink" title="1. 学习和纯优化有什么不同"></a>1. 学习和纯优化有什么不同</h3><p>用于深度模型训练的优化算法与传统的优化有几方面是不同的：机器学习通常是间接作用的，比如间接地优化P，一般通过降低损失函数来提高P；</p>
@@ -77,6 +119,45 @@
 <p>如上图所示，我们可以对比一下Nesterov动量法和标准动量法区别。动量法首先计算当前的梯度值（小蓝色向量），然后在更新的积累向量（大蓝色向量）方向前进一大步。但 NAG 法则首先（试探性地）在之前积累的梯度方向（棕色向量）前进一大步，再根据当前地情况修正，以得到最终的前进方向（绿色向量）。这种基于预测的更新方法，使我们避免过快地前进，并提高了算法地响应能力（responsiveness），大大改进了 RNN 在一些任务上的表现。</p>
 </li>
 </ul>
+<h3 id="4-参数初始化策略"><a href="#4-参数初始化策略" class="headerlink" title="4. 参数初始化策略"></a>4. 参数初始化策略</h3><p>深度模型的训练算法通常是迭代的，所以需要指定一些开始迭代的初始点，这些初始点会影响算法是否收敛。并且当算法收敛时，初始点还可以影响其收敛的速度，以及是否收敛到一个代价高或低的点。现在的初始化策略是简单的、启发式的。我们对于初始点如何影响泛化的理解相当原始的，几乎没有提供如何选择初始点的任何指导。</p>
+<p>到目前为止，唯一确知的特性是初始参数需要在不同单元间“破坏对称性”：如果两个隐藏层单元有着相同的激活函数以及相同的输入，那么它们必须使用不同的初始参数。通常情况下，我们可以为每个单元的偏置设置启发式挑选的常数，仅随机初始化权重。我们经常 对权重的选取随机取自高斯或均匀分布中的值。</p>
+<p>关于初始化网络，正则化和优化有着不同的观点。优化观点建议权重 尽可能成功地传播信息，而正则化希望其小一点。优化算法倾向于最终参数应接近初始参数。</p>
+<p>设置偏置的方法必须和设置权重的方法协调。设置偏置为0在大多数初始化方案中是可行的，但也存在一些设置为非0 的情况：</p>
+<ol>
+<li>如果偏置是作为输出单元，那么初始化偏置以获取正确的输出边缘统计通常是有利的。我们假设初始权重足够小，该单元的输出仅由偏置决定。这说明设置偏置为应用于训练集上输出边缘统计的激活函数的逆。</li>
+<li>有时，我们会选择偏置来避免初始化引起太大饱和。</li>
+</ol>
+<h3 id="5-自适应学习率算法"><a href="#5-自适应学习率算法" class="headerlink" title="5. 自适应学习率算法"></a>5. 自适应学习率算法</h3><p>学习率会对模型的性能有显著的影响，Delta-bar-delta算法是一个早期的在训练时适应模型参数各自学习率的启发式方法。其基本思想：如果损失对于某个给定模型参数的偏导保持相同的符号，那么学习率应该增加。如果对于该参数的偏导变化了符号，那么学习率应减小。这种方法只能应用于全批量优化中，最近提出一些增量（或基于小批量）的算法来自适应模型参数的学习率。</p>
+<ul>
+<li><p><strong>AdaGrad</strong></p>
+<p>此算法独立地适应模型所有参数的学习率，缩放每个参数反比于其所有梯度历史平方值总和的平方根。具有损失最大的偏导的参数相应地有一个快速下降的学习率，而具有小偏导的参数在学习率上有相对较小的下降。然而在实践中，发现从训练开始时积累梯度平方会导致有效学习率过早和过量的减小。</p>
+</li>
+<li><p><strong>RMSProp</strong></p>
+<p>此算法修改AdaGrad以在非凸设定下效果更好，改变梯度积累为指数加权的移动平均。RMSProp使用指数衰减平均以丢失遥远过去的历史，使其能够在找到凸碗状结构后快速收敛。</p>
+</li>
+<li><p><strong>Adam</strong></p>
+<p>Adam利用了AdaGrad和RMSProp在稀疏数据上的优点，对初始化的偏差修正也让Adam表现的更好。很多deep learning的优化问题都用Adam。</p>
+</li>
+</ul>
+<h3 id="6-二阶近似方法"><a href="#6-二阶近似方法" class="headerlink" title="6. 二阶近似方法"></a>6. 二阶近似方法</h3><ul>
+<li><p><strong>牛顿法</strong></p>
+<p>牛顿法是基于二阶泰勒级数展开在某地$\theta_0$附件来近似$J(\theta)$的优化方法，其忽略了高阶导数。对于局部的二次函数，用Hession矩阵的逆来重新调整梯度，牛顿法会直接跳到极小值。如果目标函数是凸的但非二次的（有高阶项），该更新将是迭代的。牛顿法要保证Hession矩阵是正定才能使其是有效的，并且牛顿法还受限于其显著的计算负担。这就导致只有参数很少的网络才能在实际中用牛顿法训练。</p>
+</li>
+<li><p><strong>共轭梯度</strong></p>
+<p>共轭梯度是一种通过迭代下降的共轭方向以有效避免Hession矩阵求逆计算的方法，其中在于梯度相关的方向上使用了线搜索。该方法在二次碗型目标中是一个相当低效的来回往复，锯齿形模式。这是因为每个由梯度给定的线搜索方向，都保证正交于上一个线搜索方向。</p>
+<p>在共轭梯度法中，我们寻求一个和先前线搜索方向共轭的搜索方向，即它不会撤销该方向上的进展。</p>
+</li>
+<li><p><strong>BFGS</strong></p>
+<p>Broyden-Fletcher-Goldfarb-Shanno(BFGS)算法具有牛顿法的一些优点，但没有牛顿法的计算负担。在这方面，BFGS和CG很像。然而，BFGS使用了一个更直接的方法近似牛顿更新，使用矩阵M近似逆，迭代地低秩更新精度以更好的近似Hession的逆。</p>
+<p>与共轭梯度法相似，BFGS算法迭代一系列线搜索，其方向含二阶信息。与共轭梯度不同的是，该方法的成功并不严重依赖于线搜索寻找该方向上和真正极小值很近的一点，这样的话，BFGS花费较少的时间改进每个线搜索。另一方面，BFGS算法必须存储Hession逆矩阵M，使得BFGS不适用于大多数具有百万级参数的现代深度学习模型。</p>
+</li>
+<li><p><strong>存储受限的BFGS（L-BFGS）</strong></p>
+<p>通过避免存储完整的Hession逆近似M，BFGS算法的存储代价可以显著降低。</p>
+<p>​</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">本文内容摘取自《Deep Learning》，部分内容有所修改</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
 ]]></content>
     
     <summary type="html">
@@ -100,7 +181,7 @@
     <link href="https://zxth93.github.io/2017/09/05/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%AD%A3%E5%88%99%E5%8C%96/"/>
     <id>https://zxth93.github.io/2017/09/05/深度学习中的正则化/</id>
     <published>2017-09-05T07:20:49.000Z</published>
-    <updated>2017-09-10T06:29:50.063Z</updated>
+    <updated>2017-09-15T03:15:53.454Z</updated>
     
     <content type="html"><![CDATA[<p>在机器学习中，会有许多策略来减小测试误差，但这些策略可能会引起训练误差的增大，这些策略被统称为正则化策略。在深度学习的背景下，大多数正则化策略都是对估计进行正则化。估计的正则化通常是以偏差的增加换取方差的减少，一个有效的正则化就是能显著减少方差而不过度增加偏差。现在我们回顾一下几种策略</p>
 <h3 id="1-参数范数惩罚"><a href="#1-参数范数惩罚" class="headerlink" title="1. 参数范数惩罚"></a>1. 参数范数惩罚</h3><p>许多正则化方法通过对目标函数$\J$添加一个参数范数惩罚项$\Omega (\theta)$，限制模型的学习能力。正则化后的目标函数变为$\overline{J}$:<br>$$<br>\overline{J}(\theta; X, y) = J(\theta; X, y)  + \alpha\Omega(\theta)<br>$$<br>$\alpha$是惩罚项系数，$\alpha$系数越大，对应正则化惩罚越大。</p>
@@ -119,6 +200,7 @@
 <p>在神经网络的输入层注入噪声(Sietsma and Dow, 1991) 也可以被看作是数据增强的一种方式。对于许多分类甚至一些回归任务而言，即使小的随机噪声被加到输入，任务仍应该是能够被解决的。然而，神经网络被证明对噪声不是非常健壮(Tang and Eliasmith, 2010)。改善神经网络健壮性的方法之一是简单地将随机噪声添加到输入再进行训练。</p>
 <h3 id="4-噪声鲁棒性"><a href="#4-噪声鲁棒性" class="headerlink" title="4. 噪声鲁棒性"></a>4. 噪声鲁棒性</h3><p>对于某些模型而言，向输入添加方差极小的噪声等价于对权重施加范数惩罚(Bishop, 1995a,b)。在一般情<br>况下，注入噪声远比简单地收缩参数强大，特别是噪声被添加到隐藏单元时会更加强大。</p>
 <p>另一种正则化模型的噪声使用方式是将其加到权重，这项技术主要用于RNN，这种形式的正则化鼓励参数进入权重小扰动对输出相对影响较小的参数空间区域。换句话说，它推动模型进入对权重小的变化相对不敏感的区域，找到的点不只是极小点，还是由平坦区域所包围的极小点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">本文内容摘取自《Deep Learning》，部分内容有所修改</div></pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">
@@ -230,9 +312,9 @@
       <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
       <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
+    
+      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
@@ -266,9 +348,9 @@
       <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
       <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
+    
+      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
@@ -353,9 +435,9 @@
       <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
       <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
+    
+      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="Sequential" scheme="https://zxth93.github.io/tags/Sequential/"/>
     
@@ -515,11 +597,11 @@
       <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
+      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
       <category term="阿里天池大赛" scheme="https://zxth93.github.io/tags/%E9%98%BF%E9%87%8C%E5%A4%A9%E6%B1%A0%E5%A4%A7%E8%B5%9B/"/>
     
       <category term="机器学习" scheme="https://zxth93.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
