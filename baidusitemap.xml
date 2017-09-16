@@ -4,6 +4,48 @@
 
     
   <url>
+    <loc>https://zxth93.github.io/2017/09/15/Tips-of-Deep-Learning/</loc>
+    <lastmod>2017-09-15T14:46:51.065Z</lastmod>
+    <data>
+        <display>
+        <title>Tips of Deep Learning课程笔记</title>
+        <pubTime>2017-09-15T12:59:10.000Z</pubTime>
+        
+        <tag>深度学习</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://zxth93.github.io/2017/09/08/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E4%BC%98%E5%8C%96/</loc>
+    <lastmod>2017-09-15T14:15:57.499Z</lastmod>
+    <data>
+        <display>
+        <title>深度模型中的优化</title>
+        <pubTime>2017-09-08T02:33:09.000Z</pubTime>
+        
+        <tag>深度学习</tag>
+         
+        <tag>优化</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://zxth93.github.io/2017/08/25/LeetCode-array%E7%B1%BB%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2017-09-15T11:50:57.831Z</lastmod>
     <data>
@@ -36,28 +78,6 @@
         <tag>深度学习</tag>
          
         <tag>正则化</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://zxth93.github.io/2017/09/08/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E4%BC%98%E5%8C%96/</loc>
-    <lastmod>2017-09-15T03:15:33.830Z</lastmod>
-    <data>
-        <display>
-        <title>深度模型中的优化</title>
-        <pubTime>2017-09-08T02:33:09.000Z</pubTime>
-        
-        <tag>深度学习</tag>
-         
-        <tag>优化</tag>
          
          
            

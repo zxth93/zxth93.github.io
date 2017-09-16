@@ -16,16 +16,30 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>标签: 阿里天池大赛 | Blog</title>
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://zxth93.github.io/tags/阿里天池大赛/index.html">
+  <title>Tips of Deep Learning课程笔记 | Blog</title>
+  <meta name="description" content="本文是关于李宏毅老师的机器学习课程笔记，有些部分稍有改动。本文主要介绍Deep Learning(DL)调参技巧，下图表示了DL的一般流程，在这个过程中，我们会着重关注overfitting的问题。  当我们发现模型overfitting时，不要总以为是参数太多导致overfitting，我们应该首先去看模型在training data上效果如何。  同时，我们在修正overfitting时，要注">
+<meta name="keywords" content="深度学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tips of Deep Learning课程笔记">
+<meta property="og:url" content="https://zxth93.github.io/2017/09/15/Tips-of-Deep-Learning/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文是关于李宏毅老师的机器学习课程笔记，有些部分稍有改动。本文主要介绍Deep Learning(DL)调参技巧，下图表示了DL的一般流程，在这个过程中，我们会着重关注overfitting的问题。  当我们发现模型overfitting时，不要总以为是参数太多导致overfitting，我们应该首先去看模型在training data上效果如何。  同时，我们在修正overfitting时，要注">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/DLTips_step.png?raw=true">
+<meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/DLTips_overfitting.png?raw=true">
+<meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/DLTips_dropout.png?raw=true">
+<meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/DLTip_stategy.png?raw=true">
+<meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/DLTips_relu.png?raw=true">
+<meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/DLTips_maxout.png?raw=true">
+<meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/DLTips_dropout3.png?raw=true">
+<meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/DLTips_dropout2.png?raw=true">
+<meta property="og:updated_time" content="2017-09-15T14:46:51.065Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="Tips of Deep Learning课程笔记">
+<meta name="twitter:description" content="本文是关于李宏毅老师的机器学习课程笔记，有些部分稍有改动。本文主要介绍Deep Learning(DL)调参技巧，下图表示了DL的一般流程，在这个过程中，我们会着重关注overfitting的问题。  当我们发现模型overfitting时，不要总以为是参数太多导致overfitting，我们应该首先去看模型在training data上效果如何。  同时，我们在修正overfitting时，要注">
+<meta name="twitter:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/DLTips_step.png?raw=true">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://zxth93.github.io/tags/阿里天池大赛/index.html">
+  <link rel="canonical" href="https://zxth93.github.io/2017/09/15/Tips-of-Deep-Learning/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -314,73 +328,156 @@
 </section>
 
   
-  <section class="main">
-  <article class="content article article-tags post-type-list" itemscope="">
-    <header class="article-header">
-      <h1 itemprop="name" class="hidden-xs">标签: 阿里天池大赛</h1>
-      <p class="text-muted hidden-xs">共 1 篇文章</p>
-      <nav role="navigation" id="nav-main" class="okayNav">
-        <ul>
-          <li><a href="/tags">All</a></li>
-          
-          <li><a href="/tags/阿里天池大赛/">阿里天池大赛</a></li>
-          
-          <li><a href="/tags/机器学习/">机器学习</a></li>
-          
-          <li><a href="/tags/深度学习/">深度学习</a></li>
-          
-          <li><a href="/tags/Leetcode/">Leetcode</a></li>
-          
-          <li><a href="/tags/array/">array</a></li>
-          
-          <li><a href="/tags/Keras/">Keras</a></li>
-          
-          <li><a href="/tags/正则化/">正则化</a></li>
-          
-          <li><a href="/tags/Sequential/">Sequential</a></li>
-          
-          <li><a href="/tags/优化/">优化</a></li>
-          
-          <li><a href="/tags/CNN/">CNN</a></li>
-          
-        </ul>
-      </nav>
-    </header>
-    <!-- /header -->
-    <div class="article-body">
-      <div class="row">
-        
-<div class="col-md-6">
+  
+<section class="main">
+  <div class="content">
+  <article id="post-Tips-of-Deep-Learning" class="article article-type-post" itemscope itemprop="blogPost">
     
-<article class="panel panel-default shadow-hover">
-  <div class="panel-body">
-     <div class="article-meta">
-       <time datetime="2017-08-20T13:43:51.000Z" itemprop="datePublished">2017-08-20</time>
-     </div>
-     <h3 class="article-title" itemprop="name">
-       <a class="article-link" href="/2017/08/20/CIKM2017比赛经验分享/">阿里天池CIKM2017 Rank4比赛经验分享</a>
-     </h3>
-   </div>
-   
-   <div class="panel-footer">
-     
-      <a href="/tags/阿里天池大赛/" class="label label-default mb">阿里天池大赛</a>
-     
-      <a href="/tags/机器学习/" class="label label-default mb">机器学习</a>
-     
-      <a href="/tags/深度学习/" class="label label-default mb">深度学习</a>
-     
-   </div>
-   
-</article>
+    <header class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Tips of Deep Learning课程笔记
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="fa fa-calendar-check-o"></i>
+	<a href="/2017/09/15/Tips-of-Deep-Learning/" class="article-date">
+	  <time datetime="2017-09-15T12:59:10.000Z" itemprop="datePublished">2017-09-15</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/算法/">算法</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="fa fa-tag"></i>
+	<a class="article-tag-link" href="/tags/深度学习/">深度学习</a>
+  </span>
 
 
-</div>
+        
+	<span class="article-read hidden-xs">
+	    <i class="fa fa-eye" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			阅读<span id="busuanzi_value_page_pv">0</span>次
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2017/09/15/Tips-of-Deep-Learning/#comments" class="article-comment-link">评论</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs">字数统计: 397(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs">阅读时长: 1(分)</span>
+	
 
       </div>
+      
+    </header>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <p>本文是关于李宏毅老师的机器学习<a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses/ML_2017/Lecture/DNN%20tip.pdf" target="_blank" rel="external">课程</a>笔记，有些部分稍有改动。本文主要介绍Deep Learning(DL)调参技巧，下图表示了DL的一般流程，在这个过程中，我们会着重关注<strong>overfitting</strong>的问题。</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/DLTips_step.png?raw=true" alt=""></p>
+<p>当我们发现模型overfitting时，不要总以为是参数太多导致overfitting，我们应该首先去看模型在training data上效果如何。</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/DLTips_overfitting.png?raw=true" alt=""></p>
+<p>同时，我们在修正overfitting时，要注意不同的方法针对不同的问题。有的方法是针对训练误差，而有的方法是针对测试误差的，比如：Dropout</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/DLTips_dropout.png?raw=true" alt=""></p>
+<p>下面就是一些经常用到策略：</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/DLTip_stategy.png?raw=true" alt=""></p>
+<p>我们发现当深度越深，会造成浅层梯度更新慢，深层梯度更新快，深层会快速收敛。这样的话，学习到参数是不好的，因为浅层的参数是随机初始化的，并且无法更新到浅层参数。</p>
+<p>另外当我们使用的激活函数是sigmoid的时，会造成梯度更新越来越小，梯度消失。因此，我们平时经常使用ReLU。ReLU在使用过程在小范围内是线性的，不会是梯度太小。</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/DLTips_relu.png?raw=true" alt=""></p>
+<p>不同的激活函数，有不同的效果；因此，提出了可学习激活函数—Maxout。</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/DLTips_maxout.png?raw=true" alt=""></p>
+<p>在测试集上调整overfitting时，我们一般通过三种方法进行调整<strong>early stopping</strong>、<strong>regularization</strong>、<strong>Dropout</strong>，现在主要介绍一下Dropout：</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/DLTips_dropout3.png?raw=true" alt=""></p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/DLTips_dropout2.png?raw=true" alt=""></p>
+<p>Dropout其实是一种集成方法，因为每次mini-batch进行一次dropout操作，产生不同的网络。</p>
+
+      
     </div>
+    <footer class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://zxth93.github.io/2017/09/15/Tips-of-Deep-Learning/" title="Tips of Deep Learning课程笔记" target="_blank" rel="external">https://zxth93.github.io/2017/09/15/Tips-of-Deep-Learning/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/zxth93" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/zxth93" target="_blank"><span class="text-dark">ciic</span><small class="ml-1x">A master student of ISCAS</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </footer>
   </article>
-   
+  
+    
+  <div id="comments">
+  	
+       
+    <div id="uyan_frame"></div>
+
+    
+  </div>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2017/09/14/卷积网络/" title="卷积网络">下一篇&nbsp;&nbsp;<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+  </div>
+  
+  </div>
+</nav>
+  
+
+
 </section>
 
   <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
@@ -413,11 +510,17 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
     
     
         
-<script defer src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script defer src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
     
+    
+        
+    
+    <script defer type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=[object Object]"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
     
     
 

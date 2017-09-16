@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zxth93.github.io/"/>
-  <updated>2017-09-15T03:13:20.688Z</updated>
+  <updated>2017-09-15T14:46:51.065Z</updated>
   <id>https://zxth93.github.io/</id>
   
   <author>
@@ -14,6 +14,45 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Tips of Deep Learning课程笔记</title>
+    <link href="https://zxth93.github.io/2017/09/15/Tips-of-Deep-Learning/"/>
+    <id>https://zxth93.github.io/2017/09/15/Tips-of-Deep-Learning/</id>
+    <published>2017-09-15T12:59:10.000Z</published>
+    <updated>2017-09-15T14:46:51.065Z</updated>
+    
+    <content type="html"><![CDATA[<p>本文是关于李宏毅老师的机器学习<a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses/ML_2017/Lecture/DNN%20tip.pdf" target="_blank" rel="external">课程</a>笔记，有些部分稍有改动。本文主要介绍Deep Learning(DL)调参技巧，下图表示了DL的一般流程，在这个过程中，我们会着重关注<strong>overfitting</strong>的问题。</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/DLTips_step.png?raw=true" alt=""></p>
+<p>当我们发现模型overfitting时，不要总以为是参数太多导致overfitting，我们应该首先去看模型在training data上效果如何。</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/DLTips_overfitting.png?raw=true" alt=""></p>
+<p>同时，我们在修正overfitting时，要注意不同的方法针对不同的问题。有的方法是针对训练误差，而有的方法是针对测试误差的，比如：Dropout</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/DLTips_dropout.png?raw=true" alt=""></p>
+<p>下面就是一些经常用到策略：</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/DLTip_stategy.png?raw=true" alt=""></p>
+<p>我们发现当深度越深，会造成浅层梯度更新慢，深层梯度更新快，深层会快速收敛。这样的话，学习到参数是不好的，因为浅层的参数是随机初始化的，并且无法更新到浅层参数。</p>
+<p>另外当我们使用的激活函数是sigmoid的时，会造成梯度更新越来越小，梯度消失。因此，我们平时经常使用ReLU。ReLU在使用过程在小范围内是线性的，不会是梯度太小。</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/DLTips_relu.png?raw=true" alt=""></p>
+<p>不同的激活函数，有不同的效果；因此，提出了可学习激活函数—Maxout。</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/DLTips_maxout.png?raw=true" alt=""></p>
+<p>在测试集上调整overfitting时，我们一般通过三种方法进行调整<strong>early stopping</strong>、<strong>regularization</strong>、<strong>Dropout</strong>，现在主要介绍一下Dropout：</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/DLTips_dropout3.png?raw=true" alt=""></p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/DLTips_dropout2.png?raw=true" alt=""></p>
+<p>Dropout其实是一种集成方法，因为每次mini-batch进行一次dropout操作，产生不同的网络。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文是关于李宏毅老师的机器学习&lt;a href=&quot;http://speech.ee.ntu.edu.tw/~tlkagk/courses/ML_2017/Lecture/DNN%20tip.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;课程&lt;/a&gt;笔
+    
+    </summary>
+    
+      <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>卷积网络</title>
@@ -67,7 +106,7 @@
     <link href="https://zxth93.github.io/2017/09/08/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E4%BC%98%E5%8C%96/"/>
     <id>https://zxth93.github.io/2017/09/08/深度模型中的优化/</id>
     <published>2017-09-08T02:33:09.000Z</published>
-    <updated>2017-09-15T03:15:33.830Z</updated>
+    <updated>2017-09-15T14:15:57.499Z</updated>
     
     <content type="html"><![CDATA[<p>大多数深度学习算法都涉及到优化，优化是指改变x来最大化或最小化某个函数f(x)。</p>
 <h3 id="1-学习和纯优化有什么不同"><a class="markdownIt-Anchor" href="#1-学习和纯优化有什么不同"></a> 1. 学习和纯优化有什么不同</h3>
@@ -124,12 +163,15 @@
 <li>
 <p><strong>随机梯度下降</strong></p>
 <p>基本思想：将数据中抽取m个小批量样本，通过计算它们梯度均值，我们可以得到梯度的无偏估计。SGD算法中的一个关键参数学习率。在实践中，推荐使用随着时间的推移逐渐降低学习率的策略。对于大数据集，SGD只需非常少量样本计算梯度从而实现初始快速更新，远远超过了其缓慢的渐近收敛。</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/SGD.png?raw=true" alt=""></p>
 </li>
 <li>
 <p><strong>动量</strong></p>
 <p>虽然随机梯度下降仍然是非常受欢迎的优化方法，但其学习过程有时会很慢。动量方法旨在加速学习，特别是处理高曲率、小但一致的梯度，或是带噪声的梯度。动量算法积累了之前梯度指数级衰减的移动平均，并且继续沿该方向移动。</p>
 <p>从形式上看，动量算法引入了变量v充当速度角色，它即代表参数的移动方向，又代表速率。速度被设为负梯度的指数衰减平均。梯度下降算法基于每个梯度简单地更新一步，而使用动量算法的牛顿方案则使用该力改变粒子的速度。我们可以将粒子视作在冰面上滑行的冰球。每当它沿着表面最陡的部分下降时，它会累积继续在该方向上滑行的速度，直到其开始向上滑动为止。</p>
 <p>形象地，我们可以将损失函数看出山的高度，然后我们将一个小球从这个山上滚下来。小球的速度会越来越快，使得小球可以越过山腰上的沟壑，有机会快速到达谷底。并且为了防止小球速度过快，我们会设置一个超参，该参数相当于物理中的阻尼系数。</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/momentum.png?raw=true" alt=""></p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/momentum2.png?raw=true" alt=""></p>
 </li>
 <li>
 <p><strong>Nesterov动量</strong></p>
