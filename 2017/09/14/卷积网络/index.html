@@ -17,20 +17,20 @@
   
   
   <title>卷积网络 | Blog</title>
-  <meta name="description" content="卷积网络是一种专门用来处理具有类似网格结构的数据的神经网络。在卷积网络的术语中，卷积的第一个参数通常叫做输入，第二个参数叫做核函数，输出有时被称为特征映射。在机器学习的应用中，输入通常是多维数组的数据，而核通常是由学习算法优化得到的多维数组的参数。一般地，单独使用卷积运算在机器学习中比较少见，卷积通常和其他函数一起使用。下面演示一个在2维tensor上的卷积：   1. 特点 卷积运算通过三个策略">
+  <meta name="description" content="卷积网络是一种专门用来处理具有类似网格结构的数据的神经网络。在卷积网络的术语中，卷积的第一个参数通常叫做输入，第二个参数叫做核函数，输出有时被称为特征映射。在机器学习的应用中，输入通常是多维数组的数据，而核通常是由学习算法优化得到的多维数组的参数。一般地，单独使用卷积运算在机器学习中比较少见，卷积通常和其他函数一起使用。下面演示一个在2维tensor上的卷积：  为什么我们可以用卷积网络处理图像：">
 <meta name="keywords" content="深度学习,CNN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="卷积网络">
 <meta property="og:url" content="https://zxth93.github.io/2017/09/14/卷积网络/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="卷积网络是一种专门用来处理具有类似网格结构的数据的神经网络。在卷积网络的术语中，卷积的第一个参数通常叫做输入，第二个参数叫做核函数，输出有时被称为特征映射。在机器学习的应用中，输入通常是多维数组的数据，而核通常是由学习算法优化得到的多维数组的参数。一般地，单独使用卷积运算在机器学习中比较少见，卷积通常和其他函数一起使用。下面演示一个在2维tensor上的卷积：   1. 特点 卷积运算通过三个策略">
+<meta property="og:description" content="卷积网络是一种专门用来处理具有类似网格结构的数据的神经网络。在卷积网络的术语中，卷积的第一个参数通常叫做输入，第二个参数叫做核函数，输出有时被称为特征映射。在机器学习的应用中，输入通常是多维数组的数据，而核通常是由学习算法优化得到的多维数组的参数。一般地，单独使用卷积运算在机器学习中比较少见，卷积通常和其他函数一起使用。下面演示一个在2维tensor上的卷积：  为什么我们可以用卷积网络处理图像：">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/cnn_example.png?raw=true">
 <meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/sparse_connection.png?raw=true">
-<meta property="og:updated_time" content="2017-09-15T03:13:20.688Z">
+<meta property="og:updated_time" content="2017-09-17T08:19:20.567Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="卷积网络">
-<meta name="twitter:description" content="卷积网络是一种专门用来处理具有类似网格结构的数据的神经网络。在卷积网络的术语中，卷积的第一个参数通常叫做输入，第二个参数叫做核函数，输出有时被称为特征映射。在机器学习的应用中，输入通常是多维数组的数据，而核通常是由学习算法优化得到的多维数组的参数。一般地，单独使用卷积运算在机器学习中比较少见，卷积通常和其他函数一起使用。下面演示一个在2维tensor上的卷积：   1. 特点 卷积运算通过三个策略">
+<meta name="twitter:description" content="卷积网络是一种专门用来处理具有类似网格结构的数据的神经网络。在卷积网络的术语中，卷积的第一个参数通常叫做输入，第二个参数叫做核函数，输出有时被称为特征映射。在机器学习的应用中，输入通常是多维数组的数据，而核通常是由学习算法优化得到的多维数组的参数。一般地，单独使用卷积运算在机器学习中比较少见，卷积通常和其他函数一起使用。下面演示一个在2维tensor上的卷积：  为什么我们可以用卷积网络处理图像：">
 <meta name="twitter:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/cnn_example.png?raw=true">
   <!-- Canonical links -->
   <link rel="canonical" href="https://zxth93.github.io/2017/09/14/卷积网络/index.html">
@@ -196,7 +196,7 @@
   <div class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-body">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">9</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">10</span></li></ul>
     </div>
   </div>
 
@@ -206,7 +206,7 @@
   <div class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-body">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/">CNN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Keras/">Keras</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sequential/">Sequential</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化/">优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则化/">正则化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/阿里天池大赛/">阿里天池大赛</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/">CNN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Keras/">Keras</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/">RNN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sequential/">Sequential</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化/">优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则化/">正则化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/阿里天池大赛/">阿里天池大赛</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -216,7 +216,7 @@
   <div class="widget">
     <h3 class="widget-title">标签云</h3>
     <div class="widget-body tagcloud">
-      <a href="/tags/CNN/" style="font-size: 13px;">CNN</a> <a href="/tags/Keras/" style="font-size: 13.5px;">Keras</a> <a href="/tags/Leetcode/" style="font-size: 13px;">Leetcode</a> <a href="/tags/Sequential/" style="font-size: 13px;">Sequential</a> <a href="/tags/array/" style="font-size: 13px;">array</a> <a href="/tags/优化/" style="font-size: 13px;">优化</a> <a href="/tags/机器学习/" style="font-size: 13px;">机器学习</a> <a href="/tags/正则化/" style="font-size: 13px;">正则化</a> <a href="/tags/深度学习/" style="font-size: 14px;">深度学习</a> <a href="/tags/阿里天池大赛/" style="font-size: 13px;">阿里天池大赛</a>
+      <a href="/tags/CNN/" style="font-size: 13px;">CNN</a> <a href="/tags/Keras/" style="font-size: 13.5px;">Keras</a> <a href="/tags/Leetcode/" style="font-size: 13px;">Leetcode</a> <a href="/tags/RNN/" style="font-size: 13px;">RNN</a> <a href="/tags/Sequential/" style="font-size: 13px;">Sequential</a> <a href="/tags/array/" style="font-size: 13px;">array</a> <a href="/tags/优化/" style="font-size: 13px;">优化</a> <a href="/tags/机器学习/" style="font-size: 13px;">机器学习</a> <a href="/tags/正则化/" style="font-size: 13px;">正则化</a> <a href="/tags/深度学习/" style="font-size: 14px;">深度学习</a> <a href="/tags/阿里天池大赛/" style="font-size: 13px;">阿里天池大赛</a>
     </div>
   </div>
 
@@ -225,7 +225,7 @@
   <div class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -237,6 +237,21 @@
     <div class="widget-body">
       <ul class="recent-post-list list-unstyled no-thumbnail">
         
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/算法/">算法</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/09/16/循环和递归网络学习笔记/" class="title">循环和递归网络学习笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-09-16T06:46:41.000Z" itemprop="datePublished">2017-09-16</time>
+              </p>
+            </div>
+          </li>
+          
           <li>
             
             <div class="item-inner">
@@ -293,21 +308,6 @@
               </p>
               <p class="item-date">
                 <time datetime="2017-09-05T07:20:49.000Z" itemprop="datePublished">2017-09-05</time>
-              </p>
-            </div>
-          </li>
-          
-          <li>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                <a class="category-link" href="/categories/算法/">算法</a>
-              </p>
-              <p class="item-title">
-                <a href="/2017/09/02/Keras学习笔记III-网络层/" class="title">Keras学习笔记III-网络层</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2017-09-02T06:32:56.000Z" itemprop="datePublished">2017-09-02</time>
               </p>
             </div>
           </li>
@@ -369,7 +369,7 @@
         <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2017/09/14/卷积网络/#comments" class="article-comment-link">评论</a></span>
         
 	
-		<span class="post-wordcount hidden-xs">字数统计: 616(字)</span>
+		<span class="post-wordcount hidden-xs">字数统计: 684(字)</span>
 	
 	
 		<span class="post-readcount hidden-xs">阅读时长: 2(分)</span>
@@ -380,8 +380,14 @@
     </header>
     <div class="article-entry markdown-body" itemprop="articleBody">
       
-        <p>卷积网络是一种专门用来处理具有类似网格结构的数据的神经网络。在卷积网络的术语中，卷积的第一个参数通常叫做输入，第二个参数叫做核函数，输出有时被称为特征映射。在机器学习的应用中，输入通常是多维数组的数据，而核通常是由学习算法优化得到的多维数组的参数。一般地，单独使用卷积运算在机器学习中比较少见，卷积通常和其他函数一起使用。下面演示一个在2维tensor上的卷积：</p>
+        <p>卷积网络是一种专门用来处理具有类似网格结构的数据的神经网络。在卷积网络的术语中，卷积的第一个参数通常叫做<strong>输入</strong>，第二个参数叫做<strong>核函数</strong>，输出有时被称为<strong>特征映射</strong>。在机器学习的应用中，输入通常是多维数组的数据，而核通常是由学习算法优化得到的多维数组的参数。一般地，单独使用卷积运算在机器学习中比较少见，卷积通常和其他函数一起使用。下面演示一个在2维tensor上的卷积：</p>
 <p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/cnn_example.png?raw=true" alt=""></p>
+<p>为什么我们可以用卷积网络处理图像：</p>
+<ul>
+<li>我们不必去观察整张图来发现pattern，只需要关注一小部分就可以了；</li>
+<li>相同的pattern可能出现在图像的不同区域；</li>
+<li>使用子采样不改变对象</li>
+</ul>
 <h3 id="1-特点"><a class="markdownIt-Anchor" href="#1-特点"></a> 1. 特点</h3>
 <p>卷积运算通过三个策略来改进机器学习系统：<strong>稀疏交互</strong>、<strong>参数共享</strong>、<strong>等变表示</strong>。</p>
 <ul>
@@ -402,7 +408,9 @@
 <h3 id="2-池化"><a class="markdownIt-Anchor" href="#2-池化"></a> 2. 池化</h3>
 <p>卷积网络有一个典型层包含三级：在第一级中，并行地计算多个卷积产生一组线性变换；在第二级中，每个线性变换会经过一个非线性激活函数；在第三级中，使用池化函数调整输出。池化函数使用某一位置的相邻输出的总体统计特征来代替该位置的输出。</p>
 <p>对于平移不变性是指当我们对输入进行少量平移时，经过池化函数后的大多数输出并不会发生改变。因为池化综合了全部邻居的反馈，这使得池化单元少于探测单元成为可能，这种方法提高了网络的计算效率，减小了存储需求。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">本文内容摘取自《Deep Learning》，部分内容有所修改</div></pre></td></tr></table></figure>
+<blockquote>
+<p>本文内容摘取自《Deep Learning》，部分内容有所修改</p>
+</blockquote>
 
       
     </div>
