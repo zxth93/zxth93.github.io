@@ -4,8 +4,28 @@
 
     
   <url>
+    <loc>https://zxth93.github.io/2017/09/19/%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/</loc>
+    <lastmod>2017-09-21T12:07:47.155Z</lastmod>
+    <data>
+        <display>
+        <title>自编码器</title>
+        <pubTime>2017-09-19T02:21:59.000Z</pubTime>
+        
+        <tag>深度学习</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://zxth93.github.io/2017/09/16/%E5%BE%AA%E7%8E%AF%E5%92%8C%E9%80%92%E5%BD%92%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2017-09-17T12:08:08.724Z</lastmod>
+    <lastmod>2017-09-19T01:47:14.012Z</lastmod>
     <data>
         <display>
         <title>循环和递归网络学习笔记</title>
@@ -141,9 +161,9 @@
         <title>Keras学习笔记III-网络层</title>
         <pubTime>2017-09-02T06:32:56.000Z</pubTime>
         
-        <tag>Keras</tag>
-         
         <tag>深度学习</tag>
+         
+        <tag>Keras</tag>
          
          
            
@@ -163,9 +183,9 @@
         <title>Keras学习笔记II-函数式模型</title>
         <pubTime>2017-08-31T10:48:30.000Z</pubTime>
         
-        <tag>Keras</tag>
-         
         <tag>深度学习</tag>
+         
+        <tag>Keras</tag>
          
          
            
@@ -185,9 +205,9 @@
         <title>Keras学习笔记I-Sequential</title>
         <pubTime>2017-08-26T12:05:16.000Z</pubTime>
         
-        <tag>Keras</tag>
-         
         <tag>深度学习</tag>
+         
+        <tag>Keras</tag>
          
         <tag>Sequential</tag>
          
@@ -209,11 +229,11 @@
         <title>阿里天池CIKM2017 Rank4比赛经验分享</title>
         <pubTime>2017-08-20T13:43:51.000Z</pubTime>
         
-        <tag>深度学习</tag>
-         
         <tag>阿里天池大赛</tag>
          
         <tag>机器学习</tag>
+         
+        <tag>深度学习</tag>
          
          
            

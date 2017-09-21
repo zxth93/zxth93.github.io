@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zxth93.github.io/"/>
-  <updated>2017-09-17T12:08:08.724Z</updated>
+  <updated>2017-09-21T12:07:47.155Z</updated>
   <id>https://zxth93.github.io/</id>
   
   <author>
@@ -16,11 +16,61 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>自编码器</title>
+    <link href="https://zxth93.github.io/2017/09/19/%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/"/>
+    <id>https://zxth93.github.io/2017/09/19/自编码器/</id>
+    <published>2017-09-19T02:21:59.000Z</published>
+    <updated>2017-09-21T12:07:47.155Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>自编码器（auto-encoder）<strong>是神经网络的一种，经过训练后能尝试将输入复制到输出。自编码器内部有一个隐藏层h,可以产生</strong>编码</strong>表示输入。该网络可以看作由两个部分组成：一个由函数h=f(x)表示的编码器和一个生成重构的解码器r=g(h)。我们会将自编码器设计成输入到输出近似相等，通常需要向自编码器强加一些一些约束，使它只能近似地复制。这些约束强制模型考虑输入数据的哪些部分需要被优先复制，因此它往往能学习到数据的有用特性。传统自编码器被用于降维或特征学习。</p>
+<h3 id="1-欠完备自编码器"><a class="markdownIt-Anchor" href="#1-欠完备自编码器"></a> 1. 欠完备自编码器</h3>
+<p>我们通常不关心解码器的输出，一般希望通过训练自编码器对输入进行复制而使h获得有用特性。从自编码器获得有用特征的一种方法是限制h的维度比x小，这种编码维度小于输入维度的自编码器称为<strong>欠完备</strong>自编码器。学习欠完备的表示将强制自编码器捕捉训练数据中最显著的特征。</p>
+<p>拥有非线性编码器函数f 和非线性解码器函数g 的自编码器能够学习出更强大的PCA 非线性推广。不幸的是，如果编码器和解码器被赋予过大的容量，自编码器会执行复制任务而捕捉不到任何有关数据分布的有用信息。</p>
+<h3 id="2-正则自编码器"><a class="markdownIt-Anchor" href="#2-正则自编码器"></a> 2. 正则自编码器</h3>
+<p>理想情况下，根据要建模的数据分布的复杂性，选择合适的编码维数和编码器、解码器容量，就可以成功训练任意架构的自编码器。正则自编码器提供这样的能力。正则自编码器使用的损失函数可以鼓励模型学习其他特性（除了将输入复制到输出），而不必限制使用浅层的编码器和解码器以及小的编码维数来限制模型的容量。<br>
+这些特性包括稀疏表示、表示的小导数、以及对噪声或输入缺失的鲁棒性。即使模型容量大到足以学习一个无意义的恒等函数，非线性且过完备的正则自编码器仍然能够从数据中学到一些关于数据分布的有用信息。</p>
+<ul>
+<li>
+<p><strong>稀疏自编码器</strong></p>
+<p>稀疏自编码器简单地在训练时结合编码层的稀疏惩罚项和重构误差：</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/autoencoder.png?raw=true" alt=""></p>
+<p>其中g(h)是解码器输出，通常h是编码器的输出，即h=f(x)。</p>
+<p>稀疏自编码器一般用来学习特征，以便用于像分类这样的任务。稀疏正则化的自编码器必须反映训练数据集的独特统计特征，而不是简单地充当恒等函数。以这种方式训练，执行附带稀疏惩罚的复制任务可以得到能学习有用特征的模型。</p>
+<p>我们可以认为整个稀疏自编码器框架是对带有潜变量的生成模型的近似最大似然训练，而不将稀疏惩罚视为复制任务的正则化。</p>
+</li>
+<li>
+<p><strong>去噪自编码器</strong></p>
+<p>去噪自编码器（denoising autoencoder, DAE）最小化</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/autoencoder2.png?raw=true" alt=""></p>
+<p>其中x~是被某种噪声损坏的x的副本。因此去噪自编码器必须撤销这些损坏，而不是简单地复制输入。</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/autoencoder3.png?raw=true" alt=""></p>
+</li>
+</ul>
+<h3 id="3-表示能力-层的大小和深度"><a class="markdownIt-Anchor" href="#3-表示能力-层的大小和深度"></a> 3. 表示能力、层的大小和深度</h3>
+<p>自编码器通常只有单层的编码器和解码器，但这不是必然的。实际上深度编码器和解码器能提供更多优势。</p>
+<p>万能近似定理保证至少有一层隐藏层且隐藏单元足够多的前馈神经网络能以任意精度近似任意函数（在很大范围里），这是非平凡深度（至少有一层隐藏层）的一个主要优点。这意味着具有单隐藏层的自编码器在数据域内能表示任意近似数据的恒等函数。但是，从输入到编码的映射是浅层的。这意味这我们不能任意添加约束，比如约束编码稀疏。深度自编码器（编码器至少包含一层额外隐藏层）在给定足够多的隐藏单元的情况下，能以任意精度近似任何从输入到编码的映射。</p>
+<p>深度可以指数地降低表示某些函数的计算成本。深度也能指数地减少学习一些函数所需的训练数据量。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;自编码器（auto-encoder）&lt;strong&gt;是神经网络的一种，经过训练后能尝试将输入复制到输出。自编码器内部有一个隐藏层h,可以产生&lt;/strong&gt;编码&lt;/strong&gt;表示输入。该网络可以看作由两个部分组成：一个由函数h=f(x)表示的编码器和一
+    
+    </summary>
+    
+      <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>循环和递归网络学习笔记</title>
     <link href="https://zxth93.github.io/2017/09/16/%E5%BE%AA%E7%8E%AF%E5%92%8C%E9%80%92%E5%BD%92%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>https://zxth93.github.io/2017/09/16/循环和递归网络学习笔记/</id>
     <published>2017-09-16T06:46:41.000Z</published>
-    <updated>2017-09-17T12:08:08.724Z</updated>
+    <updated>2017-09-19T01:47:14.012Z</updated>
     
     <content type="html"><![CDATA[<p>循环神经网络（recurrent neural network）是一类用于处理序列数据的神经网络；就像卷积网络是专门处理网格化数据的神经网络。循环神经网络共享参数方式与卷积网络是不同的，它的输出项是前一项的函数，即输出的每一项对先前的输出应用相同的更新规则而产生。</p>
 <h2 id="1-展开计算图"><a class="markdownIt-Anchor" href="#1-展开计算图"></a> 1. 展开计算图</h2>
@@ -117,6 +167,9 @@
 <p><strong>LSTM</strong></p>
 <p>引入自循环的巧妙构思，以产生梯度长时间持续流动的路径是初始**长短期记忆(long short-term memory, LSTM)**模型的核心贡献。其中一个关键扩展是使自循环的权重视上下文而定，而不是固定的。门控此自循环（由另一个隐藏单元控制）的权重，累积的时间尺度可以动态地改变。在这种情况下，即使是具有固定参数的 LSTM，累积的时间尺度也可以因输入序列而改变，因为时间常数是模型本身的输出。</p>
 <p>LSTM块如图所示：</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/LSTM.png?raw=true" alt=""></p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/lstm2.png?raw=true" alt=""></p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/lstm3.png?raw=true" alt=""></p>
 <p><img src="http://xiaosheng.me/img/article/article_74_2.png" alt=""></p>
 <p>上图为 LSTM 循环网络“细胞”的框图。细胞彼此循环连接，代替一般循环网络中普通的隐藏单元。这里使用常规的人工神经元计算输入特征。如果 sigmoid 输入门允许，它的值可以累加到状态。状态单元具有线性自循环，其权重由遗忘门控制。细胞的输出可以被输出门关闭。所有门控单元都具有 sigmoid 非线性，而输入单元可具有任意的压缩非线性。状态单元也可以用作门控单元的额外输入。黑色方块表示单个时间步的延迟。</p>
 <p>LSTM 循环网络除了外部的 RNN 循环外， 还具有内部的“LSTM 细胞”循环（自环），因此 LSTM 不是简单地向输入和循环单元的仿射变换之后施加一个逐元素的非线性。与普通的循环网络类似，每个单元有相同的输入和输出，但也有更多的参数和控制信息流动的门控单元系统。</p>
@@ -579,9 +632,9 @@
       <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
-    
       <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
     
   </entry>
   
@@ -616,9 +669,9 @@
       <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
-    
       <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
     
   </entry>
   
@@ -723,9 +776,9 @@
       <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
-    
       <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
     
       <category term="Sequential" scheme="https://zxth93.github.io/tags/Sequential/"/>
     
@@ -1033,11 +1086,11 @@ the contiguous subarray <code>[4,-1,2,1]</code> has the largest sum = <code>6</c
       <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
       <category term="阿里天池大赛" scheme="https://zxth93.github.io/tags/%E9%98%BF%E9%87%8C%E5%A4%A9%E6%B1%A0%E5%A4%A7%E8%B5%9B/"/>
     
       <category term="机器学习" scheme="https://zxth93.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
