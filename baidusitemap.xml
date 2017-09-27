@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>https://zxth93.github.io/2017/09/27/KL%E6%95%A3%E5%BA%A6JS%E6%95%A3%E5%BA%A6Wasserstein%E8%B7%9D%E7%A6%BB/</loc>
+    <lastmod>2017-09-27T03:12:38.898Z</lastmod>
+    <data>
+        <display>
+        <title>KL散度、JS散度、Wasserstein距离</title>
+        <pubTime>2017-09-27T02:26:28.000Z</pubTime>
+        
+        <tag>信息论</tag>
+         
+         
+           
+             
+              <breadCrumb title="数学知识" url="https://zxth93.github.io/categories/%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://zxth93.github.io/2017/08/25/LeetCode-array%E7%B1%BB%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2017-09-22T05:21:00.878Z</lastmod>
     <data>
@@ -161,9 +181,9 @@
         <title>Keras学习笔记III-网络层</title>
         <pubTime>2017-09-02T06:32:56.000Z</pubTime>
         
-        <tag>深度学习</tag>
-         
         <tag>Keras</tag>
+         
+        <tag>深度学习</tag>
          
          
            
@@ -183,9 +203,9 @@
         <title>Keras学习笔记II-函数式模型</title>
         <pubTime>2017-08-31T10:48:30.000Z</pubTime>
         
-        <tag>深度学习</tag>
-         
         <tag>Keras</tag>
+         
+        <tag>深度学习</tag>
          
          
            
@@ -205,9 +225,9 @@
         <title>Keras学习笔记I-Sequential</title>
         <pubTime>2017-08-26T12:05:16.000Z</pubTime>
         
-        <tag>深度学习</tag>
-         
         <tag>Keras</tag>
+         
+        <tag>深度学习</tag>
          
         <tag>Sequential</tag>
          
@@ -229,11 +249,11 @@
         <title>阿里天池CIKM2017 Rank4比赛经验分享</title>
         <pubTime>2017-08-20T13:43:51.000Z</pubTime>
         
+        <tag>深度学习</tag>
+         
         <tag>阿里天池大赛</tag>
          
         <tag>机器学习</tag>
-         
-        <tag>深度学习</tag>
          
          
            

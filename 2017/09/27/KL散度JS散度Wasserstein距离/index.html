@@ -16,16 +16,25 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Blog</title>
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://zxth93.github.io/page/2/index.html">
+  <title>KL散度、JS散度、Wasserstein距离 | Blog</title>
+  <meta name="description" content="1. KL散度  KL散度又称为相对熵，信息散度，信息增益。KL散度是是两个概率分布P和Q 差别的非对称性的度量。 KL散度是用来 度量使用基于Q的编码来编码来自P的样本平均所需的额外的位元数。 典型情况下，P表示数据的真实分布，Q表示数据的理论分布，模型分布，或P的近似分布。  定义如下：  因为对数函数是凸函数，所以KL散度的值为非负数。  有时会将KL散度称为KL距离，但它并不满足距离的性">
+<meta name="keywords" content="信息论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KL散度、JS散度、Wasserstein距离">
+<meta property="og:url" content="https://zxth93.github.io/2017/09/27/KL散度JS散度Wasserstein距离/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1. KL散度  KL散度又称为相对熵，信息散度，信息增益。KL散度是是两个概率分布P和Q 差别的非对称性的度量。 KL散度是用来 度量使用基于Q的编码来编码来自P的样本平均所需的额外的位元数。 典型情况下，P表示数据的真实分布，Q表示数据的理论分布，模型分布，或P的近似分布。  定义如下：  因为对数函数是凸函数，所以KL散度的值为非负数。  有时会将KL散度称为KL距离，但它并不满足距离的性">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3596589-dc6bdef12f91d925.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3596589-26065ae8c3b8b87f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3596589-72a9092dd247615f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-09-27T03:12:38.898Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="KL散度、JS散度、Wasserstein距离">
+<meta name="twitter:description" content="1. KL散度  KL散度又称为相对熵，信息散度，信息增益。KL散度是是两个概率分布P和Q 差别的非对称性的度量。 KL散度是用来 度量使用基于Q的编码来编码来自P的样本平均所需的额外的位元数。 典型情况下，P表示数据的真实分布，Q表示数据的理论分布，模型分布，或P的近似分布。  定义如下：  因为对数函数是凸函数，所以KL散度的值为非负数。  有时会将KL散度称为KL距离，但它并不满足距离的性">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3596589-dc6bdef12f91d925.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://zxth93.github.io/page/2/index.html">
+  <link rel="canonical" href="https://zxth93.github.io/2017/09/27/KL散度JS散度Wasserstein距离/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -314,161 +323,178 @@
 </section>
 
   
-  <section class="main">
   
-  <div class="content article-list">
+<section class="main">
+  <div class="content">
+  <article id="post-KL散度JS散度Wasserstein距离" class="article article-type-post" itemscope itemprop="blogPost">
     
-      <article class="article article-type-post">
-  <header class="article-header">
-    
+    <header class="article-header">
+      
+        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/25/LeetCode-array类总结/">LeetCode-array类总结（会持续更新...）</a>
+    <h1 class="article-title" itemprop="name">
+      KL散度、JS散度、Wasserstein距离
     </h1>
   
 
-  </header>
-  
-  <p class="article-meta">
-    <span class="article-date">
+      
+      <div class="article-meta">
+        <span class="article-date">
     <i class="fa fa-calendar-check-o"></i>
-	<a href="/2017/08/25/LeetCode-array类总结/" class="article-date">
-	  <time datetime="2017-08-25T03:07:27.000Z" itemprop="datePublished">8月 25</time>
+	<a href="/2017/09/27/KL散度JS散度Wasserstein距离/" class="article-date">
+	  <time datetime="2017-09-27T02:26:28.000Z" itemprop="datePublished">2017-09-27</time>
 	</a>
 </span>
-    
+        
   <span class="article-category">
     <i class="fa fa-folder"></i>
-    <a class="article-category-link" href="/categories/算法/">算法</a>
+    <a class="article-category-link" href="/categories/数学知识/">数学知识</a>
   </span>
 
-    
+        
   <span class="article-tag">
     <i class="fa fa-tag"></i>
-	<a class="article-tag-link" href="/tags/Leetcode/">Leetcode</a>, <a class="article-tag-link" href="/tags/array/">array</a>
+	<a class="article-tag-link" href="/tags/信息论/">信息论</a>
   </span>
 
 
-    <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2017/08/25/LeetCode-array类总结/#comments" class="article-comment-link">评论</a></span>
-    
+        
+	<span class="article-read hidden-xs">
+	    <i class="fa fa-eye" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			阅读<span id="busuanzi_value_page_pv">0</span>次
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2017/09/27/KL散度JS散度Wasserstein距离/#comments" class="article-comment-link">评论</a></span>
+        
 	
-		<span class="post-wordcount hidden-xs">字数统计: 4,126(字)</span>
+		<span class="post-wordcount hidden-xs">字数统计: 653(字)</span>
 	
 	
-		<span class="post-readcount hidden-xs">阅读时长: 23(分)</span>
+		<span class="post-readcount hidden-xs">阅读时长: 2(分)</span>
 	
 
-  </p>
-</article>
+      </div>
+      
+    </header>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <h3 id="1-kl散度"><a class="markdownIt-Anchor" href="#1-kl散度"></a> 1. KL散度</h3>
+<blockquote>
+<p><strong>KL散度</strong>又称为<strong>相对熵</strong>，信息散度，信息增益。KL散度是是两个概率分布P和Q <strong>差别</strong>的非对称性的度量。 KL散度是用来 度量使用基于Q的编码来编码来自P的样本平均所需的额外的位元数。 典型情况下，P表示数据的真实分布，Q表示数据的理论分布，模型分布，或P的近似分布。</p>
+</blockquote>
+<p>定义如下：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3596589-dc6bdef12f91d925.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>因为对数函数是凸函数，所以KL散度的值为非负数。</p>
+<blockquote>
+<p>有时会将KL散度称为KL距离，但它并不满足距离的性质：</p>
+<ol>
+<li>KL散度不是对称的；</li>
+<li>KL散度不满足三角不等式。</li>
+</ol>
+</blockquote>
+<h3 id="2-js散度jensen-shannon"><a class="markdownIt-Anchor" href="#2-js散度jensen-shannon"></a> 2. JS散度(Jensen-Shannon)</h3>
+<blockquote>
+<p><strong>JS散度</strong>度量了两个概率分布的相似度，基于KL散度的变体，解决了KL散度非对称的问题。一般地，JS散度是对称的，其取值是0到1之间。定义如下：</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/3596589-26065ae8c3b8b87f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
+<p>KL散度和JS散度度量的时候有一个问题：</p>
+<p>如果两个分配P,Q离得很远，完全没有重叠的时候，那么KL散度值是没有意义的，而JS散度值是一个常数。这在学习算法中是比较致命的，这就意味这这一点的梯度为0。梯度消失了。</p>
+</blockquote>
+<h3 id="3-wasserstein距离"><a class="markdownIt-Anchor" href="#3-wasserstein距离"></a> 3. Wasserstein距离</h3>
+<blockquote>
+<p><strong>Wasserstein距离</strong>度量两个概率分布之间的距离，定义如下：</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/3596589-72a9092dd247615f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>Π(P1,P2)是P1和P2分布组合起来的所有可能的联合分布的集合。对于每一个可能的联合分布γ，可以从中采样(x,y)∼γ得到一个样本x和y，并计算出这对样本的距离||x−y||，所以可以计算该联合分布γ下，样本对距离的期望值E(x,y)∼γ[||x−y||]。在所有可能的联合分布中能够对这个期望值取到的下界infγ∼Π(P1,P2)E(x,y)∼γ[||x−y||]就是Wasserstein距离。</p>
+<p>直观上可以把E(x,y)∼γ[||x−y||]理解为在γ这个路径规划下把土堆P1挪到土堆P2所需要的消耗。而Wasserstein距离就是在最优路径规划下的最小消耗。所以Wesserstein距离又叫Earth-Mover距离。</p>
+<p>Wessertein距离相比KL散度和JS散度的<strong>优势</strong>在于：即使两个分布的支撑集没有重叠或者重叠非常少，仍然能反映两个分布的远近。而JS散度在此情况下是常量，KL散度可能无意义。</p>
+<blockquote>
+<p>References:</p>
+<ol>
+<li>维基百科<a href="https://zh.wikipedia.org/wiki/%E7%9B%B8%E5%AF%B9%E7%86%B5" target="_blank" rel="external">KL散度</a></li>
+<li>维基百科<a href="https://en.wikipedia.org/wiki/Jensen%E2%80%93Shannon_divergence" target="_blank" rel="external">JS散度</a></li>
+<li>维基百科<a href="https://en.wikipedia.org/wiki/Wasserstein_metric" target="_blank" rel="external">Wasserstein距离</a></li>
+</ol>
+</blockquote>
 
+      
+    </div>
+    <footer class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
     
-      <article class="article article-type-post">
-  <header class="article-header">
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://zxth93.github.io/2017/09/27/KL散度JS散度Wasserstein距离/" title="KL散度、JS散度、Wasserstein距离" target="_blank" rel="external">https://zxth93.github.io/2017/09/27/KL散度JS散度Wasserstein距离/</a>
+    </li>
     
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/zxth93" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/zxth93" target="_blank"><span class="text-dark">ciic</span><small class="ml-1x">A master student of ISCAS</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </footer>
+  </article>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/20/CIKM2017比赛经验分享/">阿里天池CIKM2017 Rank4比赛经验分享</a>
-    </h1>
-  
-
-  </header>
-  
-  <p class="article-meta">
-    <span class="article-date">
-    <i class="fa fa-calendar-check-o"></i>
-	<a href="/2017/08/20/CIKM2017比赛经验分享/" class="article-date">
-	  <time datetime="2017-08-20T13:43:51.000Z" itemprop="datePublished">8月 20</time>
-	</a>
-</span>
     
-  <span class="article-category">
-    <i class="fa fa-folder"></i>
-    <a class="article-category-link" href="/categories/算法/">算法</a>
-  </span>
-
-    
-  <span class="article-tag">
-    <i class="fa fa-tag"></i>
-	<a class="article-tag-link" href="/tags/机器学习/">机器学习</a>, <a class="article-tag-link" href="/tags/深度学习/">深度学习</a>, <a class="article-tag-link" href="/tags/阿里天池大赛/">阿里天池大赛</a>
-  </span>
-
-
-    <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2017/08/20/CIKM2017比赛经验分享/#comments" class="article-comment-link">评论</a></span>
-    
-	
-		<span class="post-wordcount hidden-xs">字数统计: 469(字)</span>
-	
-	
-		<span class="post-readcount hidden-xs">阅读时长: 3(分)</span>
-	
-
-  </p>
-</article>
-
-    
-      <article class="article article-type-post">
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/20/hello-world/">Hello World</a>
-    </h1>
-  
-
-  </header>
-  
-  <p class="article-meta">
-    <span class="article-date">
-    <i class="fa fa-calendar-check-o"></i>
-	<a href="/2017/08/20/hello-world/" class="article-date">
-	  <time datetime="2017-08-20T09:25:26.546Z" itemprop="datePublished">8月 20</time>
-	</a>
-</span>
-    
-    
-
-    <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2017/08/20/hello-world/#comments" class="article-comment-link">评论</a></span>
-    
-	
-		<span class="post-wordcount hidden-xs">字数统计: 78(字)</span>
-	
-	
-		<span class="post-readcount hidden-xs">阅读时长: 1(分)</span>
-	
-
-  </p>
-</article>
+  <div id="comments">
+  	
+       
+    <div id="uyan_frame"></div>
 
     
   </div>
 
+
   
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
     
-    <nav class="bar bar-footer clearfix" data-stick-bottom>
-        <div class="bar-inner">
-        <ul class="pager pull-left">
-            
-            <li class="prev">
-                <a href="/">
-                    <i class="fa fa-angle-left"></i>
-                    上一页
-                </a>
-            </li>
-            
-            
-            <li class="next disabled">
-                <a href="javascript:;">
-                    下一页
-                    <i class="fa fa-angle-right"></i>                    
-                </a>
-            </li>
-            
-        </ul>
-        <div class="total-article bar-right">Page 2 of 2</div>
-        </div>
-    </nav>
     
- 
+    <li class="next">
+      <a href="/2017/09/19/自编码器/" title="自编码器">下一篇&nbsp;&nbsp;<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+  </div>
+  
+  </div>
+</nav>
+  
+
+
 </section>
 
   <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
@@ -501,11 +527,17 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
     
     
         
-<script defer src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script defer src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
     
+    
+        
+    
+    <script defer type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=[object Object]"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
     
     
 
