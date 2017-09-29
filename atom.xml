@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zxth93.github.io/"/>
-  <updated>2017-09-27T03:12:38.898Z</updated>
+  <updated>2017-09-29T08:01:05.517Z</updated>
   <id>https://zxth93.github.io/</id>
   
   <author>
@@ -14,6 +14,105 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>XGBoost算法原理</title>
+    <link href="https://zxth93.github.io/2017/09/29/XGBoost%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/"/>
+    <id>https://zxth93.github.io/2017/09/29/XGBoost算法原理/</id>
+    <published>2017-09-29T01:43:26.000Z</published>
+    <updated>2017-09-29T08:01:05.517Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p><strong>XGBoost</strong>是数据挖掘类竞赛中经常使用的一大利器，它帮助选手在Kaggle、阿里天池大数据比赛等比赛取得了很好的成绩。XGBoost被很多人使用，但很少人知道其原理，前几天看了一下陈天奇大神的论文有了更多的理解。XGBoost是基于**GBDT(Gradient Boosting Decision Tree)**改进而来的，本文将对XGBoost算法原理进行介绍，主要通过以下几个部分进行介绍：boosted trees、目标函数正则化、节点切分算法。</p>
+</blockquote>
+<blockquote>
+<p><strong>注：</strong> 本文假设读者理解回归树算法、泰勒公式、梯度下降法和牛顿法</p>
+</blockquote>
+<h3 id="1-boosted-trees"><a class="markdownIt-Anchor" href="#1-boosted-trees"></a> 1. Boosted trees</h3>
+<p>Boosted trees是一种集成方法，Boosting算法是一种加法模型(additive training)，定义如下：</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/boostedtreedefine1.png?raw=true" alt="">这里K是树的棵数，f(x)是函数空间中的一个函数：<img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/boostedtreedefine2.png?raw=true" alt=""></p>
+<p>q(x)表示将样本x分到了某个叶子节点上，w是叶子节点的分数（leaf score）</p>
+<p>下面通过一个具体的例子来说明：预测一个人是否喜欢电脑游戏，下图表明小男孩更喜欢打游戏。</p>
+<p><img src="https://raw.githubusercontent.com/dmlc/web-data/master/xgboost/model/twocart.png" alt=""></p>
+<h3 id="2-目标函数正则化"><a class="markdownIt-Anchor" href="#2-目标函数正则化"></a> 2. 目标函数正则化</h3>
+<p>XGBoost使用的目标函数如下：</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/xgboostobjectivefunc.png?raw=true" alt=""></p>
+<p>我们可以看出XGBoost在GBDT的误差函数基础上加入了L1和L2正则项，其中Loss函数可以是平方损失或逻辑损失，T代表叶子节点数，w代表叶子节点的分数。加入正则项的好处是防止过拟合，这个好处是由两方面体现的：一是预剪枝，因为正则项中有限定叶子节点数；二是正则项里leaf scroe的L2模平方的系数，对leaf scroe做了平滑。</p>
+<p>接下来我们对目标函数进行目标函数的求解：</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/xgboostOF2.png?raw=true" alt=""></p>
+<p>该目标函数表示：第i样本的第t次迭代误差函数，后面的推导基于上式。这种学习方式已经从函数空间转到了函数空间：</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/xgboostopti1.png?raw=true" alt=""></p>
+<p>下面对目标函数进行泰勒公式二级展开、化简：</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/xgboostopti2.png?raw=true" alt=""></p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/xgboostopti3.png?raw=true" alt=""></p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/xgboostopti4.png?raw=true" alt=""></p>
+<p>如果确定了树的结构，为了使目标函数最小，可以令其导数为0，解得每个叶节点的最优预测分数为：</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/xgboostopti5.png?raw=true" alt=""></p>
+<p>代入目标函数，解得最小损失为：</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/xgboostopti6.png?raw=true" alt=""></p>
+<h3 id="3-节点切分算法"><a class="markdownIt-Anchor" href="#3-节点切分算法"></a> 3. 节点切分算法</h3>
+<p>我们已经确定了损失函数，以及最优解，接下来我们需要缺点树的结构，即如何选出最优分裂节点。我们可以参照决策树算法：ID3选择信息增益为切分准则，C4.5选择信息增益率为切分准则。XGBoost基本思想是和决策树一致的：贪心法枚举所有节点，计算各个节点分裂前后的信息增益，选出信息增益最大的。下面是XGBoost信息增益的定义：</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/xgboostsplit1.png?raw=true" alt=""></p>
+<p>XGBoost提供了两种切分算法：精确贪心算法和近似算法</p>
+<blockquote>
+<p><strong>精确贪心算法：</strong> 在所有特征上暴力枚举所有可能的切分点，算法如下：</p>
+</blockquote>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/xgboostsplitalg1.png?raw=true" alt=""></p>
+<blockquote>
+<p><strong>近似算法：</strong> 其基本思想：首先根据特征的统计分布（分位数）选出候选切分点；然后对于连续属性特征，根据候选切分点进行离散化；最后会从这些候选切分点中选出最优的。近似算法提出了两种版本：global variant和local variant. global variant在树初始化时就确定了候选切分点；local variant是在每次节点分裂后重新选出候选点。论文中的实验表明：在同等精度下，相对于global variant, local variant需要的候选切分点更少。近似算法如下：</p>
+</blockquote>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/xgboostsplitalg2.png?raw=true" alt=""></p>
+<p>近似算法举例：三分位数</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/xgboostquantile.png?raw=true" alt=""></p>
+<blockquote>
+<p><strong>注：</strong> 近似算法中使用到了分位数，关于分位数的选取，论文提出了一种算法<strong>Weighted Quantile Sketch</strong> 。XGBoost不是按照样本个数进行分位，而是以二阶导数为权重。</p>
+</blockquote>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/xgboostquantile2.png?raw=true" alt=""></p>
+<blockquote>
+<p>Q: 为什么使用hi加权？</p>
+<p>A: 比较直观的解释是因为目标函数可以化简为如下形式：</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/xgboostweight.png?raw=true" alt=""></p>
+</blockquote>
+<h3 id="4-其他"><a class="markdownIt-Anchor" href="#4-其他"></a> 4. 其他</h3>
+<blockquote>
+<p>在实际工作中，大多数输入是稀疏的。造成稀疏的原因有很多种，比如：缺失值、one-hot编码等。因此，论文提出为树中的节点设置一个默认方向来应对稀疏输入。论文实验表明<strong>稀疏感知算法</strong> 要比传统方法快50倍，算法如下：</p>
+</blockquote>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/xgboostsparse.png?raw=true" alt=""></p>
+<p>下面通过例子具体说明：</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/xgboostsparsedemo.png?raw=true" alt=""></p>
+<blockquote>
+<p><strong>注：</strong> 红色路径代表默认方向</p>
+</blockquote>
+<blockquote>
+<p><strong>Shrinkage:</strong> 可以理解为学习率，算法每次迭代后会乘这个系数；</p>
+<p><strong>列采样：</strong> 降低过拟合，论文实验表明列采样比行采样效果好。</p>
+</blockquote>
+<h3 id="参考文献"><a class="markdownIt-Anchor" href="#参考文献"></a> 参考文献</h3>
+<ul>
+<li><a href="http://arxiv.org/pdf/1603.02754v1.pdf" target="_blank" rel="external">XGBoost: A Scalable Tree Boosting System</a></li>
+<li><a href="https://homes.cs.washington.edu/~tqchen/pdf/BoostedTree.pdf" target="_blank" rel="external">Introduction to Boosted Trees</a></li>
+<li><a href="https://tianchi.aliyun.com/competition/new_articleDetail.html?spm=5176.9876270.0.0.54f0faeelrqguX&amp;raceId=&amp;postsId=2781" target="_blank" rel="external">Wepon的GBDT算法原理与系统设计简介PPT</a></li>
+<li><a href="http://www.flickering.cn/machine_learning/2016/08/gbdt%E8%AF%A6%E8%A7%A3%E4%B8%8A-%E7%90%86%E8%AE%BA/" target="_blank" rel="external">GBDT详解，火光摇曳</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;XGBoost&lt;/strong&gt;是数据挖掘类竞赛中经常使用的一大利器，它帮助选手在Kaggle、阿里天池大数据比赛等比赛取得了很好的成绩。XGBoost被很多人使用，但很少人知道其原理，前几天看了一下陈天奇大神的论文有了更多的理解。
+    
+    </summary>
+    
+      <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="机器学习" scheme="https://zxth93.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="XGBoost" scheme="https://zxth93.github.io/tags/XGBoost/"/>
+    
+      <category term="GBDT" scheme="https://zxth93.github.io/tags/GBDT/"/>
+    
+  </entry>
   
   <entry>
     <title>KL散度、JS散度、Wasserstein距离</title>
@@ -582,7 +681,7 @@
     <link href="https://zxth93.github.io/2017/09/02/Keras%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0III-%E7%BD%91%E7%BB%9C%E5%B1%82/"/>
     <id>https://zxth93.github.io/2017/09/02/Keras学习笔记III-网络层/</id>
     <published>2017-09-02T06:32:56.000Z</published>
-    <updated>2017-09-05T07:06:26.983Z</updated>
+    <updated>2017-09-28T02:20:59.268Z</updated>
     
     <content type="html"><![CDATA[<h2 id="1-常用层"><a class="markdownIt-Anchor" href="#1-常用层"></a> 1. 常用层</h2>
 <p>常用层对应于core模块</p>
@@ -675,6 +774,13 @@
 <li>
 <p><strong>BatchNormalization层</strong></p>
 <p>该层在每个batch上将前一层的激活值重新规范化，即使得其输出数据的均值接近0，其标准差接近1.</p>
+<p>BN层的作用：</p>
+<ol>
+<li>加速收敛</li>
+<li>控制过拟合，可以少用或不用Dropout和正则</li>
+<li>降低网络对初始化权重不敏感</li>
+<li>允许使用较大的学习率</li>
+</ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">keras.layers.normalization.BatchNormalization(axis=<span class="number">-1</span>, momentum=<span class="number">0.99</span>, epsilon=<span class="number">0.001</span>, center=<span class="keyword">True</span>, scale=<span class="keyword">True</span>, beta_initializer=<span class="string">'zeros'</span>, gamma_initializer=<span class="string">'ones'</span>, moving_mean_initializer=<span class="string">'zeros'</span>, moving_variance_initializer=<span class="string">'ones'</span>, beta_regularizer=<span class="keyword">None</span>, gamma_regularizer=<span class="keyword">None</span>, beta_constraint=<span class="keyword">None</span>, gamma_constraint=<span class="keyword">None</span>)</div><div class="line"></div><div class="line"><span class="comment"># 参数</span></div><div class="line"></div><div class="line"><span class="comment"># axis: 整数，指定要规范化的轴，通常为特征轴。例如在进行data_format="channels_first的2D卷积后，一般会设axis=1。</span></div><div class="line"><span class="comment"># momentum: 动态均值的动量</span></div><div class="line"><span class="comment"># epsilon：大于0的小浮点数，用于防止除0错误</span></div><div class="line"><span class="comment"># center: 若设为True，将会将beta作为偏置加上去，否则忽略参数beta</span></div><div class="line"><span class="comment"># scale: 若设为True，则会乘以gamma，否则不使用gamma。当下一层是线性的时，可以设False，因为scaling的操作将被下一层执行。</span></div><div class="line"><span class="comment"># beta_initializer：beta权重的初始方法</span></div><div class="line"><span class="comment"># gamma_initializer: gamma的初始化方法</span></div><div class="line"><span class="comment"># moving_mean_initializer: 动态均值的初始化方法</span></div><div class="line"><span class="comment"># moving_variance_initializer: 动态方差的初始化方法</span></div><div class="line"><span class="comment"># beta_regularizer: 可选的beta正则</span></div><div class="line"><span class="comment"># gamma_regularizer: 可选的gamma正则</span></div><div class="line"><span class="comment"># beta_constraint: 可选的beta约束</span></div><div class="line"><span class="comment"># gamma_constraint: 可选的gamma约束</span></div></pre></td></tr></table></figure>
 <p>​</p>
 </li>
@@ -695,9 +801,9 @@
       <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
-    
       <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
     
   </entry>
   
@@ -732,9 +838,9 @@
       <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
-    
       <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
     
   </entry>
   
@@ -839,9 +945,9 @@
       <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
-    
       <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
     
       <category term="Sequential" scheme="https://zxth93.github.io/tags/Sequential/"/>
     
@@ -1149,11 +1255,11 @@ the contiguous subarray <code>[4,-1,2,1]</code> has the largest sum = <code>6</c
       <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
       <category term="阿里天池大赛" scheme="https://zxth93.github.io/tags/%E9%98%BF%E9%87%8C%E5%A4%A9%E6%B1%A0%E5%A4%A7%E8%B5%9B/"/>
     
       <category term="机器学习" scheme="https://zxth93.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   

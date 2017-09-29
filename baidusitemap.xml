@@ -4,6 +4,52 @@
 
     
   <url>
+    <loc>https://zxth93.github.io/2017/09/29/XGBoost%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/</loc>
+    <lastmod>2017-09-29T08:01:05.517Z</lastmod>
+    <data>
+        <display>
+        <title>XGBoost算法原理</title>
+        <pubTime>2017-09-29T01:43:26.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>XGBoost</tag>
+         
+        <tag>GBDT</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://zxth93.github.io/2017/09/02/Keras%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0III-%E7%BD%91%E7%BB%9C%E5%B1%82/</loc>
+    <lastmod>2017-09-28T02:20:59.268Z</lastmod>
+    <data>
+        <display>
+        <title>Keras学习笔记III-网络层</title>
+        <pubTime>2017-09-02T06:32:56.000Z</pubTime>
+        
+        <tag>深度学习</tag>
+         
+        <tag>Keras</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://zxth93.github.io/2017/09/27/KL%E6%95%A3%E5%BA%A6JS%E6%95%A3%E5%BA%A6Wasserstein%E8%B7%9D%E7%A6%BB/</loc>
     <lastmod>2017-09-27T03:12:38.898Z</lastmod>
     <data>
@@ -174,28 +220,6 @@
 
     
   <url>
-    <loc>https://zxth93.github.io/2017/09/02/Keras%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0III-%E7%BD%91%E7%BB%9C%E5%B1%82/</loc>
-    <lastmod>2017-09-05T07:06:26.983Z</lastmod>
-    <data>
-        <display>
-        <title>Keras学习笔记III-网络层</title>
-        <pubTime>2017-09-02T06:32:56.000Z</pubTime>
-        
-        <tag>Keras</tag>
-         
-        <tag>深度学习</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://zxth93.github.io/2017/08/31/Keras%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0II-%E5%87%BD%E6%95%B0%E5%BC%8F%E6%A8%A1%E5%9E%8B/</loc>
     <lastmod>2017-08-31T11:52:23.282Z</lastmod>
     <data>
@@ -203,9 +227,9 @@
         <title>Keras学习笔记II-函数式模型</title>
         <pubTime>2017-08-31T10:48:30.000Z</pubTime>
         
-        <tag>Keras</tag>
-         
         <tag>深度学习</tag>
+         
+        <tag>Keras</tag>
          
          
            
@@ -225,9 +249,9 @@
         <title>Keras学习笔记I-Sequential</title>
         <pubTime>2017-08-26T12:05:16.000Z</pubTime>
         
-        <tag>Keras</tag>
-         
         <tag>深度学习</tag>
+         
+        <tag>Keras</tag>
          
         <tag>Sequential</tag>
          
@@ -249,11 +273,11 @@
         <title>阿里天池CIKM2017 Rank4比赛经验分享</title>
         <pubTime>2017-08-20T13:43:51.000Z</pubTime>
         
-        <tag>深度学习</tag>
-         
         <tag>阿里天池大赛</tag>
          
         <tag>机器学习</tag>
+         
+        <tag>深度学习</tag>
          
          
            

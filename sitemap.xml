@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zxth93.github.io/2017/09/29/XGBoost%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/</loc>
+    
+    <lastmod>2017-09-29T08:01:05.517Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zxth93.github.io/2017/09/02/Keras%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0III-%E7%BD%91%E7%BB%9C%E5%B1%82/</loc>
+    
+    <lastmod>2017-09-28T02:20:59.268Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zxth93.github.io/2017/09/27/KL%E6%95%A3%E5%BA%A6JS%E6%95%A3%E5%BA%A6Wasserstein%E8%B7%9D%E7%A6%BB/</loc>
     
     <lastmod>2017-09-27T03:12:38.898Z</lastmod>
@@ -54,13 +68,6 @@
     <loc>https://zxth93.github.io/2017/09/05/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%AD%A3%E5%88%99%E5%8C%96/</loc>
     
     <lastmod>2017-09-15T07:06:23.016Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zxth93.github.io/2017/09/02/Keras%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0III-%E7%BD%91%E7%BB%9C%E5%B1%82/</loc>
-    
-    <lastmod>2017-09-05T07:06:26.983Z</lastmod>
     
   </url>
   
