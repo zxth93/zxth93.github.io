@@ -17,13 +17,13 @@
   
   
   <title>XGBoost算法原理 | Blog</title>
-  <meta name="description" content="XGBoost是数据挖掘类竞赛中经常使用的一大利器，它帮助选手在Kaggle、阿里天池大数据比赛等比赛取得了很好的成绩。XGBoost被很多人使用，但很少人知道其原理，前几天看了一下陈天奇大神的论文有了更多的理解。XGBoost是基于**GBDT(Gradient Boosting Decision Tree)**改进而来的，本文将对XGBoost算法原理进行介绍，主要通过以下几个部分进行介绍：">
+  <meta name="description" content="XGBoost是数据挖掘类竞赛中经常使用的一大利器，它帮助选手在Kaggle、阿里天池大数据比赛等比赛取得了很好的成绩。XGBoost被很多人使用，但很少人知道其原理，前几天看了一下陈天奇大神的论文有了更多的理解。XGBoost是基于GBDT(Gradient Boosting Decision Tree) 改进而来的，本文将对XGBoost算法原理进行介绍，主要通过以下几个部分进行介绍：boo">
 <meta name="keywords" content="机器学习,XGBoost,GBDT">
 <meta property="og:type" content="article">
 <meta property="og:title" content="XGBoost算法原理">
 <meta property="og:url" content="https://zxth93.github.io/2017/09/29/XGBoost算法原理/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="XGBoost是数据挖掘类竞赛中经常使用的一大利器，它帮助选手在Kaggle、阿里天池大数据比赛等比赛取得了很好的成绩。XGBoost被很多人使用，但很少人知道其原理，前几天看了一下陈天奇大神的论文有了更多的理解。XGBoost是基于**GBDT(Gradient Boosting Decision Tree)**改进而来的，本文将对XGBoost算法原理进行介绍，主要通过以下几个部分进行介绍：">
+<meta property="og:description" content="XGBoost是数据挖掘类竞赛中经常使用的一大利器，它帮助选手在Kaggle、阿里天池大数据比赛等比赛取得了很好的成绩。XGBoost被很多人使用，但很少人知道其原理，前几天看了一下陈天奇大神的论文有了更多的理解。XGBoost是基于GBDT(Gradient Boosting Decision Tree) 改进而来的，本文将对XGBoost算法原理进行介绍，主要通过以下几个部分进行介绍：boo">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/boostedtreedefine1.png?raw=true">
 <meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/boostedtreedefine2.png?raw=true">
@@ -44,10 +44,10 @@
 <meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/xgboostweight.png?raw=true">
 <meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/xgboostsparse.png?raw=true">
 <meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/xgboostsparsedemo.png?raw=true">
-<meta property="og:updated_time" content="2017-09-29T08:01:05.517Z">
+<meta property="og:updated_time" content="2017-09-29T08:10:01.816Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XGBoost算法原理">
-<meta name="twitter:description" content="XGBoost是数据挖掘类竞赛中经常使用的一大利器，它帮助选手在Kaggle、阿里天池大数据比赛等比赛取得了很好的成绩。XGBoost被很多人使用，但很少人知道其原理，前几天看了一下陈天奇大神的论文有了更多的理解。XGBoost是基于**GBDT(Gradient Boosting Decision Tree)**改进而来的，本文将对XGBoost算法原理进行介绍，主要通过以下几个部分进行介绍：">
+<meta name="twitter:description" content="XGBoost是数据挖掘类竞赛中经常使用的一大利器，它帮助选手在Kaggle、阿里天池大数据比赛等比赛取得了很好的成绩。XGBoost被很多人使用，但很少人知道其原理，前几天看了一下陈天奇大神的论文有了更多的理解。XGBoost是基于GBDT(Gradient Boosting Decision Tree) 改进而来的，本文将对XGBoost算法原理进行介绍，主要通过以下几个部分进行介绍：boo">
 <meta name="twitter:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/boostedtreedefine1.png?raw=true">
   <!-- Canonical links -->
   <link rel="canonical" href="https://zxth93.github.io/2017/09/29/XGBoost算法原理/index.html">
@@ -386,7 +386,7 @@
         <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2017/09/29/XGBoost算法原理/#comments" class="article-comment-link">评论</a></span>
         
 	
-		<span class="post-wordcount hidden-xs">字数统计: 1,206(字)</span>
+		<span class="post-wordcount hidden-xs">字数统计: 1,205(字)</span>
 	
 	
 		<span class="post-readcount hidden-xs">阅读时长: 4(分)</span>
@@ -398,14 +398,15 @@
     <div class="article-entry markdown-body" itemprop="articleBody">
       
         <blockquote>
-<p><strong>XGBoost</strong>是数据挖掘类竞赛中经常使用的一大利器，它帮助选手在Kaggle、阿里天池大数据比赛等比赛取得了很好的成绩。XGBoost被很多人使用，但很少人知道其原理，前几天看了一下陈天奇大神的论文有了更多的理解。XGBoost是基于**GBDT(Gradient Boosting Decision Tree)**改进而来的，本文将对XGBoost算法原理进行介绍，主要通过以下几个部分进行介绍：boosted trees、目标函数正则化、节点切分算法。</p>
+<p><strong>XGBoost</strong>是数据挖掘类竞赛中经常使用的一大利器，它帮助选手在Kaggle、阿里天池大数据比赛等比赛取得了很好的成绩。XGBoost被很多人使用，但很少人知道其原理，前几天看了一下陈天奇大神的论文有了更多的理解。XGBoost是基于<strong>GBDT(Gradient Boosting Decision Tree)</strong> 改进而来的，本文将对XGBoost算法原理进行介绍，主要通过以下几个部分进行介绍：boosted trees、目标函数正则化、节点切分算法。</p>
 </blockquote>
 <blockquote>
 <p><strong>注：</strong> 本文假设读者理解回归树算法、泰勒公式、梯度下降法和牛顿法</p>
 </blockquote>
 <h3 id="1-boosted-trees"><a class="markdownIt-Anchor" href="#1-boosted-trees"></a> 1. Boosted trees</h3>
 <p>Boosted trees是一种集成方法，Boosting算法是一种加法模型(additive training)，定义如下：</p>
-<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/boostedtreedefine1.png?raw=true" alt="">这里K是树的棵数，f(x)是函数空间中的一个函数：<img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/boostedtreedefine2.png?raw=true" alt=""></p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/boostedtreedefine1.png?raw=true" alt=""></p>
+<p>这里K是树的棵数，f(x)是函数空间中的一个函数：<img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/boostedtreedefine2.png?raw=true" alt=""></p>
 <p>q(x)表示将样本x分到了某个叶子节点上，w是叶子节点的分数（leaf score）</p>
 <p>下面通过一个具体的例子来说明：预测一个人是否喜欢电脑游戏，下图表明小男孩更喜欢打游戏。</p>
 <p><img src="https://raw.githubusercontent.com/dmlc/web-data/master/xgboost/model/twocart.png" alt=""></p>

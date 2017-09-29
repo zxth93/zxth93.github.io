@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zxth93.github.io/"/>
-  <updated>2017-09-29T08:01:05.517Z</updated>
+  <updated>2017-09-29T08:10:01.816Z</updated>
   <id>https://zxth93.github.io/</id>
   
   <author>
@@ -20,17 +20,18 @@
     <link href="https://zxth93.github.io/2017/09/29/XGBoost%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/"/>
     <id>https://zxth93.github.io/2017/09/29/XGBoost算法原理/</id>
     <published>2017-09-29T01:43:26.000Z</published>
-    <updated>2017-09-29T08:01:05.517Z</updated>
+    <updated>2017-09-29T08:10:01.816Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
-<p><strong>XGBoost</strong>是数据挖掘类竞赛中经常使用的一大利器，它帮助选手在Kaggle、阿里天池大数据比赛等比赛取得了很好的成绩。XGBoost被很多人使用，但很少人知道其原理，前几天看了一下陈天奇大神的论文有了更多的理解。XGBoost是基于**GBDT(Gradient Boosting Decision Tree)**改进而来的，本文将对XGBoost算法原理进行介绍，主要通过以下几个部分进行介绍：boosted trees、目标函数正则化、节点切分算法。</p>
+<p><strong>XGBoost</strong>是数据挖掘类竞赛中经常使用的一大利器，它帮助选手在Kaggle、阿里天池大数据比赛等比赛取得了很好的成绩。XGBoost被很多人使用，但很少人知道其原理，前几天看了一下陈天奇大神的论文有了更多的理解。XGBoost是基于<strong>GBDT(Gradient Boosting Decision Tree)</strong> 改进而来的，本文将对XGBoost算法原理进行介绍，主要通过以下几个部分进行介绍：boosted trees、目标函数正则化、节点切分算法。</p>
 </blockquote>
 <blockquote>
 <p><strong>注：</strong> 本文假设读者理解回归树算法、泰勒公式、梯度下降法和牛顿法</p>
 </blockquote>
 <h3 id="1-boosted-trees"><a class="markdownIt-Anchor" href="#1-boosted-trees"></a> 1. Boosted trees</h3>
 <p>Boosted trees是一种集成方法，Boosting算法是一种加法模型(additive training)，定义如下：</p>
-<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/boostedtreedefine1.png?raw=true" alt="">这里K是树的棵数，f(x)是函数空间中的一个函数：<img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/boostedtreedefine2.png?raw=true" alt=""></p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/boostedtreedefine1.png?raw=true" alt=""></p>
+<p>这里K是树的棵数，f(x)是函数空间中的一个函数：<img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/boostedtreedefine2.png?raw=true" alt=""></p>
 <p>q(x)表示将样本x分到了某个叶子节点上，w是叶子节点的分数（leaf score）</p>
 <p>下面通过一个具体的例子来说明：预测一个人是否喜欢电脑游戏，下图表明小男孩更喜欢打游戏。</p>
 <p><img src="https://raw.githubusercontent.com/dmlc/web-data/master/xgboost/model/twocart.png" alt=""></p>
@@ -801,9 +802,9 @@
       <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
       <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
+    
+      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
@@ -838,9 +839,9 @@
       <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
       <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
+    
+      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
@@ -945,9 +946,9 @@
       <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
       <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
+    
+      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="Sequential" scheme="https://zxth93.github.io/tags/Sequential/"/>
     
@@ -1255,11 +1256,11 @@ the contiguous subarray <code>[4,-1,2,1]</code> has the largest sum = <code>6</c
       <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
+      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
       <category term="阿里天池大赛" scheme="https://zxth93.github.io/tags/%E9%98%BF%E9%87%8C%E5%A4%A9%E6%B1%A0%E5%A4%A7%E8%B5%9B/"/>
     
       <category term="机器学习" scheme="https://zxth93.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
