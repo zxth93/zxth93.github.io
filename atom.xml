@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zxth93.github.io/"/>
-  <updated>2017-10-10T11:09:02.550Z</updated>
+  <updated>2017-10-11T13:50:47.760Z</updated>
   <id>https://zxth93.github.io/</id>
   
   <author>
@@ -16,11 +16,116 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>VGGNet论文笔记</title>
+    <link href="https://zxth93.github.io/2017/10/11/VGGNet%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
+    <id>https://zxth93.github.io/2017/10/11/VGGNet论文笔记/</id>
+    <published>2017-10-11T10:47:47.000Z</published>
+    <updated>2017-10-11T13:50:47.760Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1-introduction"><a class="markdownIt-Anchor" href="#1-introduction"></a> 1 INTRODUCTION</h3>
+<p>VGGNet是由牛津大学和Google DeepMind团队提出的，他们在ILSVRC-2014定位任务夺得第一名，分类任务获得第二名（GoogleNet是分类任务的第一名）。VGGNet具有很好的泛化能力，在其他数据集上也有较好的表现。</p>
+<p>卷积网络现在在大规模图像和视频识别中取得了巨大的成功，成为了计算机视觉领域的常用工具。AlexNet是具有重要意义的网络结构，有很多人企图改进ALexNet，比如：ZFNet。ZFNet在第一卷积层使用更小的<strong>卷积</strong>(receptive window size)和更小的<strong>步长</strong>(stride)，而VGGNet强调了卷积神经网络设计中另一个重要方面—深度。并且VGGNet在所有层使用3*3的卷积核。</p>
+<h3 id="2-convnet-configurations"><a class="markdownIt-Anchor" href="#2-convnet-configurations"></a> 2 CONVNET CONFIGURATIONS</h3>
+<p>为了公平测试深度带来的性能提升，VGGNet所有层的配置都遵循了同样的原则。</p>
+<h4 id="21-architechture"><a class="markdownIt-Anchor" href="#21-architechture"></a> 2.1 ARCHITECHTURE</h4>
+<ul>
+<li>唯一的<strong>预处理</strong> ：训练集中的每个像素上减去RGB的<strong>均值</strong> ；</li>
+<li>训练时，<strong>输入</strong>是固定大小的224 * 224 RGB图像；</li>
+<li>使用了非常小的<strong>感受野</strong>(receptive field)：3 * 3，甚至有的地方使用1 * 1的卷积,这种1 * 1的卷积可以被看做是对输入通道(input channel)的线性变换，卷积步长是1个像素；</li>
+<li><strong>池化层</strong> 采用max-pooling,共有5层，max-pooling的窗口是2 * 2，步长是2；</li>
+<li>一系列卷积层之后跟着<strong>全连接层</strong>(fully-connected layers)。前两个全连接层均有4096个通道。第三个全连接层有1000个通道，用来分类。所有网络的全连接层配置相同。</li>
+<li>最后一层是soft-max层</li>
+</ul>
+<blockquote>
+<p><strong>注：</strong> 所有隐层使用激活函数是<strong>ReLu</strong> .VGGNet不使用局部响应标准化(LRN)，这种标准化并不能在ILSVRC数据集上提升性能，却导致更多的内存消耗和计算时间。</p>
+</blockquote>
+<h4 id="22-configurations"><a class="markdownIt-Anchor" href="#22-configurations"></a> 2.2 CONFIGURATIONS</h4>
+<p>Table1给出了所有的网络配置</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/vgg1.png?raw=true" alt=""></p>
+<h4 id="23-discussion"><a class="markdownIt-Anchor" href="#23-discussion"></a> 2.3 DISCUSSION</h4>
+<p>相比于AlexNet和ZFNet，VGGNet在网络中使用<strong>很小的卷积</strong>。AlexNet和ZFNet在第一个卷积层的卷积分别是11 * 11 with stride 4和7 * 7 with stride 2。</p>
+<p>VGGNet使用三个3 * 3卷积而不是一个7 * 7的卷积的优势有两点：一，<strong>包含三个ReLu层而不是一个</strong>，使决策函数更有判别性；二，<strong>减少了参数</strong>。比如输入输出都是C个通道，使用3 * 3的3个卷积层需要3（3 * 3 * C * C）=27 * C * C,使用7 * 7的1个卷积层需要7 * 7 * C * C=49C * C。这可看为是对7 * 7卷积施加一种正则化，使它分解为3个3 * 3的卷积。</p>
+<p><strong>1*1卷积</strong>层主要是为了增加决策函数的<strong>非线性</strong>，而不影响卷积层的感受野。虽然1 * 1的卷积操作是线性的，但是ReLu增加了非线性。</p>
+<p>GoogleNet采用了更深更复杂的网络结构（22层），多种卷积核（1 * 1，3 * 3， 5 * 5），并且在第一层中特征比VGGNet更少。</p>
+<h3 id="3-classification-framework"><a class="markdownIt-Anchor" href="#3-classification-framework"></a> 3 CLASSIFICATION FRAMEWORK</h3>
+<h4 id="31-training"><a class="markdownIt-Anchor" href="#31-training"></a> 3.1 TRAINING</h4>
+<ul>
+<li>优化函数：SGD+momentum（0.9）</li>
+<li>batch size：256</li>
+<li>正则：采用L2正则化，weight decay是5e-4；dropout在前两个全连接层后，p=0.5。</li>
+<li>参数初始化：随机初始化，权重w从N(0，0.01)中采样，偏差bias初始化为0。</li>
+<li>为了获得224*224的输入图像，要在每个sgd迭代中对每张重新缩放(rescale)的图像随机裁剪。为了增强数据集，裁剪的图像还要随机水平翻转和RGB色彩偏移。</li>
+</ul>
+<blockquote>
+<p>尽管相比于AlexNet网络更深，参数更多，但是我们推测VGGNet在更少的周期内就能收敛，原因有二：一，更大的深度和更小的卷积带来<strong>隐式的正则化</strong>；二，一些层的预训练。</p>
+</blockquote>
+<h4 id="32-testing"><a class="markdownIt-Anchor" href="#32-testing"></a> 3.2 TESTING</h4>
+<p>测试阶段步骤：</p>
+<ol>
+<li>对输入图像各向同性地重缩放到一个预定义的最小图像边的尺寸Q；</li>
+<li>网络密集地应用在重缩放后的测试图像上。也就是说全连接层转化为卷积层（第一个全连接层转化为7 * 7的卷积层，后两个全连接层转化为1 * 1的卷积层） ，然后将转化后的全连接层应用在整张图像上。结果就是一个类别分数图(class score map)，其通道数等于类别数量，依赖于图像尺寸，具有不同的空间分辨率；</li>
+<li>为了获得固定尺寸的类别分数向量(class score vector)，对class score map进行空间平均化处理(sum-pooled)。</li>
+</ol>
+<h4 id="33-implementation-details"><a class="markdownIt-Anchor" href="#33-implementation-details"></a> 3.3 IMPLEMENTATION DETAILS</h4>
+<p>基于C++ Caffe, 在4个Titan GPU上训练了2-3周。</p>
+<h3 id="4-classification-experiments"><a class="markdownIt-Anchor" href="#4-classification-experiments"></a> 4 CLASSIFICATION EXPERIMENTS</h3>
+<h4 id="41-single-scale-evaluation"><a class="markdownIt-Anchor" href="#41-single-scale-evaluation"></a> 4.1 SINGLE SCALE EVALUATION</h4>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/vgg2.png?raw=true" alt=""></p>
+<p>通过分析Table3结果，得出如下结论：</p>
+<ol>
+<li>我们发现使用local response normalization(A-LRN)并不能改善A网络性能。</li>
+<li>分类误差随着深度增加而降低。</li>
+<li>在训练时采用图像尺度抖动(scale jittering)可以改善图像分类效果。</li>
+</ol>
+<h4 id="42-multi-scale-evaluation"><a class="markdownIt-Anchor" href="#42-multi-scale-evaluation"></a> 4.2 MULTI-SCALE EVALUATION</h4>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/vgg3.png?raw=true" alt=""></p>
+<p>通过分析Table4结果，得出如下结论：</p>
+<ol>
+<li>相对于单一尺度评估，多尺度评估提高了分类精度。</li>
+<li>在训练时采用图像尺度抖动(scale jittering)可以改善图像分类效果。</li>
+</ol>
+<h4 id="43-multi-crop-evaluation"><a class="markdownIt-Anchor" href="#43-multi-crop-evaluation"></a> 4.3 MULTI-CROP EVALUATION</h4>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/vgg4.png?raw=true" alt=""></p>
+<p>多裁剪(multi-crop)评估比起密集(dense)评估，效果更好。而且两者具有互补作用，结合两种方式，效果更好。</p>
+<h4 id="44-convnet-fusion"><a class="markdownIt-Anchor" href="#44-convnet-fusion"></a> 4.4 CONVNET FUSION</h4>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/vgg5.png?raw=true" alt=""></p>
+<p>通过分析Table6结果，得出如下结论：</p>
+<ol>
+<li>如果结合多个卷积网络的sofamax输出，分类效果会更好。</li>
+<li>在ILSVRC-2014中，我们结合7个网络，实现测试误差7.3%。之后，结合最好的两个模型(D&amp;E)并使用密集评估(dense evaluation)，测试误差降低到7.0%，而使用密集评估和多裁剪评估相结合，测试误差为6.8%。最好的单一模型验证误差为7.1%。</li>
+</ol>
+<h4 id="45-comparison-with-the-state-of-the-art"><a class="markdownIt-Anchor" href="#45-comparison-with-the-state-of-the-art"></a> 4.5 COMPARISON WITH THE STATE OF THE ART</h4>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/vgg6.png?raw=true" alt=""></p>
+<p>与ILSVRC-2012和ILSVRC-2013最好结果相比，VGGNet优势很大。与GoogLeNet对比，虽然7个网络集成效果不如GoogLeNet，但是单一网络测试误差好一些，而且只用2个网络集成效果与GoogLeNet的7网络集成差不多。</p>
+<h3 id="5-conclusion"><a class="markdownIt-Anchor" href="#5-conclusion"></a> 5 CONCLUSION</h3>
+<p>我们将卷积网络深度设置为19，相比于其他网络，VGGNet效果更好，并且在其他不同的任务或数据集上有很好的泛化能力。</p>
+<blockquote>
+<p><strong>参考</strong></p>
+<p>论文原文：<a href="https://arxiv.org/pdf/1409.1556.pdf" target="_blank" rel="external">VERY DEEP CONVOLUTIONAL NETWORKS FOR LARGE-SCALE IMAGE RECOGNITION</a></p>
+<p><a href="http://blog.csdn.net/muyiyushan/article/details/62895202" target="_blank" rel="external">http://blog.csdn.net/muyiyushan/article/details/62895202</a></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-introduction&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#1-introduction&quot;&gt;&lt;/a&gt; 1 INTRODUCTION&lt;/h3&gt;
+&lt;p&gt;VGGNet是由牛津大学和Google DeepMind团队提出的，他们
+    
+    </summary>
+    
+      <category term="深度学习" scheme="https://zxth93.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="VGGNet" scheme="https://zxth93.github.io/tags/VGGNet/"/>
+    
+  </entry>
+  
+  <entry>
     <title>虚函数的作用</title>
     <link href="https://zxth93.github.io/2017/10/10/%E8%99%9A%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%9C%E7%94%A8/"/>
     <id>https://zxth93.github.io/2017/10/10/虚函数的作用/</id>
     <published>2017-10-10T10:37:50.000Z</published>
-    <updated>2017-10-10T11:09:02.550Z</updated>
+    <updated>2017-10-10T11:12:05.109Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-虚函数"><a class="markdownIt-Anchor" href="#1-虚函数"></a> 1. 虚函数</h3>
 <blockquote>
@@ -38,7 +143,7 @@
 </blockquote>
 <h3 id="2-纯虚函数"><a class="markdownIt-Anchor" href="#2-纯虚函数"></a> 2. 纯虚函数</h3>
 <blockquote>
-<p><strong>纯虚函数</strong> 是在基类中定义，但不能实现，只能由其派生类自己定义实现此函数。形式如下：</p>
+<p><strong>纯虚函数</strong> 是在基类中定义，但<strong>不能实现</strong> ，只能由其派生类自己定义实现此函数。形式如下：</p>
 <p>virtual ReturnType Function()<strong>=0</strong></p>
 </blockquote>
 <p>引入纯虚函数的好处：</p>
@@ -994,9 +1099,9 @@ Have you consider that the string might be empty? This is a good question to ask
       <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
-    
       <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
     
   </entry>
   
@@ -1031,9 +1136,9 @@ Have you consider that the string might be empty? This is a good question to ask
       <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
-    
       <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
     
   </entry>
   
@@ -1138,9 +1243,9 @@ Have you consider that the string might be empty? This is a good question to ask
       <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
-    
       <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
     
       <category term="Sequential" scheme="https://zxth93.github.io/tags/Sequential/"/>
     
@@ -1448,11 +1553,11 @@ the contiguous subarray <code>[4,-1,2,1]</code> has the largest sum = <code>6</c
       <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
       <category term="阿里天池大赛" scheme="https://zxth93.github.io/tags/%E9%98%BF%E9%87%8C%E5%A4%A9%E6%B1%A0%E5%A4%A7%E8%B5%9B/"/>
     
       <category term="机器学习" scheme="https://zxth93.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
