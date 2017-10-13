@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zxth93.github.io/"/>
-  <updated>2017-10-11T13:50:47.760Z</updated>
+  <updated>2017-10-13T06:45:59.902Z</updated>
   <id>https://zxth93.github.io/</id>
   
   <author>
@@ -14,6 +14,96 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>AlexNet论文总结</title>
+    <link href="https://zxth93.github.io/2017/10/13/AlexNet%E8%AE%BA%E6%96%87%E6%80%BB%E7%BB%93/"/>
+    <id>https://zxth93.github.io/2017/10/13/AlexNet论文总结/</id>
+    <published>2017-10-13T02:40:14.000Z</published>
+    <updated>2017-10-13T06:45:59.902Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近我对CNN网络结构比较感兴趣，所以阅读了AlexNet、VGGNet、ResNet等论文。本文介绍AlexNet，在ILSVRC-2012大赛中，它夺得了第一名的佳绩。本文通过宏观和微观两个角度介绍AlexNet结构。</p>
+<h3 id="1-宏观"><a class="markdownIt-Anchor" href="#1-宏观"></a> 1. 宏观</h3>
+<p>我们通过下面两个图对AlexNet有一个宏观的认识：</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/alexnet1.png?raw=true" alt=""></p>
+<p><img src="http://img.blog.csdn.net/20150908092946422?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>AlexNet由5层卷积，3层Max pooling，3层全连接层组成，激活函数为ReLU.</p>
+<blockquote>
+<p>用ReLU代替了传统的tanh或者logistic,好处有：收敛速度快。</p>
+</blockquote>
+<h3 id="2-微观"><a class="markdownIt-Anchor" href="#2-微观"></a> 2. 微观</h3>
+<ul>
+<li>
+<p>硬件平台</p>
+<blockquote>
+<p>两台GTX-530 3GB GPU，训练时间5-6天</p>
+</blockquote>
+</li>
+<li>
+<p>数据预处理</p>
+<blockquote>
+<p>每个像素<strong>减去平均活跃度（像素均值）</strong></p>
+</blockquote>
+</li>
+<li>
+<p>输入</p>
+<blockquote>
+<p>图像规定大小：256*256</p>
+</blockquote>
+</li>
+<li>
+<p>卷积规格</p>
+<blockquote>
+<p>11 * 11 with stride 4, 5 * 5, 3 * 3</p>
+<p>其中第二、第四和第五层卷积只连接同一GPU上前一层网络</p>
+<p>第三层卷积是跨GPU连接前一层网络</p>
+</blockquote>
+</li>
+<li>
+<p>Max pooling规格</p>
+<blockquote>
+<p>overlapping pooling: 3 * 3 with stride 2</p>
+</blockquote>
+</li>
+<li>
+<p>训练</p>
+<blockquote>
+<p>优化器：SGD+momentum（0.9）</p>
+<p>batch size：128</p>
+<p>weight decay：0.0005</p>
+<p>权重初始化：随机选取自N(0, 0.01)</p>
+<p>偏置初始化：第2、4、5层卷积和全连接层设置为1，其他层为0</p>
+</blockquote>
+</li>
+<li>
+<p>减少过拟合</p>
+<blockquote>
+<p><strong>数据增强：</strong></p>
+<ol>
+<li>水平反转：对图像先进行水平反转，然后随机裁剪为224*224的图像</li>
+<li>改变训练图像中RGB通道的强度。具体来说，遍及整个ImageNet训练集的RGB像素值集合中执行PCA。</li>
+</ol>
+<p><strong>Dropout</strong></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="3-其他"><a class="markdownIt-Anchor" href="#3-其他"></a> 3 其他</h3>
+<p><strong>Local Response Normalization:</strong> 就是利用临近的数据做归一化，提高泛化问题。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近我对CNN网络结构比较感兴趣，所以阅读了AlexNet、VGGNet、ResNet等论文。本文介绍AlexNet，在ILSVRC-2012大赛中，它夺得了第一名的佳绩。本文通过宏观和微观两个角度介绍AlexNet结构。&lt;/p&gt;
+&lt;h3 id=&quot;1-宏观&quot;&gt;&lt;a clas
+    
+    </summary>
+    
+      <category term="深度学习" scheme="https://zxth93.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="AlexNet" scheme="https://zxth93.github.io/tags/AlexNet/"/>
+    
+  </entry>
   
   <entry>
     <title>VGGNet论文笔记</title>
@@ -1099,9 +1189,9 @@ Have you consider that the string might be empty? This is a good question to ask
       <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
       <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
+    
+      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
@@ -1136,9 +1226,9 @@ Have you consider that the string might be empty? This is a good question to ask
       <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
       <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
+    
+      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
@@ -1243,9 +1333,9 @@ Have you consider that the string might be empty? This is a good question to ask
       <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
       <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
+    
+      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="Sequential" scheme="https://zxth93.github.io/tags/Sequential/"/>
     
@@ -1553,11 +1643,11 @@ the contiguous subarray <code>[4,-1,2,1]</code> has the largest sum = <code>6</c
       <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
+      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
       <category term="阿里天池大赛" scheme="https://zxth93.github.io/tags/%E9%98%BF%E9%87%8C%E5%A4%A9%E6%B1%A0%E5%A4%A7%E8%B5%9B/"/>
     
       <category term="机器学习" scheme="https://zxth93.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   

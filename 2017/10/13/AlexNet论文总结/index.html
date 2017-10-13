@@ -16,16 +16,24 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>标签: VGGNet | Blog</title>
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://zxth93.github.io/tags/VGGNet/index.html">
+  <title>AlexNet论文总结 | Blog</title>
+  <meta name="description" content="最近我对CNN网络结构比较感兴趣，所以阅读了AlexNet、VGGNet、ResNet等论文。本文介绍AlexNet，在ILSVRC-2012大赛中，它夺得了第一名的佳绩。本文通过宏观和微观两个角度介绍AlexNet结构。  1. 宏观 我们通过下面两个图对AlexNet有一个宏观的认识：   AlexNet由5层卷积，3层Max pooling，3层全连接层组成，激活函数为ReLU.  用ReL">
+<meta name="keywords" content="AlexNet">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AlexNet论文总结">
+<meta property="og:url" content="https://zxth93.github.io/2017/10/13/AlexNet论文总结/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="最近我对CNN网络结构比较感兴趣，所以阅读了AlexNet、VGGNet、ResNet等论文。本文介绍AlexNet，在ILSVRC-2012大赛中，它夺得了第一名的佳绩。本文通过宏观和微观两个角度介绍AlexNet结构。  1. 宏观 我们通过下面两个图对AlexNet有一个宏观的认识：   AlexNet由5层卷积，3层Max pooling，3层全连接层组成，激活函数为ReLU.  用ReL">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/alexnet1.png?raw=true">
+<meta property="og:image" content="http://img.blog.csdn.net/20150908092946422?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:updated_time" content="2017-10-13T06:45:59.902Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="AlexNet论文总结">
+<meta name="twitter:description" content="最近我对CNN网络结构比较感兴趣，所以阅读了AlexNet、VGGNet、ResNet等论文。本文介绍AlexNet，在ILSVRC-2012大赛中，它夺得了第一名的佳绩。本文通过宏观和微观两个角度介绍AlexNet结构。  1. 宏观 我们通过下面两个图对AlexNet有一个宏观的认识：   AlexNet由5层卷积，3层Max pooling，3层全连接层组成，激活函数为ReLU.  用ReL">
+<meta name="twitter:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/alexnet1.png?raw=true">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://zxth93.github.io/tags/VGGNet/index.html">
+  <link rel="canonical" href="https://zxth93.github.io/2017/10/13/AlexNet论文总结/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -314,83 +322,206 @@
 </section>
 
   
-  <section class="main">
-  <article class="content article article-tags post-type-list" itemscope="">
-    <header class="article-header">
-      <h1 itemprop="name" class="hidden-xs">标签: VGGNet</h1>
-      <p class="text-muted hidden-xs">共 1 篇文章</p>
-      <nav role="navigation" id="nav-main" class="okayNav">
-        <ul>
-          <li><a href="/tags">All</a></li>
-          
-          <li><a href="/tags/AlexNet/">AlexNet</a></li>
-          
-          <li><a href="/tags/Leetcode/">Leetcode</a></li>
-          
-          <li><a href="/tags/array/">array</a></li>
-          
-          <li><a href="/tags/信息论/">信息论</a></li>
-          
-          <li><a href="/tags/Keras/">Keras</a></li>
-          
-          <li><a href="/tags/深度学习/">深度学习</a></li>
-          
-          <li><a href="/tags/阿里天池大赛/">阿里天池大赛</a></li>
-          
-          <li><a href="/tags/机器学习/">机器学习</a></li>
-          
-          <li><a href="/tags/XGBoost/">XGBoost</a></li>
-          
-          <li><a href="/tags/GBDT/">GBDT</a></li>
-          
-          <li><a href="/tags/VGGNet/">VGGNet</a></li>
-          
-          <li><a href="/tags/RNN/">RNN</a></li>
-          
-          <li><a href="/tags/CNN/">CNN</a></li>
-          
-          <li><a href="/tags/正则化/">正则化</a></li>
-          
-          <li><a href="/tags/优化/">优化</a></li>
-          
-          <li><a href="/tags/Sequential/">Sequential</a></li>
-          
-          <li><a href="/tags/虚函数/">虚函数</a></li>
-          
-        </ul>
-      </nav>
-    </header>
-    <!-- /header -->
-    <div class="article-body">
-      <div class="row">
-        
-<div class="col-md-6">
+  
+<section class="main">
+  <div class="content">
+  <article id="post-AlexNet论文总结" class="article article-type-post" itemscope itemprop="blogPost">
     
-<article class="panel panel-default shadow-hover">
-  <div class="panel-body">
-     <div class="article-meta">
-       <time datetime="2017-10-11T10:47:47.000Z" itemprop="datePublished">2017-10-11</time>
-     </div>
-     <h3 class="article-title" itemprop="name">
-       <a class="article-link" href="/2017/10/11/VGGNet论文笔记/">VGGNet论文笔记</a>
-     </h3>
-   </div>
-   
-   <div class="panel-footer">
-     
-      <a href="/tags/VGGNet/" class="label label-default mb">VGGNet</a>
-     
-   </div>
-   
-</article>
+    <header class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      AlexNet论文总结
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="fa fa-calendar-check-o"></i>
+	<a href="/2017/10/13/AlexNet论文总结/" class="article-date">
+	  <time datetime="2017-10-13T02:40:14.000Z" itemprop="datePublished">2017-10-13</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/深度学习/">深度学习</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="fa fa-tag"></i>
+	<a class="article-tag-link" href="/tags/AlexNet/">AlexNet</a>
+  </span>
 
 
-</div>
+        
+	<span class="article-read hidden-xs">
+	    <i class="fa fa-eye" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			阅读<span id="busuanzi_value_page_pv">0</span>次
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2017/10/13/AlexNet论文总结/#comments" class="article-comment-link">评论</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs">字数统计: 391(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs">阅读时长: 2(分)</span>
+	
 
       </div>
+      
+    </header>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <p>最近我对CNN网络结构比较感兴趣，所以阅读了AlexNet、VGGNet、ResNet等论文。本文介绍AlexNet，在ILSVRC-2012大赛中，它夺得了第一名的佳绩。本文通过宏观和微观两个角度介绍AlexNet结构。</p>
+<h3 id="1-宏观"><a class="markdownIt-Anchor" href="#1-宏观"></a> 1. 宏观</h3>
+<p>我们通过下面两个图对AlexNet有一个宏观的认识：</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/alexnet1.png?raw=true" alt=""></p>
+<p><img src="http://img.blog.csdn.net/20150908092946422?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>AlexNet由5层卷积，3层Max pooling，3层全连接层组成，激活函数为ReLU.</p>
+<blockquote>
+<p>用ReLU代替了传统的tanh或者logistic,好处有：收敛速度快。</p>
+</blockquote>
+<h3 id="2-微观"><a class="markdownIt-Anchor" href="#2-微观"></a> 2. 微观</h3>
+<ul>
+<li>
+<p>硬件平台</p>
+<blockquote>
+<p>两台GTX-530 3GB GPU，训练时间5-6天</p>
+</blockquote>
+</li>
+<li>
+<p>数据预处理</p>
+<blockquote>
+<p>每个像素<strong>减去平均活跃度（像素均值）</strong></p>
+</blockquote>
+</li>
+<li>
+<p>输入</p>
+<blockquote>
+<p>图像规定大小：256*256</p>
+</blockquote>
+</li>
+<li>
+<p>卷积规格</p>
+<blockquote>
+<p>11 * 11 with stride 4, 5 * 5, 3 * 3</p>
+<p>其中第二、第四和第五层卷积只连接同一GPU上前一层网络</p>
+<p>第三层卷积是跨GPU连接前一层网络</p>
+</blockquote>
+</li>
+<li>
+<p>Max pooling规格</p>
+<blockquote>
+<p>overlapping pooling: 3 * 3 with stride 2</p>
+</blockquote>
+</li>
+<li>
+<p>训练</p>
+<blockquote>
+<p>优化器：SGD+momentum（0.9）</p>
+<p>batch size：128</p>
+<p>weight decay：0.0005</p>
+<p>权重初始化：随机选取自N(0, 0.01)</p>
+<p>偏置初始化：第2、4、5层卷积和全连接层设置为1，其他层为0</p>
+</blockquote>
+</li>
+<li>
+<p>减少过拟合</p>
+<blockquote>
+<p><strong>数据增强：</strong></p>
+<ol>
+<li>水平反转：对图像先进行水平反转，然后随机裁剪为224*224的图像</li>
+<li>改变训练图像中RGB通道的强度。具体来说，遍及整个ImageNet训练集的RGB像素值集合中执行PCA。</li>
+</ol>
+<p><strong>Dropout</strong></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="3-其他"><a class="markdownIt-Anchor" href="#3-其他"></a> 3 其他</h3>
+<p><strong>Local Response Normalization:</strong> 就是利用临近的数据做归一化，提高泛化问题。</p>
+
+      
     </div>
+    <footer class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://zxth93.github.io/2017/10/13/AlexNet论文总结/" title="AlexNet论文总结" target="_blank" rel="external">https://zxth93.github.io/2017/10/13/AlexNet论文总结/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/zxth93" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/zxth93" target="_blank"><span class="text-dark">ciic</span><small class="ml-1x">A master student of ISCAS</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </footer>
   </article>
-   
+  
+    
+  <div id="comments">
+  	
+       
+    <div id="uyan_frame"></div>
+
+    
+  </div>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2017/10/11/VGGNet论文笔记/" title="VGGNet论文笔记">下一篇&nbsp;&nbsp;<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+  </div>
+  
+  </div>
+</nav>
+  
+
+
 </section>
 
   <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
@@ -423,11 +554,17 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
     
     
         
-<script defer src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script defer src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
     
+    
+        
+    
+    <script defer type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=[object Object]"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
     
     
 
