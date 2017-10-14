@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zxth93.github.io/"/>
-  <updated>2017-10-13T06:45:59.902Z</updated>
+  <updated>2017-10-14T13:18:45.472Z</updated>
   <id>https://zxth93.github.io/</id>
   
   <author>
@@ -16,11 +16,137 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>对比AlexNet、VGG、GoogleNet和ResNet</title>
+    <link href="https://zxth93.github.io/2017/10/14/%E5%AF%B9%E6%AF%94AlexNet%E3%80%81VGG%E3%80%81GoogleNet%E5%92%8CResNet/"/>
+    <id>https://zxth93.github.io/2017/10/14/对比AlexNet、VGG、GoogleNet和ResNet/</id>
+    <published>2017-10-14T12:08:23.000Z</published>
+    <updated>2017-10-14T13:18:45.472Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近几天阅读了AlexNet、VGG、GoogleNet和ResNet的论文，并且对<a href="https://zxth93.github.io/2017/10/13/AlexNet%E8%AE%BA%E6%96%87%E6%80%BB%E7%BB%93/">AlexNet</a> 和<a href="https://zxth93.github.io/2017/10/11/VGGNet%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">VGG</a> 进行了总结。本文主要内容就是对比这四类网络结构。通过下表，我们看出这四种网络的各自的特点：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">模型名</th>
+<th style="text-align:center">AlexNet</th>
+<th style="text-align:center">VGG</th>
+<th style="text-align:center">GoogleNet</th>
+<th style="text-align:center">ResNet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">出现时间</td>
+<td style="text-align:center">2012</td>
+<td style="text-align:center">2014</td>
+<td style="text-align:center">2014</td>
+<td style="text-align:center">2015</td>
+</tr>
+<tr>
+<td style="text-align:center">层数</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">19</td>
+<td style="text-align:center">22</td>
+<td style="text-align:center">152</td>
+</tr>
+<tr>
+<td style="text-align:center">Top-5错误</td>
+<td style="text-align:center">16.4%</td>
+<td style="text-align:center">7.3%</td>
+<td style="text-align:center">6.7%</td>
+<td style="text-align:center">3.57%</td>
+</tr>
+<tr>
+<td style="text-align:center">Data Augmentation</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+</tr>
+<tr>
+<td style="text-align:center">Inception</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:center">卷积层数</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">16</td>
+<td style="text-align:center">21</td>
+<td style="text-align:center">151</td>
+</tr>
+<tr>
+<td style="text-align:center">卷积核大小</td>
+<td style="text-align:center">11,5,3</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">7,1,3,5</td>
+<td style="text-align:center">7,1,3,5</td>
+</tr>
+<tr>
+<td style="text-align:center">全连接层数</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">Dropout</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:center">Local Response Normalization</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:center">Batch Normalization</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>参考</strong></p>
+<p>论文：<a href="http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks" target="_blank" rel="external">AlexNet</a></p>
+<p>论文：<a href="https://arxiv.org/abs/1409.1556" target="_blank" rel="external">VGG</a></p>
+<p>论文：<a href="https://www.cv-foundation.org/openaccess/content_cvpr_2015/html/Szegedy_Going_Deeper_With_2015_CVPR_paper.html" target="_blank" rel="external">GoogleNet</a></p>
+<p>论文：<a href="https://www.cv-foundation.org/openaccess/content_cvpr_2016/html/He_Deep_Residual_Learning_CVPR_2016_paper.html" target="_blank" rel="external">ResNet</a></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近几天阅读了AlexNet、VGG、GoogleNet和ResNet的论文，并且对&lt;a href=&quot;https://zxth93.github.io/2017/10/13/AlexNet%E8%AE%BA%E6%96%87%E6%80%BB%E7%BB%93/&quot;&gt;Alex
+    
+    </summary>
+    
+      <category term="深度学习" scheme="https://zxth93.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="AlexNet" scheme="https://zxth93.github.io/tags/AlexNet/"/>
+    
+      <category term="VGG" scheme="https://zxth93.github.io/tags/VGG/"/>
+    
+      <category term="GoogleNet" scheme="https://zxth93.github.io/tags/GoogleNet/"/>
+    
+      <category term="ResNet" scheme="https://zxth93.github.io/tags/ResNet/"/>
+    
+  </entry>
+  
+  <entry>
     <title>AlexNet论文总结</title>
     <link href="https://zxth93.github.io/2017/10/13/AlexNet%E8%AE%BA%E6%96%87%E6%80%BB%E7%BB%93/"/>
     <id>https://zxth93.github.io/2017/10/13/AlexNet论文总结/</id>
     <published>2017-10-13T02:40:14.000Z</published>
-    <updated>2017-10-13T06:45:59.902Z</updated>
+    <updated>2017-10-13T07:03:46.675Z</updated>
     
     <content type="html"><![CDATA[<p>最近我对CNN网络结构比较感兴趣，所以阅读了AlexNet、VGGNet、ResNet等论文。本文介绍AlexNet，在ILSVRC-2012大赛中，它夺得了第一名的佳绩。本文通过宏观和微观两个角度介绍AlexNet结构。</p>
 <h3 id="1-宏观"><a class="markdownIt-Anchor" href="#1-宏观"></a> 1. 宏观</h3>
@@ -89,6 +215,10 @@
 </ul>
 <h3 id="3-其他"><a class="markdownIt-Anchor" href="#3-其他"></a> 3 其他</h3>
 <p><strong>Local Response Normalization:</strong> 就是利用临近的数据做归一化，提高泛化问题。</p>
+<blockquote>
+<p>参考</p>
+<p>论文原文：<a href="http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks" target="_blank" rel="external">ImageNet Classification with Deep Convolutional Neural Networks</a></p>
+</blockquote>
 ]]></content>
     
     <summary type="html">
@@ -407,7 +537,7 @@ Have you consider that the string might be empty? This is a good question to ask
     <link href="https://zxth93.github.io/2017/09/29/XGBoost%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/"/>
     <id>https://zxth93.github.io/2017/09/29/XGBoost算法原理/</id>
     <published>2017-09-29T01:43:26.000Z</published>
-    <updated>2017-09-29T08:10:01.816Z</updated>
+    <updated>2017-10-14T13:21:58.075Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p><strong>XGBoost</strong>是数据挖掘类竞赛中经常使用的一大利器，它帮助选手在Kaggle、阿里天池大数据比赛等比赛取得了很好的成绩。XGBoost被很多人使用，但很少人知道其原理，前几天看了一下陈天奇大神的论文有了更多的理解。XGBoost是基于<strong>GBDT(Gradient Boosting Decision Tree)</strong> 改进而来的，本文将对XGBoost算法原理进行介绍，主要通过以下几个部分进行介绍：boosted trees、目标函数正则化、节点切分算法。</p>
@@ -491,10 +621,8 @@ Have you consider that the string might be empty? This is a good question to ask
     
     </summary>
     
-      <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+      <category term="机器学习" scheme="https://zxth93.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
-    
-      <category term="机器学习" scheme="https://zxth93.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="XGBoost" scheme="https://zxth93.github.io/tags/XGBoost/"/>
     
@@ -570,7 +698,7 @@ Have you consider that the string might be empty? This is a good question to ask
     <link href="https://zxth93.github.io/2017/09/19/%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/"/>
     <id>https://zxth93.github.io/2017/09/19/自编码器/</id>
     <published>2017-09-19T02:21:59.000Z</published>
-    <updated>2017-09-21T12:07:47.155Z</updated>
+    <updated>2017-10-14T13:23:16.829Z</updated>
     
     <content type="html"><![CDATA[<p><strong>自编码器（auto-encoder）<strong>是神经网络的一种，经过训练后能尝试将输入复制到输出。自编码器内部有一个隐藏层h,可以产生</strong>编码</strong>表示输入。该网络可以看作由两个部分组成：一个由函数h=f(x)表示的编码器和一个生成重构的解码器r=g(h)。我们会将自编码器设计成输入到输出近似相等，通常需要向自编码器强加一些一些约束，使它只能近似地复制。这些约束强制模型考虑输入数据的哪些部分需要被优先复制，因此它往往能学习到数据的有用特性。传统自编码器被用于降维或特征学习。</p>
 <h3 id="1-欠完备自编码器"><a class="markdownIt-Anchor" href="#1-欠完备自编码器"></a> 1. 欠完备自编码器</h3>
@@ -608,10 +736,10 @@ Have you consider that the string might be empty? This is a good question to ask
     
     </summary>
     
-      <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+      <category term="深度学习" scheme="https://zxth93.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="AE" scheme="https://zxth93.github.io/tags/AE/"/>
     
   </entry>
   
@@ -620,7 +748,7 @@ Have you consider that the string might be empty? This is a good question to ask
     <link href="https://zxth93.github.io/2017/09/16/%E5%BE%AA%E7%8E%AF%E5%92%8C%E9%80%92%E5%BD%92%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>https://zxth93.github.io/2017/09/16/循环和递归网络学习笔记/</id>
     <published>2017-09-16T06:46:41.000Z</published>
-    <updated>2017-09-19T01:47:14.012Z</updated>
+    <updated>2017-10-14T13:23:00.276Z</updated>
     
     <content type="html"><![CDATA[<p>循环神经网络（recurrent neural network）是一类用于处理序列数据的神经网络；就像卷积网络是专门处理网格化数据的神经网络。循环神经网络共享参数方式与卷积网络是不同的，它的输出项是前一项的函数，即输出的每一项对先前的输出应用相同的更新规则而产生。</p>
 <h2 id="1-展开计算图"><a class="markdownIt-Anchor" href="#1-展开计算图"></a> 1. 展开计算图</h2>
@@ -745,10 +873,8 @@ Have you consider that the string might be empty? This is a good question to ask
     
     </summary>
     
-      <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+      <category term="深度学习" scheme="https://zxth93.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
-    
-      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="RNN" scheme="https://zxth93.github.io/tags/RNN/"/>
     
@@ -759,7 +885,7 @@ Have you consider that the string might be empty? This is a good question to ask
     <link href="https://zxth93.github.io/2017/09/15/Tips-of-Deep-Learning/"/>
     <id>https://zxth93.github.io/2017/09/15/Tips-of-Deep-Learning/</id>
     <published>2017-09-15T12:59:10.000Z</published>
-    <updated>2017-09-15T14:46:51.065Z</updated>
+    <updated>2017-10-14T13:21:31.050Z</updated>
     
     <content type="html"><![CDATA[<p>本文是关于李宏毅老师的机器学习<a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses/ML_2017/Lecture/DNN%20tip.pdf" target="_blank" rel="external">课程</a>笔记，有些部分稍有改动。本文主要介绍Deep Learning(DL)调参技巧，下图表示了DL的一般流程，在这个过程中，我们会着重关注<strong>overfitting</strong>的问题。</p>
 <p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/DLTips_step.png?raw=true" alt=""></p>
@@ -786,10 +912,10 @@ Have you consider that the string might be empty? This is a good question to ask
     
     </summary>
     
-      <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+      <category term="深度学习" scheme="https://zxth93.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="tips" scheme="https://zxth93.github.io/tags/tips/"/>
     
   </entry>
   
@@ -798,7 +924,7 @@ Have you consider that the string might be empty? This is a good question to ask
     <link href="https://zxth93.github.io/2017/09/14/%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C/"/>
     <id>https://zxth93.github.io/2017/09/14/卷积网络/</id>
     <published>2017-09-14T11:40:37.000Z</published>
-    <updated>2017-09-17T08:19:20.567Z</updated>
+    <updated>2017-10-14T13:22:16.862Z</updated>
     
     <content type="html"><![CDATA[<p>卷积网络是一种专门用来处理具有类似网格结构的数据的神经网络。在卷积网络的术语中，卷积的第一个参数通常叫做<strong>输入</strong>，第二个参数叫做<strong>核函数</strong>，输出有时被称为<strong>特征映射</strong>。在机器学习的应用中，输入通常是多维数组的数据，而核通常是由学习算法优化得到的多维数组的参数。一般地，单独使用卷积运算在机器学习中比较少见，卷积通常和其他函数一起使用。下面演示一个在2维tensor上的卷积：</p>
 <p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/cnn_example.png?raw=true" alt=""></p>
@@ -839,10 +965,8 @@ Have you consider that the string might be empty? This is a good question to ask
     
     </summary>
     
-      <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+      <category term="深度学习" scheme="https://zxth93.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
-    
-      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="CNN" scheme="https://zxth93.github.io/tags/CNN/"/>
     
@@ -853,7 +977,7 @@ Have you consider that the string might be empty? This is a good question to ask
     <link href="https://zxth93.github.io/2017/09/08/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E4%BC%98%E5%8C%96/"/>
     <id>https://zxth93.github.io/2017/09/08/深度模型中的优化/</id>
     <published>2017-09-08T02:33:09.000Z</published>
-    <updated>2017-09-15T14:15:57.499Z</updated>
+    <updated>2017-10-14T13:22:30.708Z</updated>
     
     <content type="html"><![CDATA[<p>大多数深度学习算法都涉及到优化，优化是指改变x来最大化或最小化某个函数f(x)。</p>
 <h3 id="1-学习和纯优化有什么不同"><a class="markdownIt-Anchor" href="#1-学习和纯优化有什么不同"></a> 1. 学习和纯优化有什么不同</h3>
@@ -985,10 +1109,8 @@ Have you consider that the string might be empty? This is a good question to ask
     
     </summary>
     
-      <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+      <category term="深度学习" scheme="https://zxth93.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
-    
-      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="优化" scheme="https://zxth93.github.io/tags/%E4%BC%98%E5%8C%96/"/>
     
@@ -999,7 +1121,7 @@ Have you consider that the string might be empty? This is a good question to ask
     <link href="https://zxth93.github.io/2017/09/05/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%AD%A3%E5%88%99%E5%8C%96/"/>
     <id>https://zxth93.github.io/2017/09/05/深度学习中的正则化/</id>
     <published>2017-09-05T07:20:49.000Z</published>
-    <updated>2017-09-15T07:06:23.016Z</updated>
+    <updated>2017-10-14T13:22:44.736Z</updated>
     
     <content type="html"><![CDATA[<p>在机器学习中，会有许多策略来减小测试误差，但这些策略可能会引起训练误差的增大，这些策略被统称为正则化策略。在深度学习的背景下，大多数正则化策略都是对估计进行正则化。估计的正则化通常是以偏差的增加换取方差的减少，一个有效的正则化就是能显著减少方差而不过度增加偏差。现在我们回顾一下几种策略</p>
 <h3 id="1-参数范数惩罚"><a class="markdownIt-Anchor" href="#1-参数范数惩罚"></a> 1. 参数范数惩罚</h3>
@@ -1055,10 +1177,8 @@ Have you consider that the string might be empty? This is a good question to ask
     
     </summary>
     
-      <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+      <category term="深度学习" scheme="https://zxth93.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
-    
-      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="正则化" scheme="https://zxth93.github.io/tags/%E6%AD%A3%E5%88%99%E5%8C%96/"/>
     
@@ -1069,7 +1189,7 @@ Have you consider that the string might be empty? This is a good question to ask
     <link href="https://zxth93.github.io/2017/09/02/Keras%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0III-%E7%BD%91%E7%BB%9C%E5%B1%82/"/>
     <id>https://zxth93.github.io/2017/09/02/Keras学习笔记III-网络层/</id>
     <published>2017-09-02T06:32:56.000Z</published>
-    <updated>2017-09-28T02:20:59.268Z</updated>
+    <updated>2017-10-14T13:20:22.163Z</updated>
     
     <content type="html"><![CDATA[<h2 id="1-常用层"><a class="markdownIt-Anchor" href="#1-常用层"></a> 1. 常用层</h2>
 <p>常用层对应于core模块</p>
@@ -1186,12 +1306,10 @@ Have you consider that the string might be empty? This is a good question to ask
     
     </summary>
     
-      <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+      <category term="深度学习" scheme="https://zxth93.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
       <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
-    
-      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
@@ -1200,7 +1318,7 @@ Have you consider that the string might be empty? This is a good question to ask
     <link href="https://zxth93.github.io/2017/08/31/Keras%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0II-%E5%87%BD%E6%95%B0%E5%BC%8F%E6%A8%A1%E5%9E%8B/"/>
     <id>https://zxth93.github.io/2017/08/31/Keras学习笔记II-函数式模型/</id>
     <published>2017-08-31T10:48:30.000Z</published>
-    <updated>2017-08-31T11:52:23.282Z</updated>
+    <updated>2017-10-14T13:20:35.756Z</updated>
     
     <content type="html"><![CDATA[<p>Keras函数式模型接口是用户定义多输出模型、非循环有向模型或具有共享层的模型等复杂模型的途径。这种模型的使用方式和函数式编程很像，下面看一个全连接网络的例子：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Input, Dense</div><div class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Model</div><div class="line"></div><div class="line">inputs = Input(shape=(<span class="number">784</span>, ))</div><div class="line"></div><div class="line">x = Dense(<span class="number">64</span>, activation=<span class="string">'relu'</span>)(inputs)</div><div class="line">x = Dense(<span class="number">64</span>, activation=<span class="string">'relu'</span>)(x)</div><div class="line">predictions = Dense(<span class="number">10</span>, activation=<span class="string">'softmax'</span>)(x)</div><div class="line"></div><div class="line">model = Model(inputs=inputs, outputs=preditions)</div><div class="line"></div><div class="line">model.compile(optimizer=<span class="string">'rmsprop'</span>, loss=<span class="string">'categorical_crossentropy'</span>, metrics=[<span class="string">'accuracy'</span>])</div><div class="line"></div><div class="line">model.fit(data, labels)</div></pre></td></tr></table></figure>
@@ -1223,12 +1341,10 @@ Have you consider that the string might be empty? This is a good question to ask
     
     </summary>
     
-      <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+      <category term="深度学习" scheme="https://zxth93.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
       <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
-    
-      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
@@ -1237,7 +1353,7 @@ Have you consider that the string might be empty? This is a good question to ask
     <link href="https://zxth93.github.io/2017/08/26/Keras%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0I-Sequential/"/>
     <id>https://zxth93.github.io/2017/08/26/Keras学习笔记I-Sequential/</id>
     <published>2017-08-26T12:05:16.000Z</published>
-    <updated>2017-08-26T12:14:51.313Z</updated>
+    <updated>2017-10-14T13:20:50.205Z</updated>
     
     <content type="html"><![CDATA[<h2 id="1-keras简介"><a class="markdownIt-Anchor" href="#1-keras简介"></a> 1. Keras简介</h2>
 <p>Keras是集成的神经网络的框架，它的后端是基于Tensorflow、Theano和CNTK的。</p>
@@ -1330,12 +1446,10 @@ Have you consider that the string might be empty? This is a good question to ask
     
     </summary>
     
-      <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+      <category term="深度学习" scheme="https://zxth93.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
       <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
-    
-      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="Sequential" scheme="https://zxth93.github.io/tags/Sequential/"/>
     
@@ -1596,7 +1710,7 @@ the contiguous subarray <code>[4,-1,2,1]</code> has the largest sum = <code>6</c
     <link href="https://zxth93.github.io/2017/08/20/CIKM2017%E6%AF%94%E8%B5%9B%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/"/>
     <id>https://zxth93.github.io/2017/08/20/CIKM2017比赛经验分享/</id>
     <published>2017-08-20T13:43:51.000Z</published>
-    <updated>2017-08-22T08:51:33.628Z</updated>
+    <updated>2017-10-14T13:20:00.268Z</updated>
     
     <content type="html"><![CDATA[<h1 id="cikm_analyticup_2017-combining-the-traditional-methods-and-deep-learning-approach-for-precipitation-nowcasting"><a class="markdownIt-Anchor" href="#cikm_analyticup_2017-combining-the-traditional-methods-and-deep-learning-approach-for-precipitation-nowcasting"></a> CIKM_AnalytiCup_2017: Combining the Traditional Methods and Deep Learning Approach for Precipitation Nowcasting</h1>
 <p>This repo discribes the solution of Team 怀北村明远湖. <a href="https://tianchi.aliyun.com/competition/introduction.htm?spm=5176.100066.0.0.773ef42fBB8Kok&amp;raceId=231596" target="_blank" rel="external">CIKM AnalytiCup 2017</a> is an open competition that is sponsored by Shenzhen Meteorological Bureau, Alibaba Group and CIKM2017. Our team got the third place in the first phrase. And in the second phrase we got the fourth place.</p>
@@ -1640,14 +1754,12 @@ the contiguous subarray <code>[4,-1,2,1]</code> has the largest sum = <code>6</c
     
     </summary>
     
-      <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+      <category term="深度学习" scheme="https://zxth93.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
+      <category term="机器学习" scheme="https://zxth93.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="深度学习" scheme="https://zxth93.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="阿里天池大赛" scheme="https://zxth93.github.io/tags/%E9%98%BF%E9%87%8C%E5%A4%A9%E6%B1%A0%E5%A4%A7%E8%B5%9B/"/>
-    
-      <category term="机器学习" scheme="https://zxth93.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
