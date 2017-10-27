@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>LeetCode-tree类总结 | Blog</title>
+  <meta name="description" content="本文主要是对leetcode中的array类算法的总结，包含了各题的solution和常用的解决方法。 相关源码：code 此类题的常用思路： 123456789101112131. 树的遍历2. 递归3. 树的搜索4. 集合数据结构/** * Definition for a binary tree node. * struct TreeNode &amp;#123; *     int val; *">
+<meta name="keywords" content="Leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode-tree类总结">
+<meta property="og:url" content="https://zxth93.github.io/2017/10/20/LeetCode-tree类总结/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文主要是对leetcode中的array类算法的总结，包含了各题的solution和常用的解决方法。 相关源码：code 此类题的常用思路： 123456789101112131. 树的遍历2. 递归3. 树的搜索4. 集合数据结构/** * Definition for a binary tree node. * struct TreeNode &amp;#123; *     int val; *">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-10-27T09:13:36.585Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeetCode-tree类总结">
+<meta name="twitter:description" content="本文主要是对leetcode中的array类算法的总结，包含了各题的solution和常用的解决方法。 相关源码：code 此类题的常用思路： 123456789101112131. 树的遍历2. 递归3. 树的搜索4. 集合数据结构/** * Definition for a binary tree node. * struct TreeNode &amp;#123; *     int val; *">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://zxth93.github.io/2017/10/20/LeetCode-tree类总结/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <!-- font-awesome CSS -->
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+    
+
+</head>
+
+
+<body class="main-center">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><section class="mainside">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/zxth93" target="_blank">
+          <img class="thumb-xl img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">ciic</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">A master student of ISCAS</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="fa fa-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat"><i class="fa fa-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+            <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <!-- <span class="ins-close ins-selectable"><i class="fa fa-times"></i></span> -->
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav main-nav">
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="fa fa-fw fa-dashboard"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="fa fa-fw fa-delicious"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="fa fa-fw fa-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="fa fa-fw fa-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+      </ul>
+      <div class="footer">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zxth93" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="fa fa-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/p/1005052804936165/home?from=page_100505&mod=TAB&is_all=1#place" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="fa fa-weibo"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="fa fa-twitter"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="fa fa-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="fa fa-rss"></i></a></li>
+        
+    </ul>
+    
+    <div class="copyright">
+        &copy; 2017 zxth93
+        <div class="publishby">
+        	<!-- Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. -->
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</div>
+    </nav>
+  </div>
+</section>
+
+  
+    <section class="sidebar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            
+            <p>您好，您是第<span id="busuanzi_value_site_uv">0</span>位访客</p>
+            
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数学知识/">数学知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/机器学习/">机器学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/深度学习/">深度学习</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/深度学习/机器学习/">机器学习</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AE/">AE</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AlexNet/">AlexNet</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/">CNN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GBDT/">GBDT</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GoogleNet/">GoogleNet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Keras/">Keras</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/">RNN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ResNet/">ResNet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sequential/">Sequential</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VGG/">VGG</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VGGNet/">VGGNet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XGBoost/">XGBoost</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tips/">tips</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化/">优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/信息论/">信息论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则化/">正则化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚函数/">虚函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/阿里天池大赛/">阿里天池大赛</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/AE/" style="font-size: 13px;">AE</a> <a href="/tags/AlexNet/" style="font-size: 13.33px;">AlexNet</a> <a href="/tags/CNN/" style="font-size: 13px;">CNN</a> <a href="/tags/GBDT/" style="font-size: 13px;">GBDT</a> <a href="/tags/GoogleNet/" style="font-size: 13px;">GoogleNet</a> <a href="/tags/Keras/" style="font-size: 13.67px;">Keras</a> <a href="/tags/Leetcode/" style="font-size: 14px;">Leetcode</a> <a href="/tags/RNN/" style="font-size: 13px;">RNN</a> <a href="/tags/ResNet/" style="font-size: 13px;">ResNet</a> <a href="/tags/Sequential/" style="font-size: 13px;">Sequential</a> <a href="/tags/VGG/" style="font-size: 13px;">VGG</a> <a href="/tags/VGGNet/" style="font-size: 13px;">VGGNet</a> <a href="/tags/XGBoost/" style="font-size: 13px;">XGBoost</a> <a href="/tags/array/" style="font-size: 13px;">array</a> <a href="/tags/tips/" style="font-size: 13px;">tips</a> <a href="/tags/优化/" style="font-size: 13px;">优化</a> <a href="/tags/信息论/" style="font-size: 13px;">信息论</a> <a href="/tags/正则化/" style="font-size: 13px;">正则化</a> <a href="/tags/虚函数/" style="font-size: 13px;">虚函数</a> <a href="/tags/阿里天池大赛/" style="font-size: 13px;">阿里天池大赛</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/算法/">算法</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/10/20/LeetCode-tree类总结/" class="title">LeetCode-tree类总结</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-10-20T07:48:12.000Z" itemprop="datePublished">2017-10-20</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/深度学习/">深度学习</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/10/14/对比AlexNet、VGG、GoogleNet和ResNet/" class="title">对比AlexNet、VGG、GoogleNet和ResNet</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-10-14T12:08:23.000Z" itemprop="datePublished">2017-10-14</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/深度学习/">深度学习</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/10/13/AlexNet论文总结/" class="title">AlexNet论文总结</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-10-13T02:40:14.000Z" itemprop="datePublished">2017-10-13</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/深度学习/">深度学习</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/10/11/VGGNet论文笔记/" class="title">VGGNet论文笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-10-11T10:47:47.000Z" itemprop="datePublished">2017-10-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/C/">C++</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/10/10/虚函数的作用/" class="title">虚函数的作用</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-10-10T10:37:50.000Z" itemprop="datePublished">2017-10-10</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</section>
+
+  
+  
+<section class="main">
+  <div class="content">
+  <article id="post-LeetCode-tree类总结" class="article article-type-post" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      LeetCode-tree类总结
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="fa fa-calendar-check-o"></i>
+	<a href="/2017/10/20/LeetCode-tree类总结/" class="article-date">
+	  <time datetime="2017-10-20T07:48:12.000Z" itemprop="datePublished">2017-10-20</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/算法/">算法</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="fa fa-tag"></i>
+	<a class="article-tag-link" href="/tags/Leetcode/">Leetcode</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="fa fa-eye" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			阅读<span id="busuanzi_value_page_pv">0</span>次
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2017/10/20/LeetCode-tree类总结/#comments" class="article-comment-link">评论</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs">字数统计: 1,846(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs">阅读时长: 11(分)</span>
+	
+
+      </div>
+      
+    </header>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <p>本文主要是对leetcode中的array类算法的总结，包含了各题的solution和常用的解决方法。</p>
+<p>相关源码：<a href="https://github.com/zxth93/leetcode" target="_blank" rel="external">code</a></p>
+<p>此类题的常用思路：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span> 树的遍历</div><div class="line"><span class="number">2.</span> 递归</div><div class="line"><span class="number">3.</span> 树的搜索</div><div class="line"><span class="number">4.</span> 集合数据结构</div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Definition for a binary tree node.</span></div><div class="line"><span class="comment"> * struct TreeNode &#123;</span></div><div class="line"><span class="comment"> *     int val;</span></div><div class="line"><span class="comment"> *     TreeNode *left;</span></div><div class="line"><span class="comment"> *     TreeNode *right;</span></div><div class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></div><div class="line"><span class="comment"> * &#125;;</span></div><div class="line"><span class="comment"> */</span></div></pre></td></tr></table></figure>
+<h2 id="107-binary-tree-level-order-traversal-ii"><a class="markdownIt-Anchor" href="#107-binary-tree-level-order-traversal-ii"></a> 107. Binary Tree Level Order Traversal II</h2>
+<p>Description:</p>
+<p>Given a binary tree, return the <em>bottom-up level order</em> traversal of its nodes’ values. (ie, from left to right, level by level from leaf to root).</p>
+<p>For example:<br>
+Given binary tree <code>[3,9,20,null,null,15,7]</code>,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">  3</div><div class="line"> / \</div><div class="line">9  20</div><div class="line">  /  \</div><div class="line"> 15   7</div></pre></td></tr></table></figure>
+<p>return its bottom-up level order traversal as:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">  [15,7],</div><div class="line">  [9,20],</div><div class="line">  [3]</div><div class="line">]</div></pre></td></tr></table></figure>
+<p>解题思路：本题要求按层打印并且自底向上，故需要使用<strong>队列</strong>和<strong>栈</strong> ，代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; levelOrderBottom(TreeNode* root) &#123;</div><div class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</div><div class="line">      	<span class="built_in">queue</span>&lt;TreeNode*&gt; q;</div><div class="line">      	<span class="built_in">stack</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; tower;</div><div class="line">      	<span class="keyword">if</span>(root) q.push(root);</div><div class="line">      	<span class="keyword">while</span>(!q.empty())&#123;</div><div class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; temp;</div><div class="line">          	size = q.size();</div><div class="line">          	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;size; i++)&#123;</div><div class="line">                TreeNode* node = q.front();</div><div class="line">              	q.pop();</div><div class="line">              	<span class="keyword">if</span>(node-&gt;left) q.push(node-&gt;left);</div><div class="line">              	<span class="keyword">if</span>(node-&gt;right) q.push(node-&gt;right);</div><div class="line">              	temp.push_back(root-&gt;val);</div><div class="line">            &#125;</div><div class="line">          	tower.push(temp);</div><div class="line">        &#125;</div><div class="line">      	<span class="keyword">while</span>(!tower.empty())&#123;</div><div class="line">            res.push_back(tower.top());</div><div class="line">          	tower.pop();</div><div class="line">        &#125;</div><div class="line">      	<span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="404-sum-of-left-leaves"><a class="markdownIt-Anchor" href="#404-sum-of-left-leaves"></a> 404. Sum of Left Leaves</h2>
+<p>Description:</p>
+<p>Find the sum of all left leaves in a given binary tree.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">    3</div><div class="line">   / \</div><div class="line">  9  20</div><div class="line">    /  \</div><div class="line">   15   7</div><div class="line"></div><div class="line">There are two left leaves in the binary tree, with values 9 and 15 respectively. Return 24.</div></pre></td></tr></table></figure>
+<p>解题思路：使用递归，代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">sumOfLeftLeaves</span><span class="params">(TreeNode* root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">      	<span class="keyword">if</span>(root-&gt;left &amp;&amp; root-&gt;left-&gt;left==<span class="literal">NULL</span> &amp;&amp; root-&gt;left-&gt;right == <span class="literal">NULL</span>) <span class="keyword">return</span> root-&gt;left-&gt;val + sumOfLeftLeaves(root-&gt;right);</div><div class="line">      	<span class="keyword">return</span> sumOfLeftLeaves(root-&gt;left)+sumOfLeftLeaves(root-&gt;right);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="669-trim-a-binary-search-tree"><a class="markdownIt-Anchor" href="#669-trim-a-binary-search-tree"></a> 669. Trim a Binary Search Tree</h2>
+<p>Description:</p>
+<p>Given a binary search tree and the lowest and highest boundaries as <code>L</code> and <code>R</code>, trim the tree so that all its elements lies in <code>[L, R]</code> (R &gt;= L). You might need to change the root of the tree, so the result should return the new root of the trimmed binary search tree.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Input: </div><div class="line">    1</div><div class="line">   / \</div><div class="line">  0   2</div><div class="line"></div><div class="line">  L = 1</div><div class="line">  R = 2</div><div class="line"></div><div class="line">Output: </div><div class="line">    1</div><div class="line">      \</div><div class="line">       2</div></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">Input: </div><div class="line">    3</div><div class="line">   / \</div><div class="line">  0   4</div><div class="line">   \</div><div class="line">    2</div><div class="line">   /</div><div class="line">  1</div><div class="line"></div><div class="line">  L = 1</div><div class="line">  R = 3</div><div class="line"></div><div class="line">Output: </div><div class="line">      3</div><div class="line">     / </div><div class="line">   2   </div><div class="line">  /</div><div class="line"> 1</div></pre></td></tr></table></figure>
+<p>解题思路：本题是BST，所以要用好BST特性。本质上本题考察的是BST的遍历，代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>&#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function">TreeNode* <span class="title">trimBST</span><span class="params">(TreeNode* root, <span class="keyword">int</span> L, <span class="keyword">int</span> R)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">        <span class="keyword">if</span>(root-&gt;val &lt; L)&#123;</div><div class="line">            root = trimBST(root-&gt;right, L, R);</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(root-&gt;val &gt; R)&#123;</div><div class="line">            root = trimBST(root-&gt;left, L, R);</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            root-&gt;left = trimBST(root-&gt;left, L, R);</div><div class="line">            root-&gt;left = trimBST(root-&gt;right, L, R);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> root;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="543-diameter-of-binary-tree"><a class="markdownIt-Anchor" href="#543-diameter-of-binary-tree"></a> 543. Diameter of Binary Tree</h2>
+<p>Description:</p>
+<p>Given a binary tree, you need to compute the length of the diameter of the tree. The diameter of a binary tree is the length of the <strong>longest</strong>path between any two nodes in a tree. This path may or may not pass through the root.</p>
+<p><strong>Example:</strong><br>
+Given a binary tree</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">    1</div><div class="line">   / \</div><div class="line">  2   3</div><div class="line"> / \     </div><div class="line">4   5</div></pre></td></tr></table></figure>
+<p>Return <strong>3</strong>, which is the length of the path [4,2,1,3] or [5,2,1,3].</p>
+<p><strong>Note:</strong> The length of path between two nodes is represented by the number of edges between them.</p>
+<p>解题思路：属于求树高的变体，思路是使用递归方式遍历，代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">diameterOfBinaryTree</span><span class="params">(TreeNode* root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> res = depth(root-&gt;left) + depth(root-&gt;right);</div><div class="line">        <span class="keyword">return</span> max(res, max(diameterOfBinaryTree(root-&gt;left), diameterOfBinaryTree(root-&gt;right)));</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">depth</span><span class="params">(TreeNode* root)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>+max(depth(root-&gt;left), depth(root-&gt;right));</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="437-path-sum-iii"><a class="markdownIt-Anchor" href="#437-path-sum-iii"></a> 437. Path Sum III</h2>
+<p>Description:</p>
+<p>You are given a binary tree in which each node contains an integer value.</p>
+<p>Find the number of paths that sum to a given value.</p>
+<p>The path does not need to start or end at the root or a leaf, but it must go downwards (traveling only from parent nodes to child nodes).</p>
+<p>The tree has no more than 1,000 nodes and the values are in the range -1,000,000 to 1,000,000.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">root = [10,5,-3,3,2,null,11,3,-2,null,1], sum = 8</div><div class="line"></div><div class="line">      10</div><div class="line">     /  \</div><div class="line">    5   -3</div><div class="line">   / \    \</div><div class="line">  3   2   11</div><div class="line"> / \   \</div><div class="line">3  -2   1</div><div class="line"></div><div class="line">Return 3. The paths that sum to 8 are:</div><div class="line"></div><div class="line">1.  5 -&gt; 3</div><div class="line">2.  5 -&gt; 2 -&gt; 1</div><div class="line">3. -3 -&gt; 11</div></pre></td></tr></table></figure>
+<p>解题思路：本题属于“串行递归”：因为根节点、左子节点和右节点都有可能满足题意，所以对它们要同等对待。代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">pathSum</span><span class="params">(TreeNode* root, <span class="keyword">int</span> sum)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">return</span> pathSumFrom(root, sum) + pathSum(root-&gt;left,sum) + pathSum(root-&gt;right,sum);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">pathSumFrom</span><span class="params">(TreeNode* root, <span class="keyword">int</span> sum)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">return</span> (root-&gt;val==sum ? <span class="number">1</span> : <span class="number">0</span>) + pathSumFrom(root-&gt;left, sum - root-&gt;val) + pathSumFrom(root-&gt;right,sum-root-&gt;val);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="110-balance-binary-tree"><a class="markdownIt-Anchor" href="#110-balance-binary-tree"></a> 110. Balance Binary Tree</h2>
+<p>Description:</p>
+<p>Given a binary tree, determine if it is height-balanced.</p>
+<p>For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of <em>every</em> node never differ by more than 1.</p>
+<p>解题思路：使用<strong>搜索</strong> 的方式解决此题，代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isBalanced</span><span class="params">(TreeNode* root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">      	<span class="keyword">return</span> dfsHeight(root) != <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line">  </div><div class="line">  	<span class="function"><span class="keyword">int</span> <span class="title">dfsHeight</span><span class="params">(TreeNode* root)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">      	<span class="keyword">int</span> l = dfsHeight(root-&gt;left);</div><div class="line">      	<span class="keyword">if</span>(l==<span class="number">-1</span>) <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">      	<span class="keyword">int</span> r = dfsHeight(root-&gt;right);</div><div class="line">      	<span class="keyword">if</span>(r==<span class="number">-1</span>) <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">      	<span class="keyword">if</span>(<span class="built_in">abs</span>(l-r)&gt;<span class="number">1</span>) <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">      	<span class="keyword">return</span> <span class="number">1</span>+max(dfsHeight(root-&gt;left), dfsHeight(root-&gt;right));</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="111-minimum-depth-of-binary-tree"><a class="markdownIt-Anchor" href="#111-minimum-depth-of-binary-tree"></a> 111. Minimum Depth of Binary Tree</h2>
+<p>Description:</p>
+<p>Given a binary tree, find its minimum depth.</p>
+<p>The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.</p>
+<p>解题思路：本题是求深度的变形，重点区分含有双子节点的父节点和含有单子节点的父节点，代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minDepth</span><span class="params">(TreeNode* root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">return</span> root-&gt;left == <span class="literal">NULL</span> || root-&gt;right == <span class="literal">NULL</span> ? <span class="number">1</span>+max(minDepth(root-&gt;left), minDepth(root-&gt;right)) : <span class="number">1</span>+min(minDepth(root-&gt;left), minDepth(root-&gt;right));</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="112-path-sum"><a class="markdownIt-Anchor" href="#112-path-sum"></a> 112. Path Sum</h2>
+<p>Description:</p>
+<p>Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.</p>
+<p>For example:</p>
+<p>Given the below binary tree and</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sum = 22</div></pre></td></tr></table></figure>
+<p>,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">      5</div><div class="line">     / \</div><div class="line">    4   8</div><div class="line">   /   / \</div><div class="line">  11  13  4</div><div class="line"> /  \      \</div><div class="line">7    2      1</div></pre></td></tr></table></figure>
+<p>return true, as there exist a root-to-leaf path <code>5-&gt;4-&gt;11-&gt;2</code> which sum is 22.</p>
+<p>解题思路：递归，代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">hasPathSum</span><span class="params">(TreeNode* root, <span class="keyword">int</span> sum)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        <span class="keyword">if</span>(root-&gt;val == sum &amp;&amp; root-&gt;left == <span class="literal">NULL</span> &amp;&amp; root-&gt;right==<span class="literal">NULL</span>) <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">        <span class="keyword">return</span> hasPathSum(root-&gt;left, sum-root-&gt;val) || hasPathSum(root-&gt;right, sum - root-&gt;val);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="501-find-mode-in-binary-search-tree"><a class="markdownIt-Anchor" href="#501-find-mode-in-binary-search-tree"></a> 501. Find Mode in Binary Search Tree</h2>
+<p>Description:</p>
+<p>Given a binary search tree (BST) with duplicates, find all the <a href="https://en.wikipedia.org/wiki/Mode_(statistics)" target="_blank" rel="external">mode(s)</a> (the most frequently occurred element) in the given BST.</p>
+<p>Assume a BST is defined as follows:</p>
+<ul>
+<li>The left subtree of a node contains only nodes with keys <strong>less than or equal to</strong> the node’s key.</li>
+<li>The right subtree of a node contains only nodes with keys <strong>greater than or equal to</strong> the node’s key.</li>
+<li>Both the left and right subtrees must also be binary search trees.</li>
+</ul>
+<p>For example:<br>
+Given BST <code>[1,null,2,2]</code>,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">1</div><div class="line"> \</div><div class="line">  2</div><div class="line"> /</div><div class="line">2</div></pre></td></tr></table></figure>
+<p>return <code>[2]</code>.</p>
+<p><strong>Note:</strong> If a tree has more than one mode, you can return them in any order.</p>
+<p><strong>Follow up:</strong> Could you do that without using any extra space? (Assume that the implicit stack space incurred due to recursion does not count).</p>
+<p>代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; findMode(TreeNode* root) &#123;</div><div class="line">        <span class="keyword">int</span> max, pre, cnt;</div><div class="line">        getMax(root, max=<span class="number">0</span>, pre, cnt=<span class="number">0</span>);</div><div class="line">        getMode(root, max, pre, cnt=<span class="number">0</span>);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">getMax</span><span class="params">(TreeNode* root, <span class="keyword">int</span> &amp;max, <span class="keyword">int</span> &amp;pre, <span class="keyword">int</span> &amp;cnt)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span>;</div><div class="line">        getMax(root-&gt;left, max, pre, cnt);</div><div class="line">        getMax(root-&gt;right, max=cnt&gt;max?cnt:max, pre=root-&gt;val, ++(cnt*=(pre==root-&gt;val)));</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">getMode</span><span class="params">(TreeNode* root, <span class="keyword">int</span> max, <span class="keyword">int</span> &amp;pre, <span class="keyword">int</span> &amp;cnt)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span>;</div><div class="line">        getMode(root-&gt;left, max, pre, cnt);</div><div class="line">        <span class="keyword">if</span>(++(cnt*=(root-&gt;val==pre)) == max) res.push_back(root-&gt;val);</div><div class="line">        getMode(root-&gt;right, max, pre=root-&gt;val, cnt);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="538-convert-bst-to-greater-tree"><a class="markdownIt-Anchor" href="#538-convert-bst-to-greater-tree"></a> 538. Convert BST to Greater Tree</h2>
+<p>Description:</p>
+<p>Given a Binary Search Tree (BST), convert it to a Greater Tree such that every key of the original BST is changed to the original key plus sum of all keys greater than the original key in BST.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Input: The root of a Binary Search Tree like this:</div><div class="line">              5</div><div class="line">            /   \</div><div class="line">           2     13</div><div class="line"></div><div class="line">Output: The root of a Greater Tree like this:</div><div class="line">             18</div><div class="line">            /   \</div><div class="line">          20     13</div></pre></td></tr></table></figure>
+<p>解题思路：本题考察BST的中序遍历，代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="keyword">int</span> sum=<span class="number">0</span>;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function">TreeNode* <span class="title">convertBST</span><span class="params">(TreeNode* root)</span> </span>&#123;</div><div class="line">        travel(root);</div><div class="line">        <span class="keyword">return</span> root;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">travel</span><span class="params">(TreeNode* root)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(root == <span class="literal">NULL</span>) <span class="keyword">return</span>;</div><div class="line">        travel(root-&gt;right);</div><div class="line">        sum += root-&gt;val;</div><div class="line">        root-&gt;val = sum;</div><div class="line">        travel(root-&gt;left);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="617-merge-two-binary-trees"><a class="markdownIt-Anchor" href="#617-merge-two-binary-trees"></a> 617. Merge Two Binary Trees</h2>
+<p>Description:</p>
+<p>Given two binary trees and imagine that when you put one of them to cover the other, some nodes of the two trees are overlapped while the others are not.</p>
+<p>You need to merge them into a new binary tree. The merge rule is that if two nodes overlap, then sum node values up as the new value of the merged node. Otherwise, the NOT null node will be used as the node of new tree.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Input: </div><div class="line">	Tree 1                     Tree 2                  </div><div class="line">          1                         2                             </div><div class="line">         / \                       / \                            </div><div class="line">        3   2                     1   3                        </div><div class="line">       /                           \   \                      </div><div class="line">      5                             4   7                  </div><div class="line">Output: </div><div class="line">Merged tree:</div><div class="line">	     3</div><div class="line">	    / \</div><div class="line">	   4   5</div><div class="line">	  / \   \ </div><div class="line">	 5   4   7</div></pre></td></tr></table></figure>
+<p><strong>Note:</strong> The merging process must start from the root nodes of both trees.</p>
+<p>解题思路：根据题意来，代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function">TreeNode* <span class="title">mergeTrees</span><span class="params">(TreeNode* t1, TreeNode* t2)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(t1!=<span class="literal">NULL</span> &amp;&amp; t2!=<span class="literal">NULL</span>)&#123;</div><div class="line">            t1-&gt;val += t2-&gt;val;</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(t1==<span class="literal">NULL</span>)&#123;</div><div class="line">            <span class="keyword">return</span> t2;</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(t2==<span class="literal">NULL</span>)&#123;</div><div class="line">            <span class="keyword">return</span> t1;</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">        &#125;</div><div class="line">        t1-&gt;left = mergeTrees(t1-&gt;left,t2-&gt;left);</div><div class="line">        t1-&gt;right = mergeTrees(t1-&gt;right,t2-&gt;right);</div><div class="line">        <span class="keyword">return</span> t1;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://zxth93.github.io/2017/10/20/LeetCode-tree类总结/" title="LeetCode-tree类总结" target="_blank" rel="external">https://zxth93.github.io/2017/10/20/LeetCode-tree类总结/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/zxth93" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/zxth93" target="_blank"><span class="text-dark">ciic</span><small class="ml-1x">A master student of ISCAS</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </footer>
+  </article>
+  
+    
+  <div id="comments">
+  	
+       
+    <div id="uyan_frame"></div>
+
+    
+  </div>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2017/10/14/对比AlexNet、VGG、GoogleNet和ResNet/" title="对比AlexNet、VGG、GoogleNet和ResNet">下一篇&nbsp;&nbsp;<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+  </div>
+  
+  </div>
+</nav>
+  
+
+
+</section>
+
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.js"></script>
+<script src="/js/application.js"></script>
+  
+    
+    
+    
+        <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+    
+    
+        
+<script defer src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+        
+    
+    <script defer type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=[object Object]"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+    
+    
+
+
+
+</body>
+</html>
