@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zxth93.github.io/"/>
-  <updated>2017-11-10T02:07:36.740Z</updated>
+  <updated>2017-11-10T10:42:52.873Z</updated>
   <id>https://zxth93.github.io/</id>
   
   <author>
@@ -14,6 +14,61 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LSTM和GRU比较</title>
+    <link href="https://zxth93.github.io/2017/11/10/LSTM%E5%92%8CGRU%E6%AF%94%E8%BE%83/"/>
+    <id>https://zxth93.github.io/2017/11/10/LSTM和GRU比较/</id>
+    <published>2017-11-10T08:23:27.000Z</published>
+    <updated>2017-11-10T10:42:52.873Z</updated>
+    
+    <content type="html"><![CDATA[<p>本文针对论文<a href="https://arxiv.org/pdf/1412.3555.pdf" target="_blank" rel="external">Empirical Evaluation of Gated Recurrent Neural Networks on Sequence Modeling</a> 的总结，我会通过两个方面介绍论文：一是传统RNN和门控RNN区别与联系；二是两种门控RNN LSTM和GRU的区别与联系。</p>
+<blockquote>
+<p><strong>注：</strong> 本文不涉及RNN、LSTM和GRU基本概念介绍。若想了解，可以看我之前写的<a href="https://zxth93.github.io/2017/09/16/%E5%BE%AA%E7%8E%AF%E5%92%8C%E9%80%92%E5%BD%92%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">博客</a> 。</p>
+</blockquote>
+<h3 id="1-传统rnn-vs-门控rnn"><a class="markdownIt-Anchor" href="#1-传统rnn-vs-门控rnn"></a> 1. 传统RNN vs 门控RNN</h3>
+<blockquote>
+<p>传统RNN的<strong>问题</strong> ：长期依赖会造成<strong>梯度消失（多数情况下）</strong> 或<strong>梯度爆炸（少数情况下）</strong> 。</p>
+<p>解决以上问题的方案：</p>
+<ol>
+<li>以新的方法改善或者代替传统的SGD方法，如Bengio提出的clipped gradient;</li>
+<li>设计更为精妙的activation function或recurrent unit，如LSTM和GRU。原因：LSTM和GRU都能通过各种Gate将重要特征保留，保证其在long-term 传播的时候也不会被丢失；还有一个作用就是有利于BP的时候不容易梯度消失。</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>传统RNN和门控RNN的<strong>不同点：</strong></p>
+<ol>
+<li>传统RNN会每一步都重写”记忆“，而门控RNN可以在某些步骤保持原有”记忆“；</li>
+<li>门控RNN收敛速度更快，泛化能力更好。</li>
+</ol>
+</blockquote>
+<h3 id="2-lstm-vs-gru"><a class="markdownIt-Anchor" href="#2-lstm-vs-gru"></a> 2. LSTM vs GRU</h3>
+<blockquote>
+<p><strong>相同点；</strong> 都属于”加模型“</p>
+</blockquote>
+<blockquote>
+<p><strong>不同点：</strong></p>
+<ol>
+<li>LSTM可控”记忆“的曝光度，而GRU完全暴露”记忆“，是不可控的；</li>
+<li>LSTM的新”记忆“是与forget gate独立的，而GRU的新”记忆“受update gate控制</li>
+</ol>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文针对论文&lt;a href=&quot;https://arxiv.org/pdf/1412.3555.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Empirical Evaluation of Gated Recurrent Neural Network
+    
+    </summary>
+    
+      <category term="深度学习" scheme="https://zxth93.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="LSTM" scheme="https://zxth93.github.io/tags/LSTM/"/>
+    
+      <category term="GRU" scheme="https://zxth93.github.io/tags/GRU/"/>
+    
+  </entry>
   
   <entry>
     <title>LeetCode-tree类总结（会持续更新...）</title>
@@ -1942,64 +1997,6 @@ the contiguous subarray <code>[4,-1,2,1]</code> has the largest sum = <code>6</c
       <category term="Leetcode" scheme="https://zxth93.github.io/tags/Leetcode/"/>
     
       <category term="array" scheme="https://zxth93.github.io/tags/array/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>阿里天池CIKM2017 Rank4比赛经验分享</title>
-    <link href="https://zxth93.github.io/2017/08/20/CIKM2017%E6%AF%94%E8%B5%9B%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/"/>
-    <id>https://zxth93.github.io/2017/08/20/CIKM2017比赛经验分享/</id>
-    <published>2017-08-20T13:43:51.000Z</published>
-    <updated>2017-10-14T13:20:00.268Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="cikm_analyticup_2017-combining-the-traditional-methods-and-deep-learning-approach-for-precipitation-nowcasting"><a class="markdownIt-Anchor" href="#cikm_analyticup_2017-combining-the-traditional-methods-and-deep-learning-approach-for-precipitation-nowcasting"></a> CIKM_AnalytiCup_2017: Combining the Traditional Methods and Deep Learning Approach for Precipitation Nowcasting</h1>
-<p>This repo discribes the solution of Team 怀北村明远湖. <a href="https://tianchi.aliyun.com/competition/introduction.htm?spm=5176.100066.0.0.773ef42fBB8Kok&amp;raceId=231596" target="_blank" rel="external">CIKM AnalytiCup 2017</a> is an open competition that is sponsored by Shenzhen Meteorological Bureau, Alibaba Group and CIKM2017. Our team got the third place in the first phrase. And in the second phrase we got the fourth place.</p>
-<ul>
-<li>Team 怀北村明远湖：<a href="https://github.com/zxth93" target="_blank" rel="external">Zhang Rui</a>, <a href="https://github.com/joffery" target="_blank" rel="external">Qiao Fengchun</a>, <a href="https://github.com/leslie-kwork" target="_blank" rel="external">Guo Ran</a></li>
-<li><a href="https://github.com/zxth93/CIKM_AnalytiCup_2017" target="_blank" rel="external">code</a></li>
-</ul>
-<h1 id="introduction"><a class="markdownIt-Anchor" href="#introduction"></a> Introduction</h1>
-<p>Short-term precipitation forecasting such as rainfall prediction is a task to predict a short-term rainfall amount based on current observations. In this challenge, sponsors provide a set of radar maps at different time spans where each radar map covers radar reflectivity of a target site and its surrounding areas. Radar maps are measured at different time spans, i.e., 15 time spans with an interval of 6 minutes, and different heights, i.e., 4 heights, from 0.5km to 3.5km with an interval of 1km; Each radar map covers an area of 101km*101km around the site. The area is marked as 101*101 grids, and the target site is located at the centre, i.e. (50, 50).</p>
-<p>Our task here is to predict the total rainfall amount on the ground between future 1-hour and 2-hour for each target <a href="http://site.In" target="_blank" rel="external">site.In</a> this challenge, we combine Random Forestry, XGBoost and Bidirectional Gated Recurrent Units (GRUs) into an ensemble model to tackle this problem and achieve satisfying result.</p>
-<p><img src="https://img.alicdn.com/tps/TB1mmZRPFXXXXaPaXXXXXXXXXXX-865-302.png" alt=""></p>
-<h1 id="data-process"><a class="markdownIt-Anchor" href="#data-process"></a> Data Process</h1>
-<h3 id="percentile-method"><a class="markdownIt-Anchor" href="#percentile-method"></a> Percentile Method</h3>
-<p>A statistical method was applied to reduce the dimension of radar data. For a single radar map, we pick the 25th, 50th, 75th, 100th percentile of reflectivity values in various scales of neighborhood around the target site from center to the whole map.</p>
-<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/percentil.png?raw=true" alt=""></p>
-<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/percentile2.png?raw=true" alt=""></p>
-<h3 id="wind-methond"><a class="markdownIt-Anchor" href="#wind-methond"></a> “Wind” Methond</h3>
-<p>We first handle the original data (15*4*101*101) into a small size of data (15*4*10*10). Then shrink the data into 15*4*6*6 features through judging the wind direction. The entire preprocess learns from the idea of CNN, especially the convolutional calculation and max polling.</p>
-<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/convolution.png?raw=true" alt=""></p>
-<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/maxpooling.png?raw=true" alt=""></p>
-<p>We take the fourth layer of data to determine the wind direction. Then, in order to calculating the resulting wind direction, we carry out two ways of choosing representative data. The first one uses the maximum value in each 10*10 frame as the representation. The second one takes the average of the largest five data instead. After selecting the representative data, we determine the wind direction by calculating the deviation between the initial position and the following frames, voting the moving direction, finally get the maximum votes as the resulting wind direction based on the given thresholds.</p>
-<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/wind.png?raw=true" alt=""></p>
-<h1 id="model"><a class="markdownIt-Anchor" href="#model"></a> Model</h1>
-<p>Random Forestry, XGBoost and Bidirectional GRUs are utilized for model ensemble.</p>
-<h1 id="requirements"><a class="markdownIt-Anchor" href="#requirements"></a> Requirements</h1>
-<ul>
-<li>Python 3.6</li>
-<li>Keras</li>
-<li>XGBoost</li>
-<li>sklearn</li>
-</ul>
-<h1 id="dataset"><a class="markdownIt-Anchor" href="#dataset"></a> Dataset</h1>
-<ul>
-<li><a href="http://pan.baidu.com/s/1eSiYeum" target="_blank" rel="external">Data Source</a></li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;cikm_analyticup_2017-combining-the-traditional-methods-and-deep-learning-approach-for-precipitation-nowcasting&quot;&gt;&lt;a class=&quot;markdownIt
-    
-    </summary>
-    
-      <category term="深度学习" scheme="https://zxth93.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="机器学习" scheme="https://zxth93.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="阿里天池大赛" scheme="https://zxth93.github.io/tags/%E9%98%BF%E9%87%8C%E5%A4%A9%E6%B1%A0%E5%A4%A7%E8%B5%9B/"/>
     
   </entry>
   

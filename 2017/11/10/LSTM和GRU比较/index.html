@@ -16,16 +16,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>标签: 信息论 | Blog</title>
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://zxth93.github.io/tags/信息论/index.html">
+  <title>LSTM和GRU比较 | Blog</title>
+  <meta name="description" content="本文针对论文Empirical Evaluation of Gated Recurrent Neural Networks on Sequence Modeling 的总结，我会通过两个方面介绍论文：一是传统RNN和门控RNN区别与联系；二是两种门控RNN LSTM和GRU的区别与联系。  注： 本文不涉及RNN、LSTM和GRU基本概念介绍。若想了解，可以看我之前写的博客 。   1. 传统RN">
+<meta name="keywords" content="LSTM,GRU">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LSTM和GRU比较">
+<meta property="og:url" content="https://zxth93.github.io/2017/11/10/LSTM和GRU比较/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文针对论文Empirical Evaluation of Gated Recurrent Neural Networks on Sequence Modeling 的总结，我会通过两个方面介绍论文：一是传统RNN和门控RNN区别与联系；二是两种门控RNN LSTM和GRU的区别与联系。  注： 本文不涉及RNN、LSTM和GRU基本概念介绍。若想了解，可以看我之前写的博客 。   1. 传统RN">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-11-10T10:42:52.873Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="LSTM和GRU比较">
+<meta name="twitter:description" content="本文针对论文Empirical Evaluation of Gated Recurrent Neural Networks on Sequence Modeling 的总结，我会通过两个方面介绍论文：一是传统RNN和门控RNN区别与联系；二是两种门控RNN LSTM和GRU的区别与联系。  注： 本文不涉及RNN、LSTM和GRU基本概念介绍。若想了解，可以看我之前写的博客 。   1. 传统RN">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://zxth93.github.io/tags/信息论/index.html">
+  <link rel="canonical" href="https://zxth93.github.io/2017/11/10/LSTM和GRU比较/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -314,93 +319,170 @@
 </section>
 
   
-  <section class="main">
-  <article class="content article article-tags post-type-list" itemscope="">
-    <header class="article-header">
-      <h1 itemprop="name" class="hidden-xs">标签: 信息论</h1>
-      <p class="text-muted hidden-xs">共 1 篇文章</p>
-      <nav role="navigation" id="nav-main" class="okayNav">
-        <ul>
-          <li><a href="/tags">All</a></li>
-          
-          <li><a href="/tags/AlexNet/">AlexNet</a></li>
-          
-          <li><a href="/tags/阿里天池大赛/">阿里天池大赛</a></li>
-          
-          <li><a href="/tags/信息论/">信息论</a></li>
-          
-          <li><a href="/tags/Keras/">Keras</a></li>
-          
-          <li><a href="/tags/Sequential/">Sequential</a></li>
-          
-          <li><a href="/tags/LSTM/">LSTM</a></li>
-          
-          <li><a href="/tags/GRU/">GRU</a></li>
-          
-          <li><a href="/tags/Leetcode/">Leetcode</a></li>
-          
-          <li><a href="/tags/array/">array</a></li>
-          
-          <li><a href="/tags/tips/">tips</a></li>
-          
-          <li><a href="/tags/VGGNet/">VGGNet</a></li>
-          
-          <li><a href="/tags/XGBoost/">XGBoost</a></li>
-          
-          <li><a href="/tags/GBDT/">GBDT</a></li>
-          
-          <li><a href="/tags/CNN/">CNN</a></li>
-          
-          <li><a href="/tags/VGG/">VGG</a></li>
-          
-          <li><a href="/tags/GoogleNet/">GoogleNet</a></li>
-          
-          <li><a href="/tags/ResNet/">ResNet</a></li>
-          
-          <li><a href="/tags/RNN/">RNN</a></li>
-          
-          <li><a href="/tags/正则化/">正则化</a></li>
-          
-          <li><a href="/tags/优化/">优化</a></li>
-          
-          <li><a href="/tags/AE/">AE</a></li>
-          
-          <li><a href="/tags/虚函数/">虚函数</a></li>
-          
-        </ul>
-      </nav>
-    </header>
-    <!-- /header -->
-    <div class="article-body">
-      <div class="row">
-        
-<div class="col-md-6">
+  
+<section class="main">
+  <div class="content">
+  <article id="post-LSTM和GRU比较" class="article article-type-post" itemscope itemprop="blogPost">
     
-<article class="panel panel-default shadow-hover">
-  <div class="panel-body">
-     <div class="article-meta">
-       <time datetime="2017-09-27T02:26:28.000Z" itemprop="datePublished">2017-09-27</time>
-     </div>
-     <h3 class="article-title" itemprop="name">
-       <a class="article-link" href="/2017/09/27/KL散度JS散度Wasserstein距离/">KL散度、JS散度、Wasserstein距离</a>
-     </h3>
-   </div>
-   
-   <div class="panel-footer">
-     
-      <a href="/tags/信息论/" class="label label-default mb">信息论</a>
-     
-   </div>
-   
-</article>
+    <header class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      LSTM和GRU比较
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="fa fa-calendar-check-o"></i>
+	<a href="/2017/11/10/LSTM和GRU比较/" class="article-date">
+	  <time datetime="2017-11-10T08:23:27.000Z" itemprop="datePublished">2017-11-10</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/深度学习/">深度学习</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="fa fa-tag"></i>
+	<a class="article-tag-link" href="/tags/GRU/">GRU</a>, <a class="article-tag-link" href="/tags/LSTM/">LSTM</a>
+  </span>
 
 
-</div>
+        
+	<span class="article-read hidden-xs">
+	    <i class="fa fa-eye" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			阅读<span id="busuanzi_value_page_pv">0</span>次
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2017/11/10/LSTM和GRU比较/#comments" class="article-comment-link">评论</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs">字数统计: 351(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs">阅读时长: 1(分)</span>
+	
 
       </div>
+      
+    </header>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <p>本文针对论文<a href="https://arxiv.org/pdf/1412.3555.pdf" target="_blank" rel="external">Empirical Evaluation of Gated Recurrent Neural Networks on Sequence Modeling</a> 的总结，我会通过两个方面介绍论文：一是传统RNN和门控RNN区别与联系；二是两种门控RNN LSTM和GRU的区别与联系。</p>
+<blockquote>
+<p><strong>注：</strong> 本文不涉及RNN、LSTM和GRU基本概念介绍。若想了解，可以看我之前写的<a href="https://zxth93.github.io/2017/09/16/%E5%BE%AA%E7%8E%AF%E5%92%8C%E9%80%92%E5%BD%92%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">博客</a> 。</p>
+</blockquote>
+<h3 id="1-传统rnn-vs-门控rnn"><a class="markdownIt-Anchor" href="#1-传统rnn-vs-门控rnn"></a> 1. 传统RNN vs 门控RNN</h3>
+<blockquote>
+<p>传统RNN的<strong>问题</strong> ：长期依赖会造成<strong>梯度消失（多数情况下）</strong> 或<strong>梯度爆炸（少数情况下）</strong> 。</p>
+<p>解决以上问题的方案：</p>
+<ol>
+<li>以新的方法改善或者代替传统的SGD方法，如Bengio提出的clipped gradient;</li>
+<li>设计更为精妙的activation function或recurrent unit，如LSTM和GRU。原因：LSTM和GRU都能通过各种Gate将重要特征保留，保证其在long-term 传播的时候也不会被丢失；还有一个作用就是有利于BP的时候不容易梯度消失。</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>传统RNN和门控RNN的<strong>不同点：</strong></p>
+<ol>
+<li>传统RNN会每一步都重写”记忆“，而门控RNN可以在某些步骤保持原有”记忆“；</li>
+<li>门控RNN收敛速度更快，泛化能力更好。</li>
+</ol>
+</blockquote>
+<h3 id="2-lstm-vs-gru"><a class="markdownIt-Anchor" href="#2-lstm-vs-gru"></a> 2. LSTM vs GRU</h3>
+<blockquote>
+<p><strong>相同点；</strong> 都属于”加模型“</p>
+</blockquote>
+<blockquote>
+<p><strong>不同点：</strong></p>
+<ol>
+<li>LSTM可控”记忆“的曝光度，而GRU完全暴露”记忆“，是不可控的；</li>
+<li>LSTM的新”记忆“是与forget gate独立的，而GRU的新”记忆“受update gate控制</li>
+</ol>
+</blockquote>
+
+      
     </div>
+    <footer class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://zxth93.github.io/2017/11/10/LSTM和GRU比较/" title="LSTM和GRU比较" target="_blank" rel="external">https://zxth93.github.io/2017/11/10/LSTM和GRU比较/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/zxth93" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/zxth93" target="_blank"><span class="text-dark">ciic</span><small class="ml-1x">A master student of ISCAS</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </footer>
   </article>
-   
+  
+    
+  <div id="comments">
+  	
+       
+    <div id="uyan_frame"></div>
+
+    
+  </div>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2017/10/20/LeetCode-tree类总结/" title="LeetCode-tree类总结（会持续更新...）">下一篇&nbsp;&nbsp;<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+  </div>
+  
+  </div>
+</nav>
+  
+
+
 </section>
 
   <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
@@ -433,11 +515,17 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
     
     
         
-<script defer src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script defer src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
     
+    
+        
+    
+    <script defer type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=[object Object]"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
     
     
 
