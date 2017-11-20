@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zxth93.github.io/"/>
-  <updated>2017-11-20T06:19:56.554Z</updated>
+  <updated>2017-11-20T11:13:25.565Z</updated>
   <id>https://zxth93.github.io/</id>
   
   <author>
@@ -14,6 +14,53 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LeetCode-binary search类总结(会持续更新的...)</title>
+    <link href="https://zxth93.github.io/2017/11/20/LeetCode-binary-search%E7%B1%BB%E6%80%BB%E7%BB%93/"/>
+    <id>https://zxth93.github.io/2017/11/20/LeetCode-binary-search类总结/</id>
+    <published>2017-11-20T10:07:47.000Z</published>
+    <updated>2017-11-20T11:13:25.565Z</updated>
+    
+    <content type="html"><![CDATA[<p>本文主要是对leetcode中的binary search类算法的总结，包含了各题的solution和常用的解决方法。</p>
+<p>相关源码：<a href="https://github.com/zxth93/leetcode" target="_blank" rel="external">code</a></p>
+<h2 id="278-first-bad-version"><a class="markdownIt-Anchor" href="#278-first-bad-version"></a> 278. First Bad Version</h2>
+<p>Description:</p>
+<p>You are a product manager and currently leading a team to develop a new product. Unfortunately, the latest version of your product fails the quality check. Since each version is developed based on the previous version, all the versions after a bad version are also bad.</p>
+<p>Suppose you have <code>n</code> versions <code>[1, 2, ..., n]</code> and you want to find out the first bad one, which causes all the following ones to be bad.</p>
+<p>You are given an API <code>bool isBadVersion(version)</code> which will return whether <code>version</code> is bad. Implement a function to find the first bad version. You should minimize the number of calls to the API.</p>
+<p><strong>Credits:</strong><br>
+Special thanks to <a href="https://leetcode.com/discuss/user/jianchao.li.fighter" target="_blank" rel="external">@jianchao.li.fighter</a> for adding this problem and creating all test cases.</p>
+<p>解题思路：本题数组为<strong>有序</strong> ，并且题目要求<strong>查找</strong> ，自然而然会想到二分查找，代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isBadVersion</span><span class="params">(<span class="keyword">int</span> version)</span></span>;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">firstBadVersion</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> front = <span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> tail = n;</div><div class="line">        <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</div><div class="line">            <span class="keyword">int</span> mid = (tail-front)/<span class="number">2</span> + front;</div><div class="line">            <span class="keyword">bool</span> res = isBadVersion(mid);</div><div class="line">            <span class="keyword">if</span>(res)&#123;</div><div class="line">                <span class="keyword">if</span>(!isBadVersion(mid<span class="number">-1</span>)) <span class="keyword">return</span> mid;</div><div class="line">                tail = mid<span class="number">-1</span>;</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                front = mid+<span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="222-count-complete-tree-nodes"><a class="markdownIt-Anchor" href="#222-count-complete-tree-nodes"></a> 222. Count Complete Tree Nodes</h2>
+<p>Description:</p>
+<p>Given a <strong>complete</strong> binary tree, count the number of nodes.</p>
+<p><strong>Definition of a complete binary tree from Wikipedia:</strong><br>
+In a complete binary tree every level, except possibly the last, is completely filled, and all nodes in the last level are as far left as possible. It can have between 1 and 2h nodes inclusive at the last level h.</p>
+<p>解题思路：基本思路就是树的遍历，利用完全二叉树的性质优化程序，代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countNodes</span><span class="params">(TreeNode* root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> l=<span class="number">0</span>, r=<span class="number">0</span>;</div><div class="line">        TreeNode *lp=root, *rp=root;</div><div class="line">        <span class="keyword">while</span>(lp)&#123;l++; lp=lp-&gt;left;&#125;</div><div class="line">        <span class="keyword">while</span>(rp)&#123;r++; rp=rp-&gt;right;&#125;</div><div class="line">        <span class="keyword">if</span>(l==r) <span class="keyword">return</span> <span class="built_in">pow</span>(<span class="number">2</span>,l)<span class="number">-1</span>;</div><div class="line">        <span class="keyword">return</span> countNodes(root-&gt;left)+countNodes(root-&gt;right)+<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="29-divide-two-integers"><a class="markdownIt-Anchor" href="#29-divide-two-integers"></a> 29. Divide Two Integers</h2>
+<p>Description:</p>
+<p>Divide two integers without using multiplication, division and mod operator.</p>
+<p>If it is overflow, return MAX_INT.</p>
+<p>解题思路：利用减法，加之<strong>移位</strong> 操作<strong>优化</strong> ，代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">divide</span><span class="params">(<span class="keyword">int</span> dividend, <span class="keyword">int</span> divisor)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(!divisor || (dividend==INT_MIN &amp;&amp; divisor==<span class="number">-1</span>))&#123;</div><div class="line">            <span class="keyword">return</span> INT_MAX;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> res=<span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> sign = (dividend&lt;<span class="number">0</span>)^(divisor&lt;<span class="number">0</span>)?<span class="number">-1</span>:<span class="number">1</span>;</div><div class="line">        <span class="keyword">long</span> <span class="keyword">long</span> divid=<span class="built_in">labs</span>(dividend);</div><div class="line">        <span class="keyword">long</span> <span class="keyword">long</span> divis=<span class="built_in">labs</span>(divisor);</div><div class="line">        <span class="keyword">while</span>(divid&gt;=divis)&#123;</div><div class="line">            <span class="keyword">long</span> <span class="keyword">long</span> temp=divis, multi=<span class="number">1</span>;</div><div class="line">            <span class="keyword">while</span>(divid&gt;=(temp&lt;&lt;<span class="number">1</span>))&#123;</div><div class="line">                multi&lt;&lt;=<span class="number">1</span>;</div><div class="line">                temp&lt;&lt;=<span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line">            divid-=temp;</div><div class="line">            res +=multi;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> sign==<span class="number">1</span>?res:<span class="number">0</span>-res;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文主要是对leetcode中的binary search类算法的总结，包含了各题的solution和常用的解决方法。&lt;/p&gt;
+&lt;p&gt;相关源码：&lt;a href=&quot;https://github.com/zxth93/leetcode&quot; target=&quot;_blank&quot; rel=
+    
+    </summary>
+    
+      <category term="算法" scheme="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="Leetcode" scheme="https://zxth93.github.io/tags/Leetcode/"/>
+    
+  </entry>
   
   <entry>
     <title>DenseNet论文总结</title>
@@ -125,7 +172,7 @@
     <link href="https://zxth93.github.io/2017/10/20/LeetCode-tree%E7%B1%BB%E6%80%BB%E7%BB%93/"/>
     <id>https://zxth93.github.io/2017/10/20/LeetCode-tree类总结/</id>
     <published>2017-10-20T07:48:12.000Z</published>
-    <updated>2017-11-10T02:07:36.740Z</updated>
+    <updated>2017-11-20T10:31:49.871Z</updated>
     
     <content type="html"><![CDATA[<p>本文主要是对leetcode中的tree类算法的总结，包含了各题的solution和常用的解决方法。</p>
 <p>相关源码：<a href="https://github.com/zxth93/leetcode" target="_blank" rel="external">code</a></p>
@@ -317,6 +364,23 @@ Given tree s:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Input: </div><div class="line">    2</div><div class="line">   / \</div><div class="line">  2   2</div><div class="line"></div><div class="line">Output: -1</div><div class="line">Explanation: The smallest value is 2, but there isn&apos;t any second smallest value.</div></pre></td></tr></table></figure>
 <p>代码如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findSecondMinimumValue</span><span class="params">(TreeNode* root)</span> </span>&#123;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(root-&gt;left)&#123;</div><div class="line">            <span class="keyword">if</span>(root-&gt;left-&gt;val &lt; root-&gt;right-&gt;val)&#123;</div><div class="line">                <span class="keyword">int</span> l = findSecondMinimumValue(root-&gt;left);</div><div class="line">                <span class="keyword">if</span>(l==<span class="number">-1</span>) <span class="keyword">return</span> root-&gt;right-&gt;val;</div><div class="line">                <span class="keyword">return</span> min(l, root-&gt;right-&gt;val);</div><div class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(root-&gt;left-&gt;val &gt; root-&gt;right-&gt;val)&#123;</div><div class="line">                <span class="keyword">int</span> r = findSecondMinimumValue(root-&gt;right);</div><div class="line">                <span class="keyword">if</span>(r==<span class="number">-1</span>) <span class="keyword">return</span> root-&gt;left-&gt;val;</div><div class="line">                <span class="keyword">return</span> min(r, root-&gt;left-&gt;val);</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                <span class="keyword">int</span> l = findSecondMinimumValue(root-&gt;left);</div><div class="line">                <span class="keyword">int</span> r = findSecondMinimumValue(root-&gt;right);</div><div class="line">                <span class="keyword">if</span>(l==<span class="number">-1</span>) <span class="keyword">return</span> r;</div><div class="line">                <span class="keyword">if</span>(r==<span class="number">-1</span>) <span class="keyword">return</span> l;</div><div class="line">                <span class="keyword">return</span> min(l, r);</div><div class="line">            &#125;</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="687-longest-univalue-path"><a class="markdownIt-Anchor" href="#687-longest-univalue-path"></a> 687. Longest Univalue Path</h2>
+<p>Description:</p>
+<p>Given a binary tree, find the length of the longest path where each node in the path has the same value. This path may or may not pass through the root.</p>
+<p><strong>Note:</strong> The length of path between two nodes is represented by the number of edges between them.</p>
+<p><strong>Example 1:</strong></p>
+<p>Input:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">    5</div><div class="line">   / \</div><div class="line">  4   5</div><div class="line"> / \   \</div><div class="line">1   1   5</div></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2</div></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<p>Input:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">    1</div><div class="line">   / \</div><div class="line">  4   5</div><div class="line"> / \   \</div><div class="line">4   4   5</div></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">2</div></pre></td></tr></table></figure>
+<p><strong>Note:</strong> The given binary tree has not more than 10000 nodes. The height of the tree is not more than 1000.</p>
+<p>解题思路：本题需要使用<strong>搜索</strong> ，代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestUnivaluePath</span><span class="params">(TreeNode* root)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> lup = <span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span>(root) dfs(root, lup);</div><div class="line">        <span class="keyword">return</span> lup;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(TreeNode* node, <span class="keyword">int</span>&amp; lup)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> l = node-&gt;left ? dfs(node-&gt;left, lup) : <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> r = node-&gt;right ? dfs(node-&gt;right, lup) : <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> resl = node-&gt;left &amp;&amp; node-&gt;left-&gt;val == node-&gt;val ? l + <span class="number">1</span> : <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> resr = node-&gt;right &amp;&amp; node-&gt;right-&gt;val == node-&gt;val ? r + <span class="number">1</span> : <span class="number">0</span>;</div><div class="line">        lup = max(lup, resl + resr);</div><div class="line">        <span class="keyword">return</span> max(resl, resr);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">
@@ -449,9 +513,9 @@ Given tree s:</p>
       <category term="深度学习" scheme="https://zxth93.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="ResNet" scheme="https://zxth93.github.io/tags/ResNet/"/>
-    
       <category term="AlexNet" scheme="https://zxth93.github.io/tags/AlexNet/"/>
+    
+      <category term="ResNet" scheme="https://zxth93.github.io/tags/ResNet/"/>
     
       <category term="VGG" scheme="https://zxth93.github.io/tags/VGG/"/>
     
@@ -795,7 +859,7 @@ Special thanks to <a href="https://oj.leetcode.com/discuss/user/ts" target="_bla
     <link href="https://zxth93.github.io/2017/09/29/LeetCode-string%E7%B1%BB%E6%80%BB%E7%BB%93/"/>
     <id>https://zxth93.github.io/2017/09/29/LeetCode-string类总结/</id>
     <published>2017-09-29T09:03:09.000Z</published>
-    <updated>2017-10-07T11:08:28.635Z</updated>
+    <updated>2017-11-20T11:08:30.354Z</updated>
     
     <content type="html"><![CDATA[<p>本文主要是对leetcode中的string类算法的总结，包含了各题的solution和常用的解决方法。</p>
 <p>相关源码：<a href="https://github.com/zxth93/leetcode" target="_blank" rel="external">code</a></p>
@@ -861,6 +925,23 @@ Have you consider that the string might be empty? This is a good question to ask
 <p><strong>Note:</strong> The input will be a non-empty word consisting of uppercase and lowercase latin letters.</p>
 <p>代码如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">detectCapitalUse</span><span class="params">(<span class="built_in">string</span> word)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;word.size(); i++)&#123;</div><div class="line">            <span class="keyword">if</span>(word[i]&lt;<span class="number">97</span>) count++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(count==word.size() || count==<span class="number">0</span>)&#123;</div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(count==<span class="number">1</span>)&#123;</div><div class="line">            <span class="keyword">return</span> word[<span class="number">0</span>] &lt; <span class="number">97</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="392-is-subsequence"><a class="markdownIt-Anchor" href="#392-is-subsequence"></a> 392. Is Subsequence</h2>
+<p>Description:</p>
+<p>Given a string <strong>s</strong> and a string <strong>t</strong>, check if <strong>s</strong> is subsequence of <strong>t</strong>.</p>
+<p>You may assume that there is only lower case English letters in both <strong>s</strong> and <strong>t</strong>. <strong>t</strong> is potentially a very long (length ~= 500,000) string, and <strong>s</strong>is a short string (&lt;=100).</p>
+<p>A subsequence of a string is a new string which is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (ie, <code>&quot;ace&quot;</code> is a subsequence of <code>&quot;abcde&quot;</code> while <code>&quot;aec&quot;</code> is not).</p>
+<p><strong>Example 1:</strong><br>
+<strong>s</strong> = <code>&quot;abc&quot;</code>, <strong>t</strong> = <code>&quot;ahbgdc&quot;</code></p>
+<p>Return <code>true</code>.</p>
+<p><strong>Example 2:</strong><br>
+<strong>s</strong> = <code>&quot;axc&quot;</code>, <strong>t</strong> = <code>&quot;ahbgdc&quot;</code></p>
+<p>Return <code>false</code>.</p>
+<p><strong>Follow up:</strong><br>
+If there are lots of incoming S, say S1, S2, … , Sk where k &gt;= 1B, and you want to check one by one to see if T has its subsequence. In this scenario, how would you change your code?</p>
+<p><strong>Credits:</strong><br>
+Special thanks to <a href="https://leetcode.com/pbrother/" target="_blank" rel="external">@pbrother</a> for adding this problem and creating all test cases.</p>
+<p>解题思路：代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isSubsequence</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> t)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(s.size()==<span class="number">0</span>) <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">        <span class="keyword">int</span> indexT=<span class="number">0</span>, indexS=<span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(indexT&lt;t.size())&#123;</div><div class="line">            <span class="keyword">if</span>(t[indexT]==s[indexS])&#123;</div><div class="line">                indexS++;</div><div class="line">                <span class="keyword">if</span>(indexS==s.size()) <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">            &#125;</div><div class="line">            indexT++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">
@@ -1690,113 +1771,6 @@ Have you consider that the string might be empty? This is a good question to ask
     
     
       <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Keras学习笔记I-Sequential</title>
-    <link href="https://zxth93.github.io/2017/08/26/Keras%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0I-Sequential/"/>
-    <id>https://zxth93.github.io/2017/08/26/Keras学习笔记I-Sequential/</id>
-    <published>2017-08-26T12:05:16.000Z</published>
-    <updated>2017-10-14T13:20:50.205Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="1-keras简介"><a class="markdownIt-Anchor" href="#1-keras简介"></a> 1. Keras简介</h2>
-<p>Keras是集成的神经网络的框架，它的后端是基于Tensorflow、Theano和CNTK的。</p>
-<ul>
-<li>
-<p>Keras的架构</p>
-<p><img src="http://images2015.cnblogs.com/blog/1119747/201707/1119747-20170707133635659-888158147.png" alt=""></p>
-</li>
-<li>
-<p>使用Keras的一般流程</p>
-</li>
-</ul>
-<p><img src="http://images2015.cnblogs.com/blog/1119747/201707/1119747-20170707133932722-715494711.png" alt=""></p>
-<h2 id="2-基本概念"><a class="markdownIt-Anchor" href="#2-基本概念"></a> 2. 基本概念</h2>
-<ul>
-<li>
-<p>符号计算</p>
-<p>可以理解为计算图，计算图主要有两个元素组成：节点和边。节点通常来代表变量（scalar、vector、tensor等）；边代表的是操作，即一些函数。</p>
-</li>
-<li>
-<p>张量（tensor）</p>
-<p>直接看作向量即可。</p>
-</li>
-<li>
-<p>模型</p>
-<p>Keras有两种模型：Sequential和函数式模型（Model），Sequential是函数式模型的特殊形式。</p>
-<ol>
-<li>Sequential：将多个网络层线性叠加，存入栈中的。单输入单输出，一条路通到底，层与层之间只是相邻关系，没有跨层连接。这么做的好处是：编译快，操作简单</li>
-<li>函数式模型（Model）：多输入多输出，层与层之间任意连接，但编译慢。</li>
-</ol>
-</li>
-<li>
-<p>batch</p>
-<p>以batch大小的数据集为梯度计算的基本单位。</p>
-</li>
-</ul>
-<h2 id="3-sequential模型"><a class="markdownIt-Anchor" href="#3-sequential模型"></a> 3. Sequential模型</h2>
-<ul>
-<li>
-<p>构造网络层</p>
-<ol>
-<li>
-<p>利用layer的list来构造该模型：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Sequential</div><div class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Dense, Activation</div><div class="line"></div><div class="line">model = Sequential([Dense(<span class="number">32</span>, units=<span class="number">784</span>), Activation(<span class="string">'relu'</span>),</div><div class="line">                   Dense(<span class="number">10</span>), Activation(<span class="string">'softmax'</span>),])</div><div class="line"><span class="comment"># Sequential的第一层需要接受一个关于输入数据shape的参数，后面的各层则可以自动的推导出中间数据的shape。</span></div></pre></td></tr></table></figure>
-</li>
-<li>
-<p>利用<code>.add()</code>方法加入layer：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">model = Sequential()</div><div class="line">model.add(Dense(<span class="number">32</span>, input_shape(<span class="number">784</span>,)))</div><div class="line">model.add(Activation(<span class="string">'relu'</span>))</div><div class="line"><span class="comment"># input_shape是一个tuple类型的数据，传递给第一层</span></div><div class="line"><span class="comment"># 有些2D层，支持通过指定其输入维度input_dim来隐含的指定输入数据shape；</span></div><div class="line"><span class="comment"># 一些3D层，支持通过参数input_dim和input_length来指定输入shape；</span></div><div class="line"><span class="comment"># 如果你需要为输入指定一个固定大小的batch_size（常用于stateful RNN网络），可以传递batch_size参数到一个层中，例如你想指定输入张量的batch大小是32，数据shape是（6，8），则你需要传递batch_size=32和input_shape=(6,8)</span></div></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li>
-<p>编译</p>
-<p>我们需要通过<code>compile</code>来对学习过程进行配置，<code>compile</code>接收三个参数：</p>
-<ol>
-<li>
-<p>优化器optimizer</p>
-</li>
-<li>
-<p>损失函数loss</p>
-</li>
-<li>
-<p>指标列表metrics</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 对于多分类问题</span></div><div class="line">model.compile(optimizer=<span class="string">'rmsprop'</span>, loss=<span class="string">'categorical_crossentropy'</span>, metrics=[<span class="string">'accuracy'</span>])</div><div class="line"></div><div class="line"><span class="comment"># 对于二分类问题</span></div><div class="line">model.compile(optimizer=<span class="string">'rmsprop'</span>, loss=<span class="string">'binary_crossentropy'</span>, metrics=[<span class="string">'accuracy'</span>])</div><div class="line"></div><div class="line"><span class="comment"># 对于回归问题</span></div><div class="line">model.compile(optimizer=<span class="string">'rmsprop'</span>, loss=<span class="string">'mse'</span>)</div><div class="line"></div><div class="line"><span class="comment"># 用户自定义metrics</span></div><div class="line"><span class="keyword">import</span> keras.backend <span class="keyword">as</span> K</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">mean_pred</span><span class="params">(y_true, y_pred)</span>:</span></div><div class="line">    <span class="keyword">return</span> K.mean(y_pred)</div><div class="line"></div><div class="line">model.compile(optimizer=<span class="string">'rmsprop'</span>,</div><div class="line">              loss=<span class="string">'binary_crossentropy'</span>,</div><div class="line">              metrics=[<span class="string">'accuracy'</span>, mean_pred])</div></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li>
-<p>训练</p>
-<p>一般使用<code>fit</code>函数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># For a single-input model with 2 classes (binary classification):</span></div><div class="line"></div><div class="line">model = Sequential()</div><div class="line">model.add(Dense(<span class="number">32</span>, activation=<span class="string">'relu'</span>, input_dim=<span class="number">100</span>))</div><div class="line">model.add(Dense(<span class="number">1</span>, activation=<span class="string">'sigmoid'</span>))</div><div class="line">model.compile(optimizer=<span class="string">'rmsprop'</span>,</div><div class="line">              loss=<span class="string">'binary_crossentropy'</span>,</div><div class="line">              metrics=[<span class="string">'accuracy'</span>])</div><div class="line"></div><div class="line"><span class="comment"># Generate dummy data</span></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line">data = np.random.random((<span class="number">1000</span>, <span class="number">100</span>))</div><div class="line">labels = np.random.randint(<span class="number">2</span>, size=(<span class="number">1000</span>, <span class="number">1</span>))</div><div class="line"></div><div class="line"><span class="comment"># Train the model, iterating on the data in batches of 32 samples</span></div><div class="line">model.fit(data, labels, epochs=<span class="number">10</span>, batch_size=<span class="number">32</span>)</div></pre></td></tr></table></figure>
-</li>
-<li>
-<p>例子</p>
-<ol>
-<li>
-<p>卷积神经网络</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> keras</div><div class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Sequential</div><div class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Dense, Dropout, Flatten</div><div class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Conv2D, MaxPooling2D</div><div class="line"><span class="keyword">from</span> keras.optimizers <span class="keyword">import</span> SGD</div><div class="line"></div><div class="line"><span class="comment"># Generate dummy data</span></div><div class="line">x_train = np.random.random((<span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>, <span class="number">3</span>))</div><div class="line">y_train = keras.utils.to_categorical(np.random.randint(<span class="number">10</span>, size=(<span class="number">100</span>, <span class="number">1</span>)), num_classes=<span class="number">10</span>)</div><div class="line">x_test = np.random.random((<span class="number">20</span>, <span class="number">100</span>, <span class="number">100</span>, <span class="number">3</span>))</div><div class="line">y_test = keras.utils.to_categorical(np.random.randint(<span class="number">10</span>, size=(<span class="number">20</span>, <span class="number">1</span>)), num_classes=<span class="number">10</span>)</div><div class="line"></div><div class="line">model = Sequential()</div><div class="line"><span class="comment"># input: 100x100 images with 3 channels -&gt; (100, 100, 3) tensors.</span></div><div class="line"><span class="comment"># this applies 32 convolution filters of size 3x3 each.</span></div><div class="line">model.add(Conv2D(<span class="number">32</span>, (<span class="number">3</span>, <span class="number">3</span>), activation=<span class="string">'relu'</span>, input_shape=(<span class="number">100</span>, <span class="number">100</span>, <span class="number">3</span>)))</div><div class="line"><span class="comment"># 参数</span></div><div class="line"><span class="comment"># filters：卷积核的数目（即输出的维度）</span></div><div class="line"><span class="comment"># kernel_size：单个整数或由两个整数构成的list/tuple，卷积核的宽度和长度。如为单个整数，则表示在各个空间维度的相同长度。</span></div><div class="line"><span class="comment"># strides：单个整数或由两个整数构成的list/tuple，为卷积的步长。如为单个整数，则表示在各个空间维度的相同步长。任何不为1的strides均与任何不为1的dilation_rata均不兼容</span></div><div class="line"><span class="comment"># padding：补0策略，为“valid”, “same” 。“valid”代表只进行有效的卷积，即对边界数据不处理。“same”代表保留边界处的卷积结果，通常会导致输出shape与输入shape相同，因为卷积核移动时在边缘会出现大小不够的情况。</span></div><div class="line"><span class="comment"># activation：激活函数，为预定义的激活函数名（参考激活函数），或逐元素（element-wise）的Theano函数。如果不指定该参数，将不会使用任何激活函数（即使用线性激活函数：a(x)=x）</span></div><div class="line"><span class="comment"># use_bias:布尔值，是否使用偏置项</span></div><div class="line"><span class="comment"># kernel_initializer：权值初始化方法，为预定义初始化方法名的字符串，或用于初始化权重的初始化器。参考initializers</span></div><div class="line"><span class="comment"># bias_initializer：权值初始化方法，为预定义初始化方法名的字符串，或用于初始化权重的初始化器。参考initializers</span></div><div class="line"><span class="comment"># kernel_regularizer：施加在权重上的正则项，为Regularizer对象</span></div><div class="line"><span class="comment"># bias_regularizer：施加在偏置向量上的正则项，为Regularizer对象</span></div><div class="line"><span class="comment"># activity_regularizer：施加在输出上的正则项，为Regularizer对象</span></div><div class="line"><span class="comment"># kernel_constraints：施加在权重上的约束项，为Constraints对象</span></div><div class="line"><span class="comment"># bias_constraints：施加在偏置上的约束项，为Constraints对象</span></div><div class="line">model.add(Conv2D(<span class="number">32</span>, (<span class="number">3</span>, <span class="number">3</span>), activation=<span class="string">'relu'</span>))</div><div class="line">model.add(MaxPooling2D(pool_size=(<span class="number">2</span>, <span class="number">2</span>)))</div><div class="line">model.add(Dropout(<span class="number">0.25</span>))</div><div class="line"></div><div class="line">model.add(Conv2D(<span class="number">64</span>, (<span class="number">3</span>, <span class="number">3</span>), activation=<span class="string">'relu'</span>))</div><div class="line">model.add(Conv2D(<span class="number">64</span>, (<span class="number">3</span>, <span class="number">3</span>), activation=<span class="string">'relu'</span>))</div><div class="line">model.add(MaxPooling2D(pool_size=(<span class="number">2</span>, <span class="number">2</span>)))</div><div class="line">model.add(Dropout(<span class="number">0.25</span>))</div><div class="line"></div><div class="line"><span class="comment"># Flatten层用来将输入“压平”，即把多维的输入一维化，常用在从卷积层到全连接层的过渡。Flatten不影响batch的大小。</span></div><div class="line">model.add(Flatten())</div><div class="line">model.add(Dense(<span class="number">256</span>, activation=<span class="string">'relu'</span>))</div><div class="line">model.add(Dropout(<span class="number">0.5</span>))</div><div class="line">model.add(Dense(<span class="number">10</span>, activation=<span class="string">'softmax'</span>))</div><div class="line"></div><div class="line">sgd = SGD(lr=<span class="number">0.01</span>, decay=<span class="number">1e-6</span>, momentum=<span class="number">0.9</span>, nesterov=<span class="keyword">True</span>)</div><div class="line"><span class="comment"># 参数：</span></div><div class="line"><span class="comment"># lr：大于0的浮点数，学习率</span></div><div class="line"><span class="comment"># momentum：大于0的浮点数，动量参数</span></div><div class="line"><span class="comment"># decay：大于0的浮点数，每次更新后的学习率衰减值</span></div><div class="line"><span class="comment"># nesterov：布尔值，确定是否使用Nesterov动量</span></div><div class="line">model.compile(loss=<span class="string">'categorical_crossentropy'</span>, optimizer=sgd)</div><div class="line"></div><div class="line">model.fit(x_train, y_train, batch_size=<span class="number">32</span>, epochs=<span class="number">10</span>)</div><div class="line">score = model.evaluate(x_test, y_test, batch_size=<span class="number">32</span>)</div></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-</ol>
-</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;1-keras简介&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#1-keras简介&quot;&gt;&lt;/a&gt; 1. Keras简介&lt;/h2&gt;
-&lt;p&gt;Keras是集成的神经网络的框架，它的后端是基于Tensorflow、Theano和CNTK的。&lt;/
-    
-    </summary>
-    
-      <category term="深度学习" scheme="https://zxth93.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="Keras" scheme="https://zxth93.github.io/tags/Keras/"/>
-    
-      <category term="Sequential" scheme="https://zxth93.github.io/tags/Sequential/"/>
     
   </entry>
   
