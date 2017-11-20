@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://zxth93.github.io/2017/11/17/DenseNet%E8%AE%BA%E6%96%87%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2017-11-20T06:19:56.554Z</lastmod>
+    <data>
+        <display>
+        <title>DenseNet论文总结</title>
+        <pubTime>2017-11-17T03:32:19.000Z</pubTime>
+        
+        <tag>DenseNet</tag>
+         
+        <tag>ResNet</tag>
+         
+         
+           
+             
+              <breadCrumb title="深度学习" url="https://zxth93.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://zxth93.github.io/2017/11/10/LSTM%E5%92%8CGRU%E6%AF%94%E8%BE%83/</loc>
     <lastmod>2017-11-10T10:42:52.873Z</lastmod>
     <data>
@@ -300,13 +322,13 @@
         <title>对比AlexNet、VGG、GoogleNet和ResNet</title>
         <pubTime>2017-10-14T12:08:23.000Z</pubTime>
         
+        <tag>ResNet</tag>
+         
         <tag>AlexNet</tag>
          
         <tag>VGG</tag>
          
         <tag>GoogleNet</tag>
-         
-        <tag>ResNet</tag>
          
          
            

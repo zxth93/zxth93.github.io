@@ -16,16 +16,27 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>分类: C++ | Blog</title>
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://zxth93.github.io/categories/C/index.html">
+  <title>DenseNet论文总结 | Blog</title>
+  <meta name="description" content="本篇文章是CVPR2017的oral ，提出了DenseNet(Dense Convolutional Network)。此网络结构借鉴了Inception和ResNet的思想，效果非常好。最近几年网络结构一般沿着两个方向发展：要么更深（ResNet解决了网络更深梯度消失的问题）；要么更宽（GoogleNet的Inception）。本文则是从feature入手，将feature的极致利用达到更好的">
+<meta name="keywords" content="DenseNet,ResNet">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DenseNet论文总结">
+<meta property="og:url" content="https://zxth93.github.io/2017/11/17/DenseNet论文总结/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本篇文章是CVPR2017的oral ，提出了DenseNet(Dense Convolutional Network)。此网络结构借鉴了Inception和ResNet的思想，效果非常好。最近几年网络结构一般沿着两个方向发展：要么更深（ResNet解决了网络更深梯度消失的问题）；要么更宽（GoogleNet的Inception）。本文则是从feature入手，将feature的极致利用达到更好的">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/densenet1.png?raw=true">
+<meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/densenet2.png?raw=true">
+<meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/densenet3.png?raw=true">
+<meta property="og:image" content="http://img.blog.csdn.net/20170715081918000?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxNDM4MDE2NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170715081947337?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxNDM4MDE2NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-11-20T06:19:56.554Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="DenseNet论文总结">
+<meta name="twitter:description" content="本篇文章是CVPR2017的oral ，提出了DenseNet(Dense Convolutional Network)。此网络结构借鉴了Inception和ResNet的思想，效果非常好。最近几年网络结构一般沿着两个方向发展：要么更深（ResNet解决了网络更深梯度消失的问题）；要么更宽（GoogleNet的Inception）。本文则是从feature入手，将feature的极致利用达到更好的">
+<meta name="twitter:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/densenet1.png?raw=true">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://zxth93.github.io/categories/C/index.html">
+  <link rel="canonical" href="https://zxth93.github.io/2017/11/17/DenseNet论文总结/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -314,61 +325,165 @@
 </section>
 
   
-  <section class="main">
-  <article class="content article article-categories article-type-list" itemscope="">
+  
+<section class="main">
+  <div class="content">
+  <article id="post-DenseNet论文总结" class="article article-type-post" itemscope itemprop="blogPost">
+    
     <header class="article-header">
-      <h1 itemprop="name" class="hidden-xs">分类: C++</h1>
-      <p class="hidden-xs">共 1 篇文章</p>
-      <nav role="navigation" id="nav-main" class="okayNav">
-        <ul>
-          <li><a href="/categories">All</a></li>
-          
-          <li><a href="/categories/深度学习/">深度学习</a></li>
-          
-          <li><a href="/categories/数学知识/">数学知识</a></li>
-          
-          <li><a href="/categories/深度学习/机器学习/">机器学习</a></li>
-          
-          <li><a href="/categories/算法/">算法</a></li>
-          
-          <li><a href="/categories/机器学习/">机器学习</a></li>
-          
-          <li><a href="/categories/C/">C++</a></li>
-          
-        </ul>
-      </nav>
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      DenseNet论文总结
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="fa fa-calendar-check-o"></i>
+	<a href="/2017/11/17/DenseNet论文总结/" class="article-date">
+	  <time datetime="2017-11-17T03:32:19.000Z" itemprop="datePublished">2017-11-17</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/深度学习/">深度学习</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="fa fa-tag"></i>
+	<a class="article-tag-link" href="/tags/DenseNet/">DenseNet</a>, <a class="article-tag-link" href="/tags/ResNet/">ResNet</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="fa fa-eye" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			阅读<span id="busuanzi_value_page_pv">0</span>次
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2017/11/17/DenseNet论文总结/#comments" class="article-comment-link">评论</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs">字数统计: 955(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs">阅读时长: 4(分)</span>
+	
+
+      </div>
+      
     </header>
-    <!-- /header -->
-    <div class="article-body">
-      <div class="panel panel-default b-no">
-    <div class="panel-heading" role="tab">
-        <h4 class="panel-title">
-            <a data-toggle="collapse" href="#collapseC++" aria-expanded="true">
-              <i class="fa fa-folder-o text-active"></i><i class="fa fa-folder-open-o text"></i>
-              C++
-            </a>
-            <small class="text-muted">(Total 1 articles)</small>
-        </h4>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <p>本篇文章是<strong>CVPR2017的oral</strong> ，提出了DenseNet(Dense Convolutional Network)。此网络结构借鉴了Inception和ResNet的思想，效果非常好。最近几年网络结构一般沿着两个方向发展：要么更深（ResNet解决了网络更深梯度消失的问题）；要么更宽（GoogleNet的Inception）。本文则是<strong>从feature入手，将feature的极致利用达到更好的效果和更少的参数</strong> 。</p>
+<blockquote>
+<p><strong>DenseNet有以下优点：</strong></p>
+<p><strong>1. 减轻梯度消失</strong></p>
+<p><strong>2. 加强feature传递</strong></p>
+<p><strong>3. 更有效地利用feature</strong></p>
+<p><strong>4. 减少了参数</strong></p>
+</blockquote>
+<p>在深度学习网络中，随着网络深度的增加，梯度消失的问题愈发明显。针对此问题，目前提出了很多解决方案，比如：Highway Networks、ResNet、stochastic depth等。这些方法都有一个明显的特征：<strong>create short paths from early layers to later layers</strong> 。作者也是借鉴了这个思路，<strong>在保证网络中层与层之间最大程度的信息传输的前提下，直接将所有层两两相连</strong> 。如下图所示：</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/densenet1.png?raw=true" alt=""></p>
+<p>在传统卷积神经网络中，假设有L层，那么就会有L个连接。而<strong>在DensNet中，则会有L(L+1)/2个连接。DenseNet的一个优点是网络更窄，参数更少，很大一部分原因得益于这种dense block的设计，后面有提到在dense block中每个卷积层的输出feature map的数量都很小（小于100），而不是像其他网络一样动不动就几百上千的宽度。同时这种连接方式使得特征和梯度的传递更加有效，网络也就更加容易训练。原文的一句话：Each layer has direct access to the gradients from the loss function and the original input signal, leading to an implicit deep supervision.直接解释了为什么这个网络的效果会很好。前面提到过梯度消失问题在网络深度越深的时候越容易出现，原因就是输入信息和梯度信息在很多层之间传递导致的，而现在这种dense connection相当于每一层都直接连接input和loss，因此就可以减轻梯度消失现象，这样更深网络不是问题。</strong> 另外作者还观察到这种dense connection有<strong>正则化的效果</strong> ，因此对于过拟合有一定的抑制作用。</p>
+<p>Figure1给出了dense block的组成结构，下面给出DenseNet的整体结构，如下图所示：</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/densenet2.png?raw=true" alt=""></p>
+<p>Table1给出DenseNet在ImageNet上的详细设计，如下图所示：</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/densenet3.png?raw=true" alt=""></p>
+<p>这个表中的k=32，k=48中的k是growth rate，表示每个dense block中每层输出的feature map个数。为了避免网络变得很宽，作者都是采用较小的k，比如32这样，作者的实验也表明小的k可以有更好的效果。根据dense block的设计，后面几层可以得到前面所有层的输入，因此concat后的输入channel还是比较大的。<strong>另外这里每个dense block的3*3卷积前面都包含了一个1*1的卷积操作，就是所谓的bottleneck layer，目的是减少输入的feature map数量，既能降维减少计算量，又能融合各个通道的特征。</strong></p>
+<h4 id="resnet-vs-densenet"><a class="markdownIt-Anchor" href="#resnet-vs-densenet"></a> ResNet vs DenseNet</h4>
+<p>这两个网络有本质的区别，从它们的公式就可以看出：</p>
+<p>第一个公式是ResNet的。这里的l表示层，xl表示l层的输出，Hl表示一个非线性变换。所以对于ResNet而言，l层的输出是l-1层的输出加上对l-1层输出的非线性变换。</p>
+<p><img src="http://img.blog.csdn.net/20170715081918000?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxNDM4MDE2NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<p>第二个公式是DenseNet的。[x0,x1,…,xl-1]表示将0到l-1层的输出feature map做concatenation。concatenation是做通道的合并，就像Inception那样。而前面ResNet是做值的相加，通道数是不变的。<strong>Hl包括BN，ReLU和3*3的卷积</strong> 。</p>
+<p><img src="http://img.blog.csdn.net/20170715081947337?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxNDM4MDE2NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<blockquote>
+<p><strong>参考:</strong></p>
+<p>论文：<a href="https://arxiv.org/pdf/1608.06993.pdf" target="_blank" rel="external">《densely connected convolutinal networks》</a></p>
+</blockquote>
+
+      
     </div>
-    <div id="collapseC++" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingC++">
-        <div class="panel-body">
-            <div class="collection">
-              
-                
-<a href="/2017/10/10/虚函数的作用/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2017-10-10T10:37:50.000Z" itemprop="datePublished">2017-10-10</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> 虚函数的作用
-</a>
+    <footer class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://zxth93.github.io/2017/11/17/DenseNet论文总结/" title="DenseNet论文总结" target="_blank" rel="external">https://zxth93.github.io/2017/11/17/DenseNet论文总结/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
 
 
-              
-            </div>
-        </div>
-    </div>
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/zxth93" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/zxth93" target="_blank"><span class="text-dark">ciic</span><small class="ml-1x">A master student of ISCAS</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
 </div>
-    </div>
+
+
+    </footer>
   </article>
-   
+  
+    
+  <div id="comments">
+  	
+       
+    <div id="uyan_frame"></div>
+
+    
+  </div>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2017/11/10/LSTM和GRU比较/" title="LSTM和GRU比较">下一篇&nbsp;&nbsp;<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+  </div>
+  
+  </div>
+</nav>
+  
+
+
 </section>
 
   <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
@@ -401,11 +516,17 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
     
     
         
-<script defer src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script defer src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
     
+    
+        
+    
+    <script defer type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=[object Object]"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
     
     
 
