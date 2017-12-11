@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://zxth93.github.io/2017/11/20/LeetCode-binary-search%E7%B1%BB%E6%80%BB%E7%BB%93/</loc>
-    <lastmod>2017-11-21T12:03:03.200Z</lastmod>
+    <lastmod>2017-12-11T08:30:08.671Z</lastmod>
     <data>
         <display>
         <title>LeetCode-binary search类总结(会持续更新的...)</title>
@@ -17,6 +17,32 @@
            
              
               <breadCrumb title="算法" url="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://zxth93.github.io/2017/10/14/%E5%AF%B9%E6%AF%94AlexNet%E3%80%81VGG%E3%80%81GoogleNet%E5%92%8CResNet/</loc>
+    <lastmod>2017-12-11T07:49:29.927Z</lastmod>
+    <data>
+        <display>
+        <title>对比AlexNet、VGG、GoogleNet和ResNet</title>
+        <pubTime>2017-10-14T12:08:23.000Z</pubTime>
+        
+        <tag>AlexNet</tag>
+         
+        <tag>ResNet</tag>
+         
+        <tag>VGG</tag>
+         
+        <tag>GoogleNet</tag>
+         
+         
+           
+             
+              <breadCrumb title="深度学习" url="https://zxth93.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
           
         </display>
     </data>
@@ -370,32 +396,6 @@
           
              
               <breadCrumb title="机器学习" url="https://zxth93.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://zxth93.github.io/2017/10/14/%E5%AF%B9%E6%AF%94AlexNet%E3%80%81VGG%E3%80%81GoogleNet%E5%92%8CResNet/</loc>
-    <lastmod>2017-10-14T13:18:45.472Z</lastmod>
-    <data>
-        <display>
-        <title>对比AlexNet、VGG、GoogleNet和ResNet</title>
-        <pubTime>2017-10-14T12:08:23.000Z</pubTime>
-        
-        <tag>AlexNet</tag>
-         
-        <tag>ResNet</tag>
-         
-        <tag>VGG</tag>
-         
-        <tag>GoogleNet</tag>
-         
-         
-           
-             
-              <breadCrumb title="深度学习" url="https://zxth93.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
           
         </display>
     </data>
