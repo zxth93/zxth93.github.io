@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>https://zxth93.github.io/2017/12/29/LeetCode-dp%E7%B1%BB%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2017-12-29T09:24:28.110Z</lastmod>
+    <data>
+        <display>
+        <title>LeetCode-dp类总结</title>
+        <pubTime>2017-12-29T06:34:07.000Z</pubTime>
+        
+        <tag>Leetcode</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://zxth93.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://zxth93.github.io/2017/11/20/LeetCode-binary-search%E7%B1%BB%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2017-12-11T14:46:15.256Z</lastmod>
     <data>
@@ -31,9 +51,9 @@
         <title>对比AlexNet、VGG、GoogleNet和ResNet</title>
         <pubTime>2017-10-14T12:08:23.000Z</pubTime>
         
-        <tag>ResNet</tag>
-         
         <tag>AlexNet</tag>
+         
+        <tag>ResNet</tag>
          
         <tag>VGG</tag>
          
