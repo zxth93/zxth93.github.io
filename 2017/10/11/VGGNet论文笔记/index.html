@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>VGGNet论文笔记 | Blog</title>
+  <meta name="description" content="1 INTRODUCTIONVGGNet是由牛津大学和Google DeepMind团队提出的，他们在ILSVRC-2014定位任务夺得第一名，分类任务获得第二名（GoogleNet是分类任务的第一名）。VGGNet具有很好的泛化能力，在其他数据集上也有较好的表现。 卷积网络现在在大规模图像和视频识别中取得了巨大的成功，成为了计算机视觉领域的常用工具。AlexNet是具有重要意义的网络结构，有很多">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VGGNet论文笔记">
+<meta property="og:url" content="http://example.com/2017/10/11/VGGNet%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1 INTRODUCTIONVGGNet是由牛津大学和Google DeepMind团队提出的，他们在ILSVRC-2014定位任务夺得第一名，分类任务获得第二名（GoogleNet是分类任务的第一名）。VGGNet具有很好的泛化能力，在其他数据集上也有较好的表现。 卷积网络现在在大规模图像和视频识别中取得了巨大的成功，成为了计算机视觉领域的常用工具。AlexNet是具有重要意义的网络结构，有很多">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/vgg1.png?raw=true">
+<meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/vgg2.png?raw=true">
+<meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/vgg3.png?raw=true">
+<meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/vgg4.png?raw=true">
+<meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/vgg5.png?raw=true">
+<meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/vgg6.png?raw=true">
+<meta property="article:published_time" content="2017-10-11T10:47:47.000Z">
+<meta property="article:modified_time" content="2022-05-03T13:07:39.859Z">
+<meta property="article:author" content="zxth93">
+<meta property="article:tag" content="VGGNet">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/vgg1.png?raw=true">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://example.com/2017/10/11/VGGNet%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/zxth93" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">ciic</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">A master student of ISCAS</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zxth93" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/u/2804936165" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+		<span id="busuanzi_container_site_pv">
+                您好，您是第<span id="busuanzi_value_site_uv"></span>位访客!
+		</span>
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/">数学知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><span class="category-list-count">15</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AE/" rel="tag">AE</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AlexNet/" rel="tag">AlexNet</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DenseNet/" rel="tag">DenseNet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GBDT/" rel="tag">GBDT</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GRU/" rel="tag">GRU</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GoogleNet/" rel="tag">GoogleNet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Keras/" rel="tag">Keras</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LSTM/" rel="tag">LSTM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ResNet/" rel="tag">ResNet</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sequential/" rel="tag">Sequential</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VGG/" rel="tag">VGG</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VGGNet/" rel="tag">VGGNet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XGBoost/" rel="tag">XGBoost</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/" rel="tag">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tips/" rel="tag">tips</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BC%98%E5%8C%96/" rel="tag">优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E5%8C%96/" rel="tag">正则化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%99%9A%E5%87%BD%E6%95%B0/" rel="tag">虚函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%BF%E9%87%8C%E5%A4%A9%E6%B1%A0%E5%A4%A7%E8%B5%9B/" rel="tag">阿里天池大赛</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/AE/" style="font-size: 13px;">AE</a> <a href="/tags/AlexNet/" style="font-size: 13.33px;">AlexNet</a> <a href="/tags/CNN/" style="font-size: 13px;">CNN</a> <a href="/tags/DenseNet/" style="font-size: 13px;">DenseNet</a> <a href="/tags/GBDT/" style="font-size: 13px;">GBDT</a> <a href="/tags/GRU/" style="font-size: 13px;">GRU</a> <a href="/tags/GoogleNet/" style="font-size: 13px;">GoogleNet</a> <a href="/tags/Keras/" style="font-size: 13.67px;">Keras</a> <a href="/tags/LSTM/" style="font-size: 13px;">LSTM</a> <a href="/tags/Leetcode/" style="font-size: 14px;">Leetcode</a> <a href="/tags/RNN/" style="font-size: 13px;">RNN</a> <a href="/tags/ResNet/" style="font-size: 13.33px;">ResNet</a> <a href="/tags/Sequential/" style="font-size: 13px;">Sequential</a> <a href="/tags/VGG/" style="font-size: 13px;">VGG</a> <a href="/tags/VGGNet/" style="font-size: 13px;">VGGNet</a> <a href="/tags/XGBoost/" style="font-size: 13px;">XGBoost</a> <a href="/tags/array/" style="font-size: 13px;">array</a> <a href="/tags/tips/" style="font-size: 13px;">tips</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 13px;">优化</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 13px;">信息论</a> <a href="/tags/%E6%AD%A3%E5%88%99%E5%8C%96/" style="font-size: 13px;">正则化</a> <a href="/tags/%E8%99%9A%E5%87%BD%E6%95%B0/" style="font-size: 13px;">虚函数</a> <a href="/tags/%E9%98%BF%E9%87%8C%E5%A4%A9%E6%B1%A0%E5%A4%A7%E8%B5%9B/" style="font-size: 13px;">阿里天池大赛</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/05/03/hello-world/" class="title">Hello World</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-05-03T13:06:12.269Z" itemprop="datePublished">2022-05-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+              </p>
+              <p class="item-title">
+                <a href="/2018/03/30/LeetCode-backtrack%E7%B1%BB%E6%80%BB%E7%BB%93/" class="title">LeetCode-backtrack类总结</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2018-03-30T13:02:21.000Z" itemprop="datePublished">2018-03-30</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/12/29/LeetCode-dp%E7%B1%BB%E6%80%BB%E7%BB%93/" class="title">LeetCode-dp类总结</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-12-29T06:34:07.000Z" itemprop="datePublished">2017-12-29</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/11/20/LeetCode-binary-search%E7%B1%BB%E6%80%BB%E7%BB%93/" class="title">LeetCode-binary search类总结(会持续更新的...)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-11-20T10:07:47.000Z" itemprop="datePublished">2017-11-20</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/11/17/DenseNet%E8%AE%BA%E6%96%87%E6%80%BB%E7%BB%93/" class="title">DenseNet论文总结</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-11-17T03:32:19.000Z" itemprop="datePublished">2017-11-17</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-VGGNet论文笔记" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      VGGNet论文笔记
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2017/10/11/VGGNet%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="article-date">
+	  <time datetime="2017-10-11T10:47:47.000Z" itemprop="datePublished">2017-10-11</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/VGGNet/" rel="tag">VGGNet</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2017/10/11/VGGNet%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/#comments" class="article-comment-link">评论</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 1.6k(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 6(分)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h3 id="1-INTRODUCTION"><a href="#1-INTRODUCTION" class="headerlink" title="1 INTRODUCTION"></a>1 INTRODUCTION</h3><p>VGGNet是由牛津大学和Google DeepMind团队提出的，他们在ILSVRC-2014定位任务夺得第一名，分类任务获得第二名（GoogleNet是分类任务的第一名）。VGGNet具有很好的泛化能力，在其他数据集上也有较好的表现。</p>
+<p>卷积网络现在在大规模图像和视频识别中取得了巨大的成功，成为了计算机视觉领域的常用工具。AlexNet是具有重要意义的网络结构，有很多人企图改进ALexNet，比如：ZFNet。ZFNet在第一卷积层使用更小的<strong>卷积</strong>(receptive window size)和更小的<strong>步长</strong>(stride)，而VGGNet强调了卷积神经网络设计中另一个重要方面—深度。并且VGGNet在所有层使用3*3的卷积核。</p>
+<h3 id="2-CONVNET-CONFIGURATIONS"><a href="#2-CONVNET-CONFIGURATIONS" class="headerlink" title="2 CONVNET CONFIGURATIONS"></a>2 CONVNET CONFIGURATIONS</h3><p>为了公平测试深度带来的性能提升，VGGNet所有层的配置都遵循了同样的原则。</p>
+<h4 id="2-1-ARCHITECHTURE"><a href="#2-1-ARCHITECHTURE" class="headerlink" title="2.1 ARCHITECHTURE"></a>2.1 ARCHITECHTURE</h4><ul>
+<li>唯一的<strong>预处理</strong> ：训练集中的每个像素上减去RGB的<strong>均值</strong> ；</li>
+<li>训练时，<strong>输入</strong>是固定大小的224 * 224 RGB图像；</li>
+<li>使用了非常小的<strong>感受野</strong>(receptive field)：3 * 3，甚至有的地方使用1 * 1的卷积,这种1 * 1的卷积可以被看做是对输入通道(input channel)的线性变换，卷积步长是1个像素；</li>
+<li><strong>池化层</strong> 采用max-pooling,共有5层，max-pooling的窗口是2 * 2，步长是2；</li>
+<li>一系列卷积层之后跟着<strong>全连接层</strong>(fully-connected layers)。前两个全连接层均有4096个通道。第三个全连接层有1000个通道，用来分类。所有网络的全连接层配置相同。</li>
+<li>最后一层是soft-max层</li>
+</ul>
+<blockquote>
+<p><strong>注：</strong> 所有隐层使用激活函数是<strong>ReLu</strong> .VGGNet不使用局部响应标准化(LRN)，这种标准化并不能在ILSVRC数据集上提升性能，却导致更多的内存消耗和计算时间。</p>
+</blockquote>
+<h4 id="2-2-CONFIGURATIONS"><a href="#2-2-CONFIGURATIONS" class="headerlink" title="2.2 CONFIGURATIONS"></a>2.2 CONFIGURATIONS</h4><p>Table1给出了所有的网络配置</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/vgg1.png?raw=true"></p>
+<h4 id="2-3-DISCUSSION"><a href="#2-3-DISCUSSION" class="headerlink" title="2.3 DISCUSSION"></a>2.3 DISCUSSION</h4><p>相比于AlexNet和ZFNet，VGGNet在网络中使用<strong>很小的卷积</strong>。AlexNet和ZFNet在第一个卷积层的卷积分别是11 * 11 with stride 4和7 * 7 with stride 2。</p>
+<p>VGGNet使用三个3 * 3卷积而不是一个7 * 7的卷积的优势有两点：一，<strong>包含三个ReLu层而不是一个</strong>，使决策函数更有判别性；二，<strong>减少了参数</strong>。比如输入输出都是C个通道，使用3 * 3的3个卷积层需要3（3 * 3 * C * C）=27 * C * C,使用7 * 7的1个卷积层需要7 * 7 * C * C=49C * C。这可看为是对7 * 7卷积施加一种正则化，使它分解为3个3 * 3的卷积。</p>
+<p><strong>1*1卷积</strong>层主要是为了增加决策函数的<strong>非线性</strong>，而不影响卷积层的感受野。虽然1 * 1的卷积操作是线性的，但是ReLu增加了非线性。</p>
+<p>GoogleNet采用了更深更复杂的网络结构（22层），多种卷积核（1 * 1，3 * 3， 5 * 5），并且在第一层中特征比VGGNet更少。</p>
+<h3 id="3-CLASSIFICATION-FRAMEWORK"><a href="#3-CLASSIFICATION-FRAMEWORK" class="headerlink" title="3 CLASSIFICATION FRAMEWORK"></a>3 CLASSIFICATION FRAMEWORK</h3><h4 id="3-1-TRAINING"><a href="#3-1-TRAINING" class="headerlink" title="3.1 TRAINING"></a>3.1 TRAINING</h4><ul>
+<li>优化函数：SGD+momentum（0.9）</li>
+<li>batch size：256</li>
+<li>正则：采用L2正则化，weight decay是5e-4；dropout在前两个全连接层后，p=0.5。</li>
+<li>参数初始化：随机初始化，权重w从N(0，0.01)中采样，偏差bias初始化为0。</li>
+<li>为了获得224*224的输入图像，要在每个sgd迭代中对每张重新缩放(rescale)的图像随机裁剪。为了增强数据集，裁剪的图像还要随机水平翻转和RGB色彩偏移。</li>
+</ul>
+<blockquote>
+<p>尽管相比于AlexNet网络更深，参数更多，但是我们推测VGGNet在更少的周期内就能收敛，原因有二：一，更大的深度和更小的卷积带来<strong>隐式的正则化</strong>；二，一些层的预训练。</p>
+</blockquote>
+<h4 id="3-2-TESTING"><a href="#3-2-TESTING" class="headerlink" title="3.2 TESTING"></a>3.2 TESTING</h4><p>测试阶段步骤：</p>
+<ol>
+<li>对输入图像各向同性地重缩放到一个预定义的最小图像边的尺寸Q；</li>
+<li>网络密集地应用在重缩放后的测试图像上。也就是说全连接层转化为卷积层（第一个全连接层转化为7 * 7的卷积层，后两个全连接层转化为1 * 1的卷积层） ，然后将转化后的全连接层应用在整张图像上。结果就是一个类别分数图(class score map)，其通道数等于类别数量，依赖于图像尺寸，具有不同的空间分辨率；</li>
+<li>为了获得固定尺寸的类别分数向量(class score vector)，对class score map进行空间平均化处理(sum-pooled)。</li>
+</ol>
+<h4 id="3-3-IMPLEMENTATION-DETAILS"><a href="#3-3-IMPLEMENTATION-DETAILS" class="headerlink" title="3.3 IMPLEMENTATION DETAILS"></a>3.3 IMPLEMENTATION DETAILS</h4><p>基于C++ Caffe, 在4个Titan GPU上训练了2-3周。</p>
+<h3 id="4-CLASSIFICATION-EXPERIMENTS"><a href="#4-CLASSIFICATION-EXPERIMENTS" class="headerlink" title="4 CLASSIFICATION EXPERIMENTS"></a>4 CLASSIFICATION EXPERIMENTS</h3><h4 id="4-1-SINGLE-SCALE-EVALUATION"><a href="#4-1-SINGLE-SCALE-EVALUATION" class="headerlink" title="4.1 SINGLE SCALE EVALUATION"></a>4.1 SINGLE SCALE EVALUATION</h4><p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/vgg2.png?raw=true"></p>
+<p>通过分析Table3结果，得出如下结论：</p>
+<ol>
+<li>我们发现使用local response normalization(A-LRN)并不能改善A网络性能。</li>
+<li>分类误差随着深度增加而降低。</li>
+<li>在训练时采用图像尺度抖动(scale jittering)可以改善图像分类效果。</li>
+</ol>
+<h4 id="4-2-MULTI-SCALE-EVALUATION"><a href="#4-2-MULTI-SCALE-EVALUATION" class="headerlink" title="4.2 MULTI-SCALE EVALUATION"></a>4.2 MULTI-SCALE EVALUATION</h4><p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/vgg3.png?raw=true"></p>
+<p>通过分析Table4结果，得出如下结论：</p>
+<ol>
+<li>相对于单一尺度评估，多尺度评估提高了分类精度。 </li>
+<li>在训练时采用图像尺度抖动(scale jittering)可以改善图像分类效果。</li>
+</ol>
+<h4 id="4-3-MULTI-CROP-EVALUATION"><a href="#4-3-MULTI-CROP-EVALUATION" class="headerlink" title="4.3 MULTI-CROP EVALUATION"></a>4.3 MULTI-CROP EVALUATION</h4><p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/vgg4.png?raw=true"></p>
+<p>多裁剪(multi-crop)评估比起密集(dense)评估，效果更好。而且两者具有互补作用，结合两种方式，效果更好。</p>
+<h4 id="4-4-CONVNET-FUSION"><a href="#4-4-CONVNET-FUSION" class="headerlink" title="4.4 CONVNET FUSION"></a>4.4 CONVNET FUSION</h4><p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/vgg5.png?raw=true"></p>
+<p>通过分析Table6结果，得出如下结论：</p>
+<ol>
+<li>如果结合多个卷积网络的sofamax输出，分类效果会更好。 </li>
+<li>在ILSVRC-2014中，我们结合7个网络，实现测试误差7.3%。之后，结合最好的两个模型(D&amp;E)并使用密集评估(dense evaluation)，测试误差降低到7.0%，而使用密集评估和多裁剪评估相结合，测试误差为6.8%。最好的单一模型验证误差为7.1%。 </li>
+</ol>
+<h4 id="4-5-COMPARISON-WITH-THE-STATE-OF-THE-ART"><a href="#4-5-COMPARISON-WITH-THE-STATE-OF-THE-ART" class="headerlink" title="4.5 COMPARISON WITH THE STATE OF THE ART"></a>4.5 COMPARISON WITH THE STATE OF THE ART</h4><p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/vgg6.png?raw=true"></p>
+<p>与ILSVRC-2012和ILSVRC-2013最好结果相比，VGGNet优势很大。与GoogLeNet对比，虽然7个网络集成效果不如GoogLeNet，但是单一网络测试误差好一些，而且只用2个网络集成效果与GoogLeNet的7网络集成差不多。</p>
+<h3 id="5-CONCLUSION"><a href="#5-CONCLUSION" class="headerlink" title="5 CONCLUSION"></a>5 CONCLUSION</h3><p>我们将卷积网络深度设置为19，相比于其他网络，VGGNet效果更好，并且在其他不同的任务或数据集上有很好的泛化能力。</p>
+<blockquote>
+<p><strong>参考</strong></p>
+<p>论文原文：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1409.1556.pdf">VERY DEEP CONVOLUTIONAL NETWORKS FOR LARGE-SCALE IMAGE RECOGNITION</a></p>
+<p><a target="_blank" rel="noopener" href="http://blog.csdn.net/muyiyushan/article/details/62895202">http://blog.csdn.net/muyiyushan/article/details/62895202</a></p>
+</blockquote>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2017/10/11/VGGNet%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" title="VGGNet论文笔记" target="_blank" rel="external">http://example.com/2017/10/11/VGGNet论文笔记/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/zxth93" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/zxth93" target="_blank"><span class="text-dark">ciic</span><small class="ml-1x">A master student of ISCAS</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2017/10/13/AlexNet%E8%AE%BA%E6%96%87%E6%80%BB%E7%BB%93/" title="AlexNet论文总结"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2017/10/10/%E8%99%9A%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%9C%E7%94%A8/" title="虚函数的作用"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zxth93" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/u/2804936165" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

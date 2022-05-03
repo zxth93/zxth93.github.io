@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>循环和递归网络学习笔记 | Blog</title>
+  <meta name="description" content="循环神经网络（recurrent neural network）是一类用于处理序列数据的神经网络；就像卷积网络是专门处理网格化数据的神经网络。循环神经网络共享参数方式与卷积网络是不同的，它的输出项是前一项的函数，即输出的每一项对先前的输出应用相同的更新规则而产生。 1. 展开计算图本质上任何涉及循环的函数都可以被认为是一个循环神经网络，比如下面的表达式：  典型的RNN会增加额外的架构特性，如读取">
+<meta property="og:type" content="article">
+<meta property="og:title" content="循环和递归网络学习笔记">
+<meta property="og:url" content="http://example.com/2017/09/16/%E5%BE%AA%E7%8E%AF%E5%92%8C%E9%80%92%E5%BD%92%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="循环神经网络（recurrent neural network）是一类用于处理序列数据的神经网络；就像卷积网络是专门处理网格化数据的神经网络。循环神经网络共享参数方式与卷积网络是不同的，它的输出项是前一项的函数，即输出的每一项对先前的输出应用相同的更新规则而产生。 1. 展开计算图本质上任何涉及循环的函数都可以被认为是一个循环神经网络，比如下面的表达式：  典型的RNN会增加额外的架构特性，如读取">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/rnn_1.png?raw=true">
+<meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/rnn_unfold.png?raw=true">
+<meta property="og:image" content="http://xiaosheng.me/img/article/article_68_3.png">
+<meta property="og:image" content="http://xiaosheng.me/img/article/article_68_4.png">
+<meta property="og:image" content="http://xiaosheng.me/img/article/article_68_5.png">
+<meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/rnn_update.png?raw=true">
+<meta property="og:image" content="http://xiaosheng.me/img/article/article_73_1.png">
+<meta property="og:image" content="http://xiaosheng.me/img/article/article_73_2.png">
+<meta property="og:image" content="http://xiaosheng.me/img/article/article_73_3.png">
+<meta property="og:image" content="http://xiaosheng.me/img/article/article_73_4.png">
+<meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/LSTM.png?raw=true">
+<meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/lstm2.png?raw=true">
+<meta property="og:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/lstm3.png?raw=true">
+<meta property="og:image" content="http://xiaosheng.me/img/article/article_74_2.png">
+<meta property="article:published_time" content="2017-09-16T06:46:41.000Z">
+<meta property="article:modified_time" content="2022-05-03T13:07:59.555Z">
+<meta property="article:author" content="zxth93">
+<meta property="article:tag" content="RNN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/rnn_1.png?raw=true">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://example.com/2017/09/16/%E5%BE%AA%E7%8E%AF%E5%92%8C%E9%80%92%E5%BD%92%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/zxth93" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">ciic</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">A master student of ISCAS</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zxth93" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/u/2804936165" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+		<span id="busuanzi_container_site_pv">
+                您好，您是第<span id="busuanzi_value_site_uv"></span>位访客!
+		</span>
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/">数学知识</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><span class="category-list-count">15</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AE/" rel="tag">AE</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AlexNet/" rel="tag">AlexNet</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DenseNet/" rel="tag">DenseNet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GBDT/" rel="tag">GBDT</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GRU/" rel="tag">GRU</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GoogleNet/" rel="tag">GoogleNet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Keras/" rel="tag">Keras</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LSTM/" rel="tag">LSTM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ResNet/" rel="tag">ResNet</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sequential/" rel="tag">Sequential</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VGG/" rel="tag">VGG</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VGGNet/" rel="tag">VGGNet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XGBoost/" rel="tag">XGBoost</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/" rel="tag">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tips/" rel="tag">tips</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BC%98%E5%8C%96/" rel="tag">优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E5%8C%96/" rel="tag">正则化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%99%9A%E5%87%BD%E6%95%B0/" rel="tag">虚函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%BF%E9%87%8C%E5%A4%A9%E6%B1%A0%E5%A4%A7%E8%B5%9B/" rel="tag">阿里天池大赛</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/AE/" style="font-size: 13px;">AE</a> <a href="/tags/AlexNet/" style="font-size: 13.33px;">AlexNet</a> <a href="/tags/CNN/" style="font-size: 13px;">CNN</a> <a href="/tags/DenseNet/" style="font-size: 13px;">DenseNet</a> <a href="/tags/GBDT/" style="font-size: 13px;">GBDT</a> <a href="/tags/GRU/" style="font-size: 13px;">GRU</a> <a href="/tags/GoogleNet/" style="font-size: 13px;">GoogleNet</a> <a href="/tags/Keras/" style="font-size: 13.67px;">Keras</a> <a href="/tags/LSTM/" style="font-size: 13px;">LSTM</a> <a href="/tags/Leetcode/" style="font-size: 14px;">Leetcode</a> <a href="/tags/RNN/" style="font-size: 13px;">RNN</a> <a href="/tags/ResNet/" style="font-size: 13.33px;">ResNet</a> <a href="/tags/Sequential/" style="font-size: 13px;">Sequential</a> <a href="/tags/VGG/" style="font-size: 13px;">VGG</a> <a href="/tags/VGGNet/" style="font-size: 13px;">VGGNet</a> <a href="/tags/XGBoost/" style="font-size: 13px;">XGBoost</a> <a href="/tags/array/" style="font-size: 13px;">array</a> <a href="/tags/tips/" style="font-size: 13px;">tips</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 13px;">优化</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 13px;">信息论</a> <a href="/tags/%E6%AD%A3%E5%88%99%E5%8C%96/" style="font-size: 13px;">正则化</a> <a href="/tags/%E8%99%9A%E5%87%BD%E6%95%B0/" style="font-size: 13px;">虚函数</a> <a href="/tags/%E9%98%BF%E9%87%8C%E5%A4%A9%E6%B1%A0%E5%A4%A7%E8%B5%9B/" style="font-size: 13px;">阿里天池大赛</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/05/03/hello-world/" class="title">Hello World</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-05-03T13:06:12.269Z" itemprop="datePublished">2022-05-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+              </p>
+              <p class="item-title">
+                <a href="/2018/03/30/LeetCode-backtrack%E7%B1%BB%E6%80%BB%E7%BB%93/" class="title">LeetCode-backtrack类总结</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2018-03-30T13:02:21.000Z" itemprop="datePublished">2018-03-30</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/12/29/LeetCode-dp%E7%B1%BB%E6%80%BB%E7%BB%93/" class="title">LeetCode-dp类总结</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-12-29T06:34:07.000Z" itemprop="datePublished">2017-12-29</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/11/20/LeetCode-binary-search%E7%B1%BB%E6%80%BB%E7%BB%93/" class="title">LeetCode-binary search类总结(会持续更新的...)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-11-20T10:07:47.000Z" itemprop="datePublished">2017-11-20</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/11/17/DenseNet%E8%AE%BA%E6%96%87%E6%80%BB%E7%BB%93/" class="title">DenseNet论文总结</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-11-17T03:32:19.000Z" itemprop="datePublished">2017-11-17</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-循环和递归网络学习笔记" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      循环和递归网络学习笔记
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2017/09/16/%E5%BE%AA%E7%8E%AF%E5%92%8C%E9%80%92%E5%BD%92%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+	  <time datetime="2017-09-16T06:46:41.000Z" itemprop="datePublished">2017-09-16</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/RNN/" rel="tag">RNN</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2017/09/16/%E5%BE%AA%E7%8E%AF%E5%92%8C%E9%80%92%E5%BD%92%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#comments" class="article-comment-link">评论</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 4.5k(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 15(分)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>循环神经网络（recurrent neural network）是一类用于处理序列数据的神经网络；就像卷积网络是专门处理网格化数据的神经网络。循环神经网络共享参数方式与卷积网络是不同的，它的输出项是前一项的函数，即输出的每一项对先前的输出应用相同的更新规则而产生。</p>
+<h2 id="1-展开计算图"><a href="#1-展开计算图" class="headerlink" title="1. 展开计算图"></a>1. 展开计算图</h2><p>本质上任何涉及循环的函数都可以被认为是一个循环神经网络，比如下面的表达式：</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/rnn_1.png?raw=true"></p>
+<p>典型的RNN会增加额外的架构特性，如读取状态信息h进行预测的输出层，下图是其展开的结构：</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/rnn_unfold.png?raw=true"></p>
+<p>展开过程带来了两个主要优点：</p>
+<ol>
+<li>无论序列的长度，学成的模型始终具有相同的输入大小，因为它指定的是从一种状态到另一种状态的转移，而不是在可变长度的历史状态上操作；</li>
+<li>我们可以在每个时间步使用相同参数的相同转移函数f。</li>
+</ol>
+<h2 id="2-循环神经网络"><a href="#2-循环神经网络" class="headerlink" title="2. 循环神经网络"></a>2. 循环神经网络</h2><p>基于上面所说的图展开和参数共享的思想，我们可以设计各种循环神经网络。循环神经网络中一些重要的设计模式包括以下几种：</p>
+<ul>
+<li>每个时间步都有输出，并且隐藏单元之间有循环连接的循环网络，如图 A 所示。</li>
+</ul>
+<p><img src="http://xiaosheng.me/img/article/article_68_3.png" alt="**图A**"></p>
+<p><strong>图A</strong></p>
+<ul>
+<li>每个时间步都产生一个输出，只有当前时刻的输出到下个时刻的隐藏单元之间有循环连接的循环网络，如图 B 所示。</li>
+</ul>
+<p><img src="http://xiaosheng.me/img/article/article_68_4.png"></p>
+<p><strong>图B</strong></p>
+<ul>
+<li>隐藏单元之间存在循环连接，但读取整个序列后产生单个输出的循环网络，如图 C 所示。</li>
+</ul>
+<p><img src="http://xiaosheng.me/img/article/article_68_5.png"></p>
+<p><strong>图C</strong></p>
+<p>现在我们研究<strong>图A</strong> 中 <strong>RNN</strong> 的<strong>前向传播公式</strong>，假设隐藏单元的激活函数为双曲正切激活函数，并且输出是离散的，如用于预测词或字符的<strong>RNN</strong>，表示离散变量的常规方式是把输出<strong>o</strong> 作为每个离散变量可能值的非标准化对数概率。然后可以应用 <strong>softmax</strong>函数后续处理，获得标准化后概率的输出向量 。更新方程如下：</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/rnn_update.png?raw=true"></p>
+<p>这个循环网络将一个输入序列映射到相同长度的输出序列，与x序列配对的y的总损失就是所有时间步的损失之和。</p>
+<h2 id="3-双向RNN"><a href="#3-双向RNN" class="headerlink" title="3. 双向RNN"></a>3. 双向RNN</h2><p>目前为止我们考虑的所有循环神经网络有一个“因果”结构，意味着在时刻t的状态只能从过去的序列以及当前的输入捕获信息。然而，在许多应用中，我们要输出的预测可能依赖于整个输入序列。双向循环神经网络为满足这种需要而被发明的。顾名思义，双向 RNN 结合时间上从序列起点开始移动的 RNN 和另一个时间上从序列末尾开始移动的 RNN。典型的双向 RNN 如下图所示：</p>
+<p><img src="http://xiaosheng.me/img/article/article_73_1.png"></p>
+<h2 id="4-基于编码-解码的序列到序列结构"><a href="#4-基于编码-解码的序列到序列结构" class="headerlink" title="4. 基于编码-解码的序列到序列结构"></a>4. 基于编码-解码的序列到序列结构</h2><p>本节主要讨论如何训练RNN，使其将输入序列映射到不一定等长的输出序列。</p>
+<p><strong>编码-解码或序列到序列架构</strong>的想法非常简单：</p>
+<ol>
+<li><strong>编码器(encoder)<strong>或</strong>读取器(reader)<strong>或</strong>输入(input)</strong> RNN 处理输入序列，输出上下文 C（通常是最终隐藏状态的简单函数）。</li>
+<li><strong>解码器(decoder)<strong>或</strong>写入器(writer)<strong>或</strong>输出(output)</strong> RNN 则以固定长度的向量为条件，产生输出序列 Y=(y(1),⋯,y(ny))Y=(y(1),⋯,y(ny))。</li>
+</ol>
+<p>这种架构的创新之处在于长度 nx和 ny可以彼此不同，而之前的架构约束 nx=ny=τ。编码-解码或序列到序列架构如下图所示：</p>
+<p><img src="http://xiaosheng.me/img/article/article_73_2.png"></p>
+<p>编码-解码或序列到序列的 RNN 架构由读取输入序列的编码器 RNN 以及生成输出序列（或计算给定输出序列的概率）的解码器 RNN 组成。编码器 RNN 的最终隐藏状态用于计算一般为固定大小的上下文变量 C，C 表示输入序列的语义概要并且作为解码器 RNN 的输入。</p>
+<p>此架构的一个明显不足是，编码器 RNN输出的上下文 C 的维度太小而难以适当地概括一个长序列。有人提出让 C成为可变长度的序列，而不是一个固定大小的向量，他们还引入了将序列 C 的元素和输出序列的元素相关联的**注意力机制(attention mechanism)**，这在《深度学习之自然语言处理》中会详细介绍。</p>
+<h2 id="5-深度循环网络"><a href="#5-深度循环网络" class="headerlink" title="5. 深度循环网络"></a>5. 深度循环网络</h2><p>大多数 RNN 中的计算可以分解成三块参数及其相关的变换：</p>
+<ol>
+<li>从输入到隐藏状态</li>
+<li>从前一隐藏状态到下一隐藏状态</li>
+<li>从隐藏状态到输出</li>
+</ol>
+<p>实验证据表明在这些操作中引入深度会有利，与我们需要足够的深度以执行所需映射的想法一致。Graves 第一个展示了将 RNNRNN 的状态分为多层的显著好处，如下图所示：</p>
+<p><img src="http://xiaosheng.me/img/article/article_73_3.png"></p>
+<p>循环神经网络可以通过许多方式变得更深：(a) 隐藏循环状态可以被分解为具有层次的组。(b) 可以向输入到隐藏，隐藏到隐藏以及隐藏到输出的部分引入更深的计算 (如 MLP)。这可以延长链接不同时间步的最短路径。(c) 可以引入跳跃连接来缓解路径延长的效应。</p>
+<p>我们可以认为，在 (a) 所示层次结构中较低的层起到了将原始输入转化为对更高层的隐藏状态更合适表示的作用。上图 (b) 更进一步提出在上述三个块中各使用一个单独的 MLP（可能是深度的），考虑表示容量，我们建议在这三个步中都分配足够的容量，但增加深度可能会因为优化困难而损害学习效果。在一般情况下，更容易优化较浅的架构，加入 (b) 的额外深度导致从时间步 t 的变量到时间步 t+1 的最短路径变得更长。例如，如果具有单个隐藏层的 MLP 被用于状态到状态的转换，那么与之前的图相比，我们就会加倍任何两个不同时间步变量之间最短路径的长度。然而 Pascanu 认为，在隐藏到隐藏的路径中引入跳跃连接可以缓和这个问题，如 (c) 所示。</p>
+<h2 id="6-递归神经网络"><a href="#6-递归神经网络" class="headerlink" title="6. 递归神经网络"></a>6. 递归神经网络</h2><p>递归神经网络代表循环网络的另一个扩展， 它被构造为深的树状结构而不是 RNN 的链状结构，因此是不同类型的计算图。递归网络的典型计算图如下图所示：</p>
+<p><img src="http://xiaosheng.me/img/article/article_73_4.png"></p>
+<p>递归网络将循环网络的链状计算图推广到树状计算图。可变大小的序列 x(1),x(2),⋯,x(t) 可以通过固定的参数集合（权重矩阵 U,V,W）映射到固定大小的表示（输出 o）。</p>
+<p>递归网络的一个明显优势是，对于具有相同长度 τ 的序列，深度（通过非线性操作的组合数量来衡量）可以急剧地从 τ 减小为 O(logτ)，这可能有助于解决长期依赖。一个悬而未决的问题是如何以最佳的方式构造树。一种选择是使用不依赖于数据的树结构，如平衡二叉树。理想的情况下，人们希望学习器自行发现和推断适合于任意给定输入的树结构。</p>
+<h2 id="7-长期依赖的挑战"><a href="#7-长期依赖的挑战" class="headerlink" title="7. 长期依赖的挑战"></a>7. 长期依赖的挑战</h2><p>在前馈网络或循环网络中，当计算图变得极深时，神经网络优化算法会面临的一个难题就是长期依赖问题——经过许多阶段传播后的梯度倾向于消失（大部分情况）或爆炸（很少，但对优化过程影响很大），即：变深的结构使模型丧失了学习到先前信息的能力，让优化变得极其困难。因为循环网络要在很长时间序列的各个时刻重复应用相同操作来构建非常深的计算图，并且模型参数共享，这使问题更加凸显。</p>
+<p>有人可能会希望通过简单地停留在梯度不消失或爆炸的参数空间来避免这个问题。不幸的是，为了储存记忆并对小扰动具有鲁棒性，RNN 必须进入参数空间中的梯度消失区域。具体来说，每当模型能够表示长期依赖时，长期相互作用的梯度幅值就会变得指数小（相比短期相互作用的梯度幅值）。这并不意味着这是不可能学习的，由于长期依赖关系的信号很容易被短期相关性产生的最小波动隐藏，因而学习长期依赖可能需要很长的时间。实验表明，当我们增加了需要捕获的依赖关系的跨度， 基于梯度的优化变得越来越困难，SGD 在长度仅为 10 或 20 的序列上成功训练传统 RNN 的概率迅速变为 0。</p>
+<h2 id="8-渗漏单元和其他多时间尺度的策略"><a href="#8-渗漏单元和其他多时间尺度的策略" class="headerlink" title="8. 渗漏单元和其他多时间尺度的策略"></a>8. 渗漏单元和其他多时间尺度的策略</h2><p>处理长期依赖的一种方法是设计工作在多个时间尺度的模型，使模型的某些部分在细粒度时间尺度上操作并能处理小细节，而其他部分在粗时间尺度上操作并能把遥远过去的信息更有效地传递过来。</p>
+<ul>
+<li><p><strong>时间维度的跳跃连接</strong></p>
+<p>增加从遥远过去的变量到目前变量的直接连接是得到粗时间尺度的一种方法。在普通的循环网络中，循环从时刻 t 的单元连接到时刻 t+1 单元。</p>
+<p>正如之前所说，梯度可能关于时间步数呈指数消失或爆炸。有人引入了 d 延时的循环连接以减轻这个问题。现在导数指数减小的速度与 τ/d 相关而不是 τ。既然同时存在延迟和单步连接，梯度仍可能成 t 指数爆炸。这允许学习算法捕获更长的依赖性，但不是所有的长期依赖都能在这种方式下良好地表示。</p>
+</li>
+<li><p><strong>渗漏单元和一系列不同时间尺度</strong></p>
+<p>获得 导数乘积接近1 的另一方式是设置线性自连接单元，并且这些连接的权重接近1。</p>
+<p>我们对某些 vv 值应用更新 μ(t)←αμ(t−1)+(1−α)v(t) 累积一个滑动平均值 μ(t)， 其中 α 是一个从 μ(t−1) 到 μ(t) 线性自连接的例子。当 α 接近 11 时，滑动平均值能记住过去很长一段时间的信息，而当 α 接近 00，关于过去的信息被迅速丢弃。线性自连接的隐藏单元可以模拟滑动平均的行为，这种隐藏单元称为**渗漏单元(leaky unit)**。</p>
+<p>d 时间步的跳跃连接可以确保单元总能被先前的 d 个时间步值影响。使用权重接近 1 的线性自连接是确保该单元可以访问过去值的不同方式。线性自连接通过调节实值 α 更平滑灵活地调整这种效果，而不是调整整数值的跳跃长度。</p>
+<p>我们可以通过两种基本策略设置渗漏单元使用的时间常数。一种策略是手动将其固定为常数，例如在初始化时从某些分布采样它们的值。另一种策略是使时间常数成为自由变量，并学习出来。在不同时间尺度使用这样的渗漏单元似乎能帮助学习长期依赖。</p>
+</li>
+<li><p><strong>删除连接</strong></p>
+<p>处理长期依赖另一种方法是在多个时间尺度组织 RNN 状态的想法，信息在较慢的时间尺度上更容易长距离流动。</p>
+<p>这个想法与之前讨论的时间维度上的跳跃连接不同，因为它涉及主动删除长度为一的连接并用更长的连接替换它们。以这种方式修改的单元被迫在长时间尺度上运作。收到这种新连接的单元，可以学习在长时间尺度上运作，但也可以选择专注于自己其他的短期连接。</p>
+<p>强制一组循环单元在不同时间尺度上运作有不同的方式。一种选择是使循环单元变成渗漏单元，但不同的单元组关联不同的固定时间尺度。另一种选择是使显式且离散的更新发生在不同的时间，不同的单元组有不同的频率。</p>
+</li>
+</ul>
+<h2 id="9-长短期记忆和其他门控RNN"><a href="#9-长短期记忆和其他门控RNN" class="headerlink" title="9. 长短期记忆和其他门控RNN"></a>9. 长短期记忆和其他门控RNN</h2><p>目前实际应用中最有效的序列模型称为<strong>门控RNN</strong>（gated RNN），包括基于长短期记忆（long short-term memory）和基于<strong>门控循环单元</strong>（gated recurrent unit）的网络。 </p>
+<p>像渗漏单元一样，门控 RNN 想法也是基于生成通过时间的路径，其中导数既不消失也不发生爆炸。渗漏单元通过手动选择常量的连接权重或参数化的连接权重来达到这一目的。门控 RNN 将其推广为在每个时间步都可能改变的连接权重。</p>
+<p>渗漏单元允许网络在较长持续时间内积累信息（诸如用于特定特征或类的线索）。然而，一旦该信息被使用，让神经网络遗忘旧的状态可能是有用的。例如，如果一个序列是由子序列组成，我们希望渗漏单元能在各子序列内积累线索，我们需要将状态设置为 0 以忘记旧状态的的机制。我们希望神经网络学会决定何时清除状态，而不是手动决定，这就是门控 RNN 要做的事。</p>
+<ul>
+<li><p><strong>LSTM</strong></p>
+<p>引入自循环的巧妙构思，以产生梯度长时间持续流动的路径是初始**长短期记忆(long short-term memory, LSTM)**模型的核心贡献。其中一个关键扩展是使自循环的权重视上下文而定，而不是固定的。门控此自循环（由另一个隐藏单元控制）的权重，累积的时间尺度可以动态地改变。在这种情况下，即使是具有固定参数的 LSTM，累积的时间尺度也可以因输入序列而改变，因为时间常数是模型本身的输出。</p>
+<p>LSTM块如图所示：</p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/LSTM.png?raw=true"></p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/lstm2.png?raw=true"></p>
+<p><img src="https://github.com/zxth93/zxth93.github.io/blob/master/images/favatar/lstm3.png?raw=true"></p>
+<p><img src="http://xiaosheng.me/img/article/article_74_2.png"></p>
+<p>上图为 LSTM 循环网络“细胞”的框图。细胞彼此循环连接，代替一般循环网络中普通的隐藏单元。这里使用常规的人工神经元计算输入特征。如果 sigmoid 输入门允许，它的值可以累加到状态。状态单元具有线性自循环，其权重由遗忘门控制。细胞的输出可以被输出门关闭。所有门控单元都具有 sigmoid 非线性，而输入单元可具有任意的压缩非线性。状态单元也可以用作门控单元的额外输入。黑色方块表示单个时间步的延迟。</p>
+<p>LSTM 循环网络除了外部的 RNN 循环外， 还具有内部的“LSTM 细胞”循环（自环），因此 LSTM 不是简单地向输入和循环单元的仿射变换之后施加一个逐元素的非线性。与普通的循环网络类似，每个单元有相同的输入和输出，但也有更多的参数和控制信息流动的门控单元系统。</p>
+<p>LSTM 网络比简单的循环架构更易于学习长期依赖，目前各种 LSTM 的变体和替代也已经被研究和使用。</p>
+</li>
+<li><p><strong>其他门控RNN</strong></p>
+<p>LSTM 架构中哪些部分是真正必须的？还可以设计哪些其他成功架构允许网络动态地控制时间尺度和不同单元的遗忘行为？</p>
+<p>最近关于门控 RNN 的工作给出了这些问题的某些答案，其单元也被称为<strong>门控循环单元</strong>或 GRU。与 LSTM 的主要区别是，单个门控单元同时控制遗忘因子和更新状态单元的决定。</p>
+<p>复位和更新门能独立地“忽略”状态向量的一部分。更新门像条件渗漏累积器一样可以线性门控任意维度，从而选择将它复制（在 sigmoid 的一个极端）或完全由新的“目标状态”值（朝向渗漏累积器的收敛方向）替换并完全忽略它（在另一个极端）。 复位门控制当前状态中哪些部分用于计算下一个目标状态，在过去状态和未来状态之间引入了附加的非线性效应。</p>
+<p>围绕这一主题可以设计更多的变种。例如复位门（或遗忘门）的输出可以在多个隐藏单元间共享。或者，全局门的乘积（覆盖一整组的单元，例如整一层）和一个局部门（每单元）可用于结合全局控制和局部控制。然而，一些调查发现这些 LSTM 和 GRU 架构的变种，在广泛的任务中难以明显地同时击败这两个原始架构。</p>
+<blockquote>
+<p>本文内容摘取自 <a target="_blank" rel="noopener" href="http://www.deeplearningbook.org/">《Deep Learning》</a>，部分内容有修改。</p>
+</blockquote>
+</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2017/09/16/%E5%BE%AA%E7%8E%AF%E5%92%8C%E9%80%92%E5%BD%92%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="循环和递归网络学习笔记" target="_blank" rel="external">http://example.com/2017/09/16/循环和递归网络学习笔记/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/zxth93" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/zxth93" target="_blank"><span class="text-dark">ciic</span><small class="ml-1x">A master student of ISCAS</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2017/09/19/%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8/" title="自编码器"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2017/09/15/Tips-of-Deep-learning/" title="Tips of Deep Learning课程笔记"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zxth93" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/u/2804936165" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
